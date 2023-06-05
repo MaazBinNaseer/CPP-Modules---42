@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/05 15:14:10 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/05 15:14:12 by mbin-nas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 Phonebook::Phonebook(void)
@@ -10,7 +22,7 @@ void Phonebook::ADD(void)
     if(this->index == 8)
         this->index = 0;
     this->contacts[index].set_Contacts(this->index + 1);
-    this->contacts[index++];
+    index++;
 }
 
 void Phonebook::EXIT(void)
