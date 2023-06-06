@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:16:42 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/06 12:51:28 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/06 16:23:15 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/06 17:48:13 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 
-Zombie *newZombie(std::string zombie_name)
-{
-    Zombie *z2;
+#include <iostream>
+#include <string>
 
-    z2 = new Zombie(zombie_name);
-    return (z2);
-}
+class Weapon {
+private:
+    std::string type;
 
+public:
+    Weapon(std::string type);
+    Weapon(void);
+    const std::string& getType() const;
+    void setType(const std::string& newType);
+};
+
+#endif

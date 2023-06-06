@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:16:42 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/06 12:51:28 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/06 17:06:13 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/06 17:14:42 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
 
-Zombie *newZombie(std::string zombie_name)
-{
-    Zombie *z2;
-
-    z2 = new Zombie(zombie_name);
-    return (z2);
-}
-
+class HumanB{
+    private:
+        std::string weapon_name;
+    public:
+        HumanB(const std::string& weapon_name);
+};
