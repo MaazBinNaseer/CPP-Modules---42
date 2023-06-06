@@ -58,40 +58,56 @@ bool Contact::isEmpty() const
     return id == 0;
 }
 
-void Contact::set_Contacts(int i)
+bool readInput(std::string& input)
+{
+    if (!std::getline(std::cin, input))
+    {
+        std::cout << KRED << std::endl << BOLD("Input reading failed. Exiting.") << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool Contact::set_Contacts(int i)
 {
     std::string input;
 
     this->id = i;
     do {
         std::cout << KGRN << BOLD("First Name: ");
-        std::getline(std::cin, input);
+        if (!readInput(input))
+            return false;
     } while(!valid_Name(input) || !valid_empty(input));
     this->first_name = input;
 
     do {
         std::cout << KGRN << BOLD("Last Name: ");
-        std::getline(std::cin, input);
+         if (!readInput(input))
+            return false;
     } while(!valid_Name(input) || !valid_empty(input));
     this->last_name = input;
 
     do {
         std::cout << KGRN << BOLD("Phone Number [symbols are not allowed]: ");
-        std::getline(std::cin, input);
+         if (!readInput(input))
+            return false;
     } while(!valid_Phone(input) || !valid_empty(input));
 
     do {
     std::cout << WOW << KGRN << BOLD(" Your embarrasing nickname : ");
-    std::getline(std::cin, input);
+     if (!readInput(input))
+            return false;
     } while(!valid_empty(input));
     this->nick_nake = input;
 
     do {
     std::cout <<HIDE << KGRN << BOLD(" Your deepest darkest desire:  ");
-    std::getline(std::cin, input);
+     if (!readInput(input))
+            return false;
     } while (!valid_empty(input));
     this->darkest_desire = input;
-    
+
+    return (true);   
 }
 
 void Contact::display_Format(std::string format)

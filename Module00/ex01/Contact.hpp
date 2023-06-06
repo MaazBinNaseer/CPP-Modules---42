@@ -50,7 +50,7 @@ public:
     bool valid_Phone(std::string phone_number);
     bool valid_Name(std::string Name);
     bool valid_empty(std::string input);
-    void set_Contacts(int i);
+    bool set_Contacts(int i);
     void display_Format(std:: string format);
     void display_Contacts(void);
     void display_All_Contacts(void);

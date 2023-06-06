@@ -19,7 +19,7 @@ private:
 
 public:
     Phonebook();
-    void    ADD(void);
+    bool   ADD(void);
     void    EXIT(void);
     void    SEARCH(void);
     void    Display_all(void);

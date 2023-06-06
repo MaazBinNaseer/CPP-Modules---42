@@ -17,13 +17,19 @@ Phonebook::Phonebook(void)
     this->index = 0;
 }
 
-void Phonebook::ADD(void)
+
+bool Phonebook::ADD()
 {
     if(this->index == 8)
         this->index = 0;
-    this->contacts[index].set_Contacts(this->index + 1);
+    
+    if (!this->contacts[index].set_Contacts(this->index + 1))
+        return false;
+
     index++;
+    return true;
 }
+
 
 void Phonebook::EXIT(void)
 {
@@ -68,7 +74,10 @@ int main(void)
         std::cout << KBLU << BOLD(" -- The options you have are [ADD], [SEARCH], and [EXIT] --")  << std:: endl;
         getline(std::cin, line);
         if(line.compare("ADD") == 0)
-            person.ADD();
+            {
+                if(!person.ADD())
+                    break;
+            }
         else if (line.compare("EXIT") == 0 || std::cin.eof() == 1)
             person.EXIT();
         else if (line.compare("SEARCH") == 0)

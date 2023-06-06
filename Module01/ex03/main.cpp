@@ -17,6 +17,8 @@ int main()
         Weapon club = Weapon("The spiked whiplash");
         HumanA jim("jim", club);
         jim.attack();
+        club.setType("Some other attack");
+        jim.attack();
         
     return (0);
 }
