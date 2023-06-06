@@ -12,9 +12,7 @@
 
 #include "Zombie.hpp"
 
-Zombie:: Zombie(void){}
-
-void Zombie::getName(std::string name)
+Zombie:: Zombie(std::string name)
 {
     this->name = name;
 }
@@ -24,10 +22,17 @@ void Zombie::annouce(void)
     std::cout << name << "BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-int main()
+//* Destructor gets called automatically as once it goes out of the scope
+Zombie::~Zombie(void)
 {
-    Zombie z1;
-    z1.getName("Foo: ");
-    z1.annouce();
-    
+    std::cout << this->name << "Zombie has died." << std::endl;
 }
+
+// int main()
+// {
+//     Zombie z1("Foo: ");
+//     z1.annouce();
+
+//     return (0);
+    
+// }

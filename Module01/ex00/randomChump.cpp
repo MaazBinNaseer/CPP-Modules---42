@@ -10,3 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
+
+void randomZombie(std::string zombie_name)
+{
+    Zombie z3(zombie_name);
+
+    z3.annouce();
+}
