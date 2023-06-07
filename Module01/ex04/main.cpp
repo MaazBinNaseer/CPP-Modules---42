@@ -1,9 +1,20 @@
 #include <fstream>
 #include <iostream>
-#include <string>
 #include <sstream>
 
+void replaceOccurrences(std::string& content, const std::string& s1, const std::string& s2)
+{
+    size_t pos = 0;
+    while ((pos = content.find(s1, pos)) != std::string::npos) 
+    {
+        content.erase(pos, s1.length());
+        content.insert(pos, s2);
+        pos += s2.length();
+    }
+}
+
 int main(int argc, char **argv) {
+    
     if (argc != 4) {
         std::cout << "Usage: ./replace filename s1 s2\n";
         return 1;
@@ -20,33 +31,23 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    std::stringstream buffer;
+    buffer << inputFile.rdbuf();
+
+    std::string content = buffer.str();
+
+    replaceOccurrences(content, s1, s2);
+
+    inputFile.close();
+
     std::ofstream outputFile(newFilename.c_str());
     if (!outputFile) {
         std::cout << "Failed to open output file: " << newFilename << '\n';
-        inputFile.close();
         return 1;
     }
 
-    std::string line;
-    while (std::getline(inputFile, line)) {
-        std::istringstream lineStream(line);
-        std::string word;
-        bool firstWord = true;
-        while (lineStream >> word) {
-            if (!firstWord) {
-                outputFile << " ";
-            }
-            if (word == s1) {
-                outputFile << s2;
-            } else {
-                outputFile << word;
-            }
-            firstWord = false;
-        }
-        outputFile << "\n";
-    }
+    outputFile << content;
 
-    inputFile.close();
     outputFile.close();
 
     return 0;
