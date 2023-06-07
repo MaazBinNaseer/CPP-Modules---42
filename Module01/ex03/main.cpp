@@ -11,14 +11,27 @@
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int main()
 {
-        Weapon club = Weapon("The spiked whiplash");
-        HumanA jim("jim", club);
-        jim.attack();
-        club.setType("Some other attack");
-        jim.attack();
+        {
+            std::cout << "This is coming from the HumanA" << std::endl;
+            Weapon club = Weapon("The spiked whiplash");
+            HumanA jim("jim", club);
+            jim.attack();
+            club.setType("Some other attack");
+            jim.attack();
+        }
+        {
+            std::cout << "This is coming from the HumanB" << std::endl;
+            Weapon club = Weapon("crude spiked club");
+            HumanB jim("Jim");
+            jim.setWeapon(club);
+            jim.attack();
+            club.setType("some other type of club");
+            jim.attack();
+        }
         
     return (0);
 }

@@ -40,6 +40,14 @@ bool Contact::valid_Name(std::string Name)
             return false;   
         }
     }
+    for (std::size_t i = 0; i < Name.size(); ++i)
+    {
+        if (!isalpha(Name[i]))
+        {
+            std::cout << KRED << BOLD("Name should only contain letters!") << std::endl;
+            return false;
+        }
+    }
     return true;
 }
 
@@ -50,7 +58,8 @@ bool Contact::valid_empty(std::string input)
         std::cout << KRED << BOLD("Input cannot be empty!") << std::endl;
         return false;
     }
-    return true;
+   
+    return (true);
 }   
 
 bool Contact::isEmpty() const

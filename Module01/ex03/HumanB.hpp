@@ -10,11 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HUMAN_B
+#define HUMAN_B
+
 #include "Weapon.hpp"
 
 class HumanB{
     private:
-        std::string weapon_name;
+        std::string name;
+        Weapon* weapon;
     public:
-        HumanB(const std::string& weapon_name);
+        HumanB(std::string name);
+        void setWeapon(Weapon &weapon);
+        void attack();
 };
+
+
+#endif
