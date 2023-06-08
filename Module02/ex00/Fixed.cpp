@@ -6,25 +6,11 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:15:50 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/08 21:36:42 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/08 21:41:06 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
-class Fixed {
-    private:
-        int value;
-        static const int fractional_bits = 8;
-
-    public:
-        Fixed();
-        Fixed(const Fixed& value2);
-        Fixed& operator=(const Fixed& other);
-        ~Fixed();
-        int getRawBits(void) const;
-        void setRawBits(int const raw);
-};
+#include "Fixed.hpp"
 
 Fixed::Fixed():value(0) {
     std::cout << "Default constructor was called" << std::endl;
