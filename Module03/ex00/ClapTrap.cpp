@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap(const std::string name)
 {
-    std::cout << "Constructor is being called " << std::endl;
+    std::cout << "Constructor is being called from ClapTrap" << std::endl;
     this->name = name;
     this->health_point = 10;
     this->attack_damage = 10;
@@ -24,7 +24,7 @@ void ClapTrap::attack(const std::string& target)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor is being called" << std::endl;
+    std::cout << "Destructor is being called from ClapTrap" << std::endl;
 }
 
 int ClapTrap::getHealth() const
