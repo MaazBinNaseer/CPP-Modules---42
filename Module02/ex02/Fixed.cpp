@@ -65,6 +65,18 @@ Fixed Fixed::operator/(const Fixed& other) const {
     return (result.value);
 }
 
+Fixed::Fixed(const Fixed& value2){
+    std::cout << "Copy constructor was called" << std::endl;
+    *this = value2;
+}
+
+Fixed& Fixed::operator=(const Fixed& other) {
+    if (this != &other) {
+            this->value = other.getValue();
+        }
+    std::cout << "Copy assignment operator called " << std::endl;
+    return *this;
+}
 
 //* ----- Increment and Decrement methods ------
 

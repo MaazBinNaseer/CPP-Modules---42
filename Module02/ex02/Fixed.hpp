@@ -9,6 +9,8 @@ class Fixed{
     public:
         Fixed();
         Fixed(const int value);
+        Fixed(const Fixed& value2);
+        Fixed& operator=(const Fixed& other);
         int getValue(void) const;
 
         bool operator>(const Fixed& value) const;
