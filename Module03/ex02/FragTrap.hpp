@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 13:04:26 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/13 14:13:33 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/13 13:35:52 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/13 14:01:55 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 
-//todo: Implement the copy assignment and copy constructor in the program
 
-int main() {
-    ScavTrap scavTrap("Sarah");
-    ScavTrap scavTrapCopy(scavTrap);
-    ScavTrap scavTrapAssigned = scavTrap;
-    scavTrap.attack("Enemy");
-    scavTrap.guardGate();
-    std::cout << scavTrap;
-
-    return 0;
-}
+class FragTrap : public ClapTrap
+{
+  public:
+    FragTrap();
+    FragTrap(const std:: string& name);
+    FragTrap(const FragTrap& value);
+    FragTrap& operator=(const FragTrap& other);
+    ~FragTrap();
+    void highFivesGuys(void);
+};

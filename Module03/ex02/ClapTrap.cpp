@@ -1,25 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 13:03:24 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/13 14:04:28 by mbin-nas         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
 {
-    std::cout << BGRN <<"Constructor is being called from ClapTrap" << RST << std::endl;
+    std::cout << BGRN <<"Default Constructor is being called from ClapTrap" << RST << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& name)
 {
-    std::cout << BGRN <<"Constructor is being called from ClapTrap" << RST << std::endl;
+    std::cout << BGRN << "Constructor is being called from ClapTrap" << RST << std::endl;
     this->name = name;
     this->health_point = 100;
     this->energy_point = 100;
@@ -37,7 +25,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
        if (this != &other) {
             this->health_point = other.getHealth();
         }
-    std::cout << "Copy assignment operator called ClapTrap" << std::endl;
+    std::cout << BGRN << "Copy assignment operator called " << RST << std::endl;
     return *this;
 }
 
@@ -90,7 +78,6 @@ void ClapTrap::beRepaired(unsigned int amount)
         energy_point--;
     }
 }
-
 std::ostream& operator<<(std::ostream& out, const ClapTrap& value)
 {
     out << "The Energy is -> " << value.getEnergy() << std::endl;
