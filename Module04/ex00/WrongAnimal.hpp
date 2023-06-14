@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:56:28 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 13:32:54 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/14 13:19:41 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/14 13:41:18 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
+#ifndef WRONG_ANIMAL_HPP
+#define WRONG_ANIMAL_HPP
 
-int main()
+#include <iostream>
+
+class WrongAnimal
 {
-    const Animal* animal = new Animal ();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    private:
+        std::string name;
+        std::string type;
 
+    public:
+        WrongAnimal();
+        WrongAnimal(std::string name);
+        WrongAnimal(const WrongAnimal& other);
+        WrongAnimal& operator=(const WrongAnimal& other);
+        ~WrongAnimal();
     
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << std::endl;
-    i->makeSound();
-    j->makeSound();
-    animal->makeSound();
+};
 
-    delete j;
-    delete i;
-    delete animal;
-}
+#endif

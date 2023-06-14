@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:56:28 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 13:32:54 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/14 14:17:27 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/14 14:23:43 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-int main()
+#include <iostream>
+
+class Brain
 {
-    const Animal* animal = new Animal ();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    public:
+        Brain();
+        Brain(const Brain& other);
+        Brain& operator=(const Brain& other);
+       ~Brain();
+        std::string ideas[100];
+        
+};
 
-    
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << std::endl;
-    i->makeSound();
-    j->makeSound();
-    animal->makeSound();
 
-    delete j;
-    delete i;
-    delete animal;
-}
+
+
+
+#endif 

@@ -5,7 +5,7 @@ CFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 SRCS	=	Animal.cpp \
 			Dog.cpp \
 			Cat.cpp \
-			WrongAnimal.cpp \
+			Brain.cpp\
 			main.cpp \
 
 GREEN   =   \033[1;32m 
@@ -14,7 +14,7 @@ RESET   =   \033[0m
 all		:	$(NAME)
 
 $(NAME)	:	$(SRCS)
-				$(CC) $(CFLAGS) $(SRCS) -s -o $(NAME)
+				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
 
 clean	:

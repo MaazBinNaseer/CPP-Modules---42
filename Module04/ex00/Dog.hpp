@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:56:28 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 13:32:54 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/14 13:27:49 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/14 13:39:57 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
+#ifndef DOG_HPP
+#define DOG_HPP
 
-int main()
+#include "Animal.hpp"
+
+class Dog : public Animal
 {
-    const Animal* animal = new Animal ();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+  public:
+    Dog();
+    Dog(const std::string& type);
+    Dog(const Dog& value);
+    Dog& operator=(const Dog& other);
+    void makeSound() const;
+    ~Dog();
+};
 
-    
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << std::endl;
-    i->makeSound();
-    j->makeSound();
-    animal->makeSound();
-
-    delete j;
-    delete i;
-    delete animal;
-}
+#endif
