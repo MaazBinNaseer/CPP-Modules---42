@@ -14,8 +14,40 @@
 
 class Animal{
   protected:
+    std::string type;
     std::string name;
     
   public:
-    void makeSound();
+    Animal();
+    Animal(const Animal& value);
+    Animal& operator=(const Animal& other);
+    virtual ~Animal();
+    virtual void makeSound() const;
+    std::string getType() const;
+};
+
+class Dog : public Animal
+{
+  public:
+    Dog();
+    Dog(const std::string& type);
+    Dog(const Dog& value);
+    Dog& operator=(const Dog& other);
+    void makeSound() const;
+    ~Dog();
+
+};
+
+
+
+class Cat : public Animal
+{
+  public:
+    Cat();
+    Cat(const std::string& type);
+    Cat(const Cat& value);
+    Cat& operator=(const Cat& other);
+    void makeSound() const;
+    ~Cat();
+
 };

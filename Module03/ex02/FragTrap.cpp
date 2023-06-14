@@ -20,7 +20,7 @@ FragTrap::FragTrap(const std::string& name): ClapTrap(name)
 
 FragTrap::FragTrap(const FragTrap& value)
 {
-     std::cout << BYLW << "FragTrap constructor was called " << RST << std::endl;
+     std::cout << BYLW << "FragTrap Copy constructor was called " << RST << std::endl;
      *this = value;
 }
 
