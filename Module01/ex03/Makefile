@@ -1,20 +1,31 @@
 NAME	=	main
 CC		=	c++
 CFLAGS	=	-std=c++98 -Wall -Wextra -Werror
+OBJ = $(SRCS:.cpp=.o)
+
+
+GREEN   =   \033[1;32m 
+RESET   =   \033[0m 
 
 SRCS	=	HumanA.cpp \
 			HumanB.cpp \
 			Weapon.cpp \
 			main.cpp
+
 all		:	$(NAME)
 
-$(NAME)	:	$(SRCS)
+$(NAME)	:	$(OBJ)
 				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
+
+%.o :%.cpp 
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean	:
-			@ rm -f $(NAME)
+			@ rm -f $(OBJ)
 
 fclean 	:	clean
+			@ rm -f $(NAME)
 
 re 		: 	fclean all
 

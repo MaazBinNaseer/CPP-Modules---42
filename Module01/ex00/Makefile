@@ -2,7 +2,10 @@ NAME	=	main
 CC		=	c++
 CFLAGS	=	-std=c++98 -Wall -Wextra -Werror 
 
-SRCS	=	main.cpp \
+SRCS	=	newZombie.cpp \
+			randomChump.cpp \
+			Zombie.cpp \
+			main.cpp \
 
 OBJ = $(SRCS:.cpp=.o)
 

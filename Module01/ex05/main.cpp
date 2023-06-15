@@ -5,26 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 12:51:37 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/15 17:54:11 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/15 18:06:00 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/15 18:11:30 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
 int main() {
-    const int numZombies = 5;
-    const std::string zombieName = "Zombie";
+    Harl harl;
 
-    Zombie* horde = zombieHorde(numZombies, zombieName);
-
-    if (horde != NULL) {
-        // Call announce() for each zombie
-        for (int i = 0; i < numZombies; ++i) {
-            horde[i].annouce();
-        }
-        delete[] horde; // Delete the entire horde of zombies
-    }
+    harl.complain("DEBUG");
+    harl.complain("INFO");
+    harl.complain("WARNING");
+    harl.complain("ERROR");
 
     return 0;
 }

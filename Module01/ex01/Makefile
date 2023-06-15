@@ -2,24 +2,29 @@ NAME	=	main
 CC		=	c++
 CFLAGS	=	-std=c++98 -Wall -Wextra -Werror 
 
-SRCS	=	Zombie.cpp \
-			zombieHorde.cpp \
+SRCS	=	zombieHorde.cpp\
+			Zombie.cpp \
 			main.cpp \
 
+OBJ = $(SRCS:.cpp=.o)
 
 GREEN   =   \033[1;32m 
 RESET   =   \033[0m 
 
 all		:	$(NAME)
 
-$(NAME)	:	$(SRCS)
-				$(CC) $(CFLAGS) $(SRCS) -s -o $(NAME)
+$(NAME)	:	$(OBJ)
+				@$(CC) $(CFLAGS) $(SRCS)  -o $(NAME)
 				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
 
-clean	:
-			@ rm -f $(NAME)
+%.o :%.cpp 
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
-fclean 	:	clean
+clean	:
+			@ rm -f $(OBJ)
+
+fclean 	:	clean 
+			@ rm -f $(NAME) 
 
 re 		: 	fclean all
 

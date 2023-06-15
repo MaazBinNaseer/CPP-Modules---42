@@ -1,7 +1,5 @@
 #include "Harl.hpp"
 
-#include "Harl.hpp"
-
 Harl::Harl() {
     std::cout << "Harl: Hi......" << std::endl;
 }
@@ -27,7 +25,7 @@ void    Harl::error(void) {
 }
 
 void    Harl::complain(std::string level) {
-    std::string funcStringList[4] = {"debug", "info", "warning", "error"};
+    std::string funcStringList[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     void        (Harl::*funcList[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     for (int i = 0; i < 4; i++)
     {
