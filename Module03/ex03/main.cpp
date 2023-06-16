@@ -37,6 +37,6 @@ int main() {
     std::cout << Spiderman2 << std::endl;
     Spiderman2.attack("enemy");
     Spiderman2.beRepaired(40);
-    std::cout << std::endl;
+    std::cout << " " << std::endl;
     return (0);
 }

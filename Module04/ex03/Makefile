@@ -1,8 +1,12 @@
-NAME	=	ex01
+NAME	=	main
 CC		=	c++
-CFLAGS	=	-std=c++98 -Wall -Wextra -Werror -Wpedantic
+CFLAGS	=	-std=c++98 -Wall -Wextra -Werror -g 
 
-SRCS	=	Fixed.cpp \
+SRCS	=	AMateria.cpp \
+			Character.cpp \
+			MateriaSource.cpp \
+			Cure.cpp \
+			Ice.cpp \
 			main.cpp \
 
 
@@ -12,7 +16,7 @@ RESET   =   \033[0m
 all		:	$(NAME)
 
 $(NAME)	:	$(SRCS)
-				$(CC) $(CFLAGS) $(SRCS)  -o $(NAME)
+				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
 
 clean	:
