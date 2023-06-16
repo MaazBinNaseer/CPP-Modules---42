@@ -32,6 +32,14 @@ bool Fixed::operator<=(const Fixed& value_1) const {
     return (this->value <= value_1.value);
 }
 
+bool Fixed::operator==(const Fixed& other) const {
+    return this->value == other.value;
+}
+
+bool Fixed::operator!=(const Fixed& other) const {
+    return !(*this == other);
+}
+
 //* ----  Arthimethic Operations  --------
 Fixed Fixed::operator+(const Fixed& other) const {
 
