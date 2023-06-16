@@ -1,3 +1,5 @@
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 #include <iostream>
 
@@ -9,12 +11,16 @@ class Fixed{
     public:
         Fixed();
         Fixed(const int value);
+        Fixed(const Fixed& value2);
+        Fixed& operator=(const Fixed& other); 
         int getValue(void) const;
 
         bool operator>(const Fixed& value) const;
         bool operator<(const Fixed& value) const;
         bool operator>=(const Fixed& value) const;
         bool operator<=(const Fixed& value) const;
+        bool operator ==(const Fixed& other) const;
+        bool operator !=(const Fixed& other) const;
 
         Fixed operator+(const Fixed& other) const;
         Fixed operator-(const Fixed& other) const;
@@ -33,3 +39,5 @@ class Fixed{
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
+
+#endif
