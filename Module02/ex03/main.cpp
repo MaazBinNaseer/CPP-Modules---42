@@ -4,7 +4,7 @@
 int main(void) {
     Point   a(0, 0);
     Point   b(0, 16);
-    Point   c(16, 0);
+    Point   c(16.01f, 0);
     Point   point1(4, 4);
     Point   point2(16, 0);
     Point   point3(10, 10);

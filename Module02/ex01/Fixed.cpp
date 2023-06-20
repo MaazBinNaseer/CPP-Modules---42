@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:39:34 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/08 21:39:35 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:36:14 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ Fixed& Fixed::operator=(const Fixed& other) {
 }
 
 int Fixed::getRawBits(void) const {
+        std::cout << "getRawBits member function is called" << std::endl;
         return this->value;
 }
 

@@ -12,6 +12,10 @@ int main() {
     // std::cout << "Testing the greater equal : "<< (a >= b) << std::endl; 
     // std::cout << "Testing the less than : "<< (a < b) << std::endl;  
     // std::cout << "Testing the less equal : "<< (a <= b) << std::endl; 
+    // std::cout << "Testing the = equal : "<< (a == b) << std::endl;
+    // std::cout << "Testing the != equal : "<< (a != b) << std::endl; 
+
+
 
     // // Test arithmetic operators
     // Fixed c = a + b;
@@ -39,15 +43,16 @@ int main() {
 
     std::cout << "---- This is the subject tester ----" << std::endl;
     
-    Fixed a1;
-    Fixed const b1( Fixed( 5.05f ) * Fixed( 2 ) );
-    std::cout << a1 << std::endl;
-    std::cout << ++a1 << std::endl;
-    std::cout << a1 << std::endl;
-    std::cout << a1++ << std::endl;
-    std::cout << a1 << std::endl;
-    std::cout << b1 << std::endl;
-    std::cout << "The maixmum value is: " << Fixed::max( a1, b1 ) << std::endl;
+    Fixed a;
+    Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+    std::cout << a << std::endl;
+    std::cout << ++a << std::endl;
+    std::cout << a << std::endl;
+    std::cout << a++ << std::endl;
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
+    std::cout << Fixed::max( a, b ) << std::endl;
+    std::cout << Fixed::min( a, b ) << std::endl;
 
     return 0;
 }

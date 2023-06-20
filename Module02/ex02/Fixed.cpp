@@ -1,15 +1,37 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed():value(12) {}
+Fixed::Fixed():value(0) 
+{
+    std::cout << "Main_Constructor was called " << std::endl;
+}
+
+Fixed::Fixed(const float float_value){
+    std::cout << "Float constructor was called" << std::endl;
+    this->value = roundf(float_value * (1 << this->fractional_bits));
+}
 
 Fixed::Fixed (const int value)
 {
+    std::cout << "Default (Value) constructor is being called" << std::endl;
     this->value = value;
 }
 
 int Fixed::getValue() const{
     return (value);
 }
+
+float Fixed::toFloat(void) const {
+        return this->value / (float)(1 << fractional_bits);
+}
+
+int Fixed::toInt(void) const {
+        return this->value >> fractional_bits;
+}
+
+Fixed::~Fixed(){
+    std::cout << "Destructor called" <<  std::endl;
+}
+
 
 //* -------- Bool operations --------
 bool Fixed::operator>(const Fixed& value_1)const{
@@ -149,6 +171,6 @@ Fixed& Fixed::max(Fixed& a, Fixed& b) {
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& value) {
-    out << value.getValue();
+    out << value.toFloat();
     return out;
 }

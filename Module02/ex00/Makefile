@@ -1,6 +1,6 @@
-NAME	=	ex01
+NAME	=	ex00
 CC		=	c++
-CFLAGS	=	-std=c++98 -Wall -Wextra -Werror -Wpedantic
+CFLAGS	=	-std=c++98 -Wall -Wextra
 
 SRCS	=	Fixed.cpp \
 			main.cpp \

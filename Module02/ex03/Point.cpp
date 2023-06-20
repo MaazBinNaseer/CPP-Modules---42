@@ -39,5 +39,5 @@ Point& Point::operator=(const Point& other)
 
 Point::~Point()
 {
-    std::cout << "Point Destructor is being called " << std:: endl;
+    // std::cout << "Point Destructor is being called " << std:: endl;
 }

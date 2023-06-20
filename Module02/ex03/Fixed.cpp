@@ -4,6 +4,7 @@ Fixed::Fixed():value(12) {}
 
 Fixed::Fixed (const int value)
 {
+    // std::cout<< " Fixed pointer is being called " << std::endl;
     this->value = value;
 }
 
