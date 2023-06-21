@@ -1,6 +1,6 @@
 NAME	=	ClapTrap
 CC		=	c++
-CFLAGS	=	-std=c++98 -Wall -Wextra -Werror -Wpedantic
+CFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
 SRCS	=	ClapTrap.cpp \
 			main.cpp \
@@ -12,7 +12,7 @@ RESET   =   \033[0m
 all		:	$(NAME)
 
 $(NAME)	:	$(SRCS)
-				$(CC) $(CFLAGS) $(SRCS) -s -o $(NAME)
+				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
 
 clean	:

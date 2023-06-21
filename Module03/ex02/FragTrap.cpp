@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:35:49 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/13 14:06:39 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:05:51 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ FragTrap::FragTrap(const std::string& name): ClapTrap(name)
      std::cout << BYLW <<"Constructor Name " << name <<  " is being called from FragTrap" << RST << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& value)
+FragTrap::FragTrap(const FragTrap& value): ClapTrap(value)
 {
      std::cout << BYLW << "FragTrap Copy constructor was called " << RST << std::endl;
      *this = value;

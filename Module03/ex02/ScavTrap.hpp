@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 12:12:57 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/21 13:24:45 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/06/12 13:04:31 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/12 18:49:59 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-int main()
+class ScavTrap : public ClapTrap
 {
-    ClapTrap b;
-    ClapTrap a("John");
-    a.attack("man");
-    a.takeDamage(0);
-    // a.takeDamage(5);
-    a.attack("man");
-    a.beRepaired(50);
-    std::cout << "The status of the ClapTrap is:" << std::endl << a;
-
-}
+    public:
+        ScavTrap();
+        ScavTrap(const std::string& name);
+        ScavTrap(const ScavTrap& value);
+        ScavTrap& operator=(const ScavTrap& other);
+        ~ScavTrap();
+        void guardGate();
+        void attack(const std::string& target);
+};

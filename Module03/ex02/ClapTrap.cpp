@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:14:24 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/21 12:14:25 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:10:58 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ ClapTrap::ClapTrap(const std::string& name)
 
 ClapTrap::ClapTrap(const ClapTrap& value)
 {
-     std::cout << BGRN << "Copy constructor was called" << RST << std::endl;
+     std::cout << BGRN << "Copy constructor was called from ClapTrap"  << RST << std::endl;
     *this = value;
 }
 
@@ -37,7 +37,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
        if (this != &other) {
             this->health_point = other.getHealth();
         }
-    std::cout << BGRN << "Copy assignment operator called " << RST << std::endl;
+    std::cout << BGRN << "Copy assignment operator called from CalpTrap " << RST << std::endl;
     return *this;
 }
 
@@ -85,7 +85,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
     if(energy_point != 0)
     {
-        std::cout << "CalpTrap " << name << " " << amount << "takes points for repair" << std::endl;
+        std::cout << "CalpTrap " << name << " " << amount << " takes points for repair" << std::endl;
         health_point = health_point + amount;
         energy_point--;
     }

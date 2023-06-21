@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 13:03:24 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/13 14:04:28 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 13:46:37 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ ClapTrap::ClapTrap(const std::string& name)
 
 ClapTrap::ClapTrap(const ClapTrap& value)
 {
-     std::cout << BGRN << "Copy constructor was called" << RST << std::endl;
+     std::cout << BGRN << "Copy constructor was called from ClapTrap" << RST << std::endl;
     *this = value;
 }
 
@@ -37,7 +37,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
        if (this != &other) {
             this->health_point = other.getHealth();
         }
-    std::cout << "Copy assignment operator called ClapTrap" << std::endl;
+    std::cout << BGRN << "Copy assignment operator called ClapTrap" << RST << std::endl;
     return *this;
 }
 

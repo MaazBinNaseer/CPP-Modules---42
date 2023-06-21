@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:12:52 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/21 12:12:53 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 13:18:20 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ class ClapTrap{
         unsigned int energy_point;
         unsigned int attack_damage;
     public:
+        ClapTrap();
         ClapTrap(const std::string name);
+        ClapTrap(const ClapTrap& other);
+        ClapTrap& operator=(const ClapTrap& other);
         ~ClapTrap();
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);
