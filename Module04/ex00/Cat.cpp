@@ -6,17 +6,13 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:29:39 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 13:39:39 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:03:16 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#include "Cat.hpp"
 
- #include "Animal.hpp"
- #include "Cat.hpp"
-
- Cat::Cat()
+Cat::Cat()
 {
     std::cout << "Cat constructor is called" << std::endl;
     type = "Cat";
@@ -46,4 +42,3 @@ Cat::~Cat()
     std::cout << "Destructor for Cat has been called" << std::endl;
 }
 
-#endif

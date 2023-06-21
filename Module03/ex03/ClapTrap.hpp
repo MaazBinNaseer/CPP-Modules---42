@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:51:00 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/13 14:22:15 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:55:59 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ClapTrap{
     public:
         ClapTrap();
         ClapTrap(const std::string& name);
-        virtual ~ClapTrap();
+        ~ClapTrap();
         ClapTrap& operator=(const ClapTrap& other);
         ClapTrap(const ClapTrap& value);
         void attack(const std::string& target);

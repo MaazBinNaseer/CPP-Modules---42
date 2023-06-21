@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:15:33 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/21 12:15:34 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:56:08 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class DiamondTrap: public ScavTrap, public FragTrap
         DiamondTrap(std::string name);
         DiamondTrap (const DiamondTrap& other);
         DiamondTrap& operator=(const DiamondTrap& other);
-        virtual  ~DiamondTrap();
+        ~DiamondTrap();
         void    printStat(void);
         void    attack(const std::string &target);
         void    whoAmI(void);

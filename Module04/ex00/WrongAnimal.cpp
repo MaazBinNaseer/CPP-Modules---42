@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:15:25 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 13:44:31 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:18:22 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ WrongAnimal::WrongAnimal(const WrongAnimal& other)
      *this = other.name;
 }
 
+
+std::string WrongAnimal::getType() const
+{
+    return (type);
+}
+
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
 {
     if (this != &other)
@@ -40,6 +46,10 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
       }
     std:: cout << "Copy Assignment of [Wrong Animal] being called " << std::endl;
     return (*this);
+}
+
+void  WrongAnimal::makeSound() const {
+    std::cout << "By Default: The animal does not have any sound yet!" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal()

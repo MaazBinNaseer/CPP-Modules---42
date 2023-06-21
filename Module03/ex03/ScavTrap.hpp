@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 13:04:31 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/12 18:49:59 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:56:19 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class ScavTrap : virtual public ClapTrap
         ScavTrap(const std::string& name);
         ScavTrap(const ScavTrap& value);
         ScavTrap& operator=(const ScavTrap& other);
-        virtual ~ScavTrap();
+        ~ScavTrap();
         void guardGate();
         virtual void attack(const std::string& target);
 };
