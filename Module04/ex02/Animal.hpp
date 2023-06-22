@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:56:24 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 16:43:16 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:23:10 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class Animal
 {
   protected:
     std::string type;
-    std::string name;
     
   public:
     Animal();
