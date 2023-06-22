@@ -41,6 +41,9 @@ MateriaSource & MateriaSource::operator=(MateriaSource const & other)
 }
 
 MateriaSource::~MateriaSource() {
+    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "The Destructor for MateriaSource is being called " <<std::endl;
+    std::cout << "--------------------------------------------------" << std::endl;
     for (int i = 0; i < MAX_MATERIAS; i++) {
         if (templates[i]) {
             delete templates[i];
