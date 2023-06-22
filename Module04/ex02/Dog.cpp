@@ -6,30 +6,36 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:29:43 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:51 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:52:46 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 
-Dog::Dog()
+Dog::Dog() : Animal(), brain(new Brain())
 {
+    std::cout << "--------------------------" << std::endl;
     std::cout << "Dog constructor is called" << std::endl;
-    brain = new Brain();
+    std::cout << "--------------------------" << std::endl;
     type = "Dog";
 }
 
-Dog::Dog(const Dog& value) : Animal(value)
+
+Dog::Dog(const Dog& value) : Animal(value), brain(new Brain(*(value.brain)))
 {
     std::cout << "Dog [copy] constructor is called" << std::endl;
-    *this = value;
+    type = value.type;
 }
 
 Dog& Dog::operator=(const Dog& other)
 {
     if(this != &other)
-        this->type = other.type;
+    {
+        Animal::operator=(other);
+        delete brain;
+        brain = new Brain(*(other.brain));
+    }
     std::cout << "Dog [copy] assignment is called " << std::endl;
     return (*this);
 }
@@ -41,6 +47,9 @@ void Dog::makeSound() const
 
 Dog::~Dog()
 {
+    std::cout << "-----------------------------------" << std::endl;
     std::cout << "Destructor for Dog has been called" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
+
     delete (brain);
 }

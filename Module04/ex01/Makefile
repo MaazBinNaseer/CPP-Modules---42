@@ -5,6 +5,8 @@ CFLAGS	=	-std=c++98 -Wall -Wextra -Werror -g
 SRCS	=	Animal.cpp \
 			Dog.cpp \
 			Cat.cpp \
+			WrongAnimal.cpp\
+			WrongCat.cpp \
 			Brain.cpp\
 			main.cpp \
 

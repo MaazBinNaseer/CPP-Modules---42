@@ -6,46 +6,50 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:29:39 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:04 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:56:33 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#include "Animal.hpp"
+#include "Cat.hpp"
 
- #include "Animal.hpp"
- #include "Cat.hpp"
-
- Cat::Cat()
+Cat::Cat() : Animal(), brain(new Brain())
 {
+    std::cout << "-------------------------" << std::endl;
     std::cout << "Cat constructor is called" << std::endl;
-    brain = new Brain();
+    std::cout << "-------------------------" << std::endl;
+
     type = "Cat";
 }
 
-Cat::Cat(const Cat& value) : Animal(value)
+Cat::Cat(const Cat& value) : Animal(value), brain(new Brain(*(value.brain)))
 {
     std::cout << "Cat [copy] constructor is called" << std::endl;
-    *this = value;
+    type = value.type;
 }
 
 Cat& Cat::operator=(const Cat& other)
 {
     if(this != &other)
-        this->type = type;
+    {
+        Animal::operator=(other);
+        delete brain;
+        brain = new Brain(*(other.brain));
+    }
     std::cout << "Cat [copy] assignment is called " << std::endl;
     return (*this);
 }
 
 void Cat::makeSound() const
 {
-    std::cout << "Meow Meow!"  << std::endl;
+    std::cout << "Meow Meow" << std::endl;
 }
 
 Cat::~Cat()
 {
+    std::cout << "---------------------------------------" << std::endl;
     std::cout << "Destructor for Cat has been called" << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
     delete (brain);
 }
 
-#endif

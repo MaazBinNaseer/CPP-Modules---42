@@ -6,19 +6,20 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:29:39 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:04 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:01:21 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+
 
 #include "Animal.hpp"
 #include "Cat.hpp"
 
 Cat::Cat() : Animal(), brain(new Brain())
 {
+    std::cout << "-------------------------" << std::endl;
     std::cout << "Cat constructor is called" << std::endl;
+    std::cout << "-------------------------" << std::endl;
     type = "Cat";
 }
 
@@ -48,8 +49,9 @@ void Cat::makeSound() const
 
 Cat::~Cat()
 {
+    std::cout << "---------------------------------------" << std::endl;
     std::cout << "Destructor for Cat has been called" << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
     delete (brain);
 }
 
-#endif

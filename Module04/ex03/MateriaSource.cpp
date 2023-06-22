@@ -2,12 +2,16 @@
 
 MateriaSource::MateriaSource() : idx(0)
 {
+    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "The constructor for MateriaSource is being called " <<std::endl;
+    std::cout << "--------------------------------------------------" << std::endl;
     for(int i = 0; i < MAX_MATERIAS; i++) 
         templates[i] = NULL;
 }
 
 MateriaSource::MateriaSource(MateriaSource const & other) : idx(other.idx)
 {
+    std::cout << "[------ Copy constructor of the MateriaSource is called ----- ]" << std::endl;
     for(int i = 0; i < MAX_MATERIAS; i++)
     {
         if(other.templates[i]) 
@@ -19,6 +23,7 @@ MateriaSource::MateriaSource(MateriaSource const & other) : idx(other.idx)
 
 MateriaSource & MateriaSource::operator=(MateriaSource const & other)
 {
+     std::cout << "[------Copy assignment operator of the MateriaSource is called ----- ]" << std::endl;
     if(this != &other)
     {
         idx = other.idx;

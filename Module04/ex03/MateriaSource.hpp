@@ -12,7 +12,7 @@ class MateriaSource : public IMateriaSource
 {
 private:
     AMateria* templates[4];
-    AMateria* materia[MAX_MATERIAS];
+    // AMateria* materia[MAX_MATERIAS];
     int idx;
 
 public:

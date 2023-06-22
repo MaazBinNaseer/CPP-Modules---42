@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:56:22 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/21 20:23:43 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:03:18 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 Animal::Animal()
 {
+    std::cout << "---------------------------------------" << std::endl;
     std::cout << "Animal constructor is called" << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
     this->type = "Animal";
 }
 
@@ -43,7 +45,9 @@ void  Animal::makeSound() const {
 
 Animal::~Animal()
 {
+    std::cout << "---------------------------------------" << std::endl;
     std::cout << "Destructor for animal has been called" << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
 }
 
 

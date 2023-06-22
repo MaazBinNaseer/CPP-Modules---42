@@ -97,9 +97,6 @@ int main()
     delete unequippedMateria;
 
     // Deleting characters and source
-
-
-
     delete iceFromSource;
     delete cureFromSource;
 

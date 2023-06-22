@@ -3,12 +3,16 @@
 
 Character::Character(std::string const & name) : _name(name)
 {
+    std::cout << "-------------------------------------------" << std::endl;
+    std::cout << "The Character constructor is being called " <<std::endl;
+    std::cout << "-------------------------------------------" << std::endl;
     for (int i = 0; i < 4; i++)
         _inventory[i] = 0;
 }
 
 Character::Character(Character const & other) : _name(other._name)
 {
+    std::cout << "[----- Copy constuctor of Character is being called " << std::endl;
     for (int i = 0; i < 4; i++)
     {
         if(other._inventory[i])
@@ -19,6 +23,10 @@ Character::Character(Character const & other) : _name(other._name)
 }
 
 Character::~Character() {
+
+    std::cout << "-------------------------------------------" << std::endl;
+    std::cout << "The Character Destructor is being called " << std::endl;
+    std::cout << "-------------------------------------------" << std::endl;
     for (int i = 0; i < MAX_MATERIAS; i++) {
         if (_inventory[i]) delete (_inventory[i]);
     }
@@ -42,6 +50,7 @@ Character & Character::operator=(Character const & other)
         else
             _inventory[i] = 0;
     }
+    std::cout << "[---------- Copy assignment of Character is being called ----- ]"  << std::endl; 
     return *this;
 }
 

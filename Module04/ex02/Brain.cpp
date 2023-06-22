@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:17:25 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 14:40:38 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:01:57 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 Brain::Brain()
 {
+    std::cout << "------------------------------------" << std::endl;
     std::cout << "Constructor [Brain] is being called" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
+
 }
 
 Brain::Brain(const Brain& other)
@@ -36,5 +39,8 @@ Brain& Brain::operator=(const Brain& other)
 
 Brain::~Brain()
 {
-    std::cout << "Destructor [Brain] is being called " << std::endl; 
+    
+    std::cout << "Destructor [Brain] is being called " << std::endl;
+    std::cout << "------------------------------------" << std::endl;
+
 }

@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:29:43 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/14 14:31:51 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:00:04 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 Dog::Dog() : Animal(), brain(new Brain())
 {
+    std::cout << "--------------------------" << std::endl;
     std::cout << "Dog constructor is called" << std::endl;
+    std::cout << "--------------------------" << std::endl;
     type = "Dog";
 }
 
@@ -45,6 +47,8 @@ void Dog::makeSound() const
 
 Dog::~Dog()
 {
+    std::cout << "-----------------------------------" << std::endl;
     std::cout << "Destructor for Dog has been called" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
     delete (brain);
 }
