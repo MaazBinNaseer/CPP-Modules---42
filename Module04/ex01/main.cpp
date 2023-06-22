@@ -44,5 +44,15 @@ int main()
         delete animals[i];
     }
 
+    // Dog basic;
+    // {
+    //     Dog tmp = basic; 
+    // }
+
+    // Cat usual; 
+    // {
+    //     Cat temp = usual;
+    // }
+
     return (0);
 }

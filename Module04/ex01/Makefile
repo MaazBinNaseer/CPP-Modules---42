@@ -1,6 +1,6 @@
 NAME	=	Animal
 CC		=	c++
-CFLAGS	=	-std=c++98 -Wall -Wextra -Werror 
+CFLAGS	=	-std=c++98 -Wall -Wextra -Werror -g
 
 SRCS	=	Animal.cpp \
 			Dog.cpp \

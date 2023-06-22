@@ -13,23 +13,27 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 
-Dog::Dog()
+Dog::Dog() : Animal(), brain(new Brain())
 {
     std::cout << "Dog constructor is called" << std::endl;
-    brain = new Brain();
     type = "Dog";
 }
 
-Dog::Dog(const Dog& value) : Animal(value)
+
+Dog::Dog(const Dog& value) : Animal(value), brain(new Brain(*(value.brain)))
 {
     std::cout << "Dog [copy] constructor is called" << std::endl;
-    *this = value;
+    type = value.type;
 }
 
 Dog& Dog::operator=(const Dog& other)
 {
     if(this != &other)
-        this->type = other.type;
+    {
+        Animal::operator=(other);
+        delete brain;
+        brain = new Brain(*(other.brain));
+    }
     std::cout << "Dog [copy] assignment is called " << std::endl;
     return (*this);
 }

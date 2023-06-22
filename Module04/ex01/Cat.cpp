@@ -13,33 +13,37 @@
 #ifndef CAT_HPP
 #define CAT_HPP
 
- #include "Animal.hpp"
- #include "Cat.hpp"
+#include "Animal.hpp"
+#include "Cat.hpp"
 
- Cat::Cat()
+Cat::Cat() : Animal(), brain(new Brain())
 {
     std::cout << "Cat constructor is called" << std::endl;
-    brain = new Brain();
     type = "Cat";
 }
 
-Cat::Cat(const Cat& value) : Animal(value)
+
+Cat::Cat(const Cat& value) : Animal(value), brain(new Brain(*(value.brain)))
 {
     std::cout << "Cat [copy] constructor is called" << std::endl;
-    *this = value;
+    type = value.type;
 }
 
 Cat& Cat::operator=(const Cat& other)
 {
     if(this != &other)
-        this->type = type;
+    {
+        Animal::operator=(other);
+        delete brain;
+        brain = new Brain(*(other.brain));
+    }
     std::cout << "Cat [copy] assignment is called " << std::endl;
     return (*this);
 }
 
 void Cat::makeSound() const
 {
-    std::cout << "Meow Meow!"  << std::endl;
+    std::cout << "Meow Meow" << std::endl;
 }
 
 Cat::~Cat()
