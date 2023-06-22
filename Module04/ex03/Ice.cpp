@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 15:28:54 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/06/22 15:28:55 by mbin-nas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Ice.hpp"
 #include <iostream>
 
@@ -9,7 +21,7 @@ Ice::Ice()
     type = "ice"; 
 }
 
-Ice::Ice(const Ice& other)
+Ice::Ice(const Ice& other): AMateria(other)
 {
     std::cout << "[------Copy constructor of the ice is called ----- ]" << std::endl;
     *this = other;
@@ -18,8 +30,9 @@ Ice::Ice(const Ice& other)
 Ice& Ice::operator=(const Ice& other)
 {
     if(this != &other)
-        this->type = "ice";
+        this->type = other.type;
     std::cout << "[------Copy assignment operator of the ice is called ----- ]" << std::endl;
+    return (*this);
 }
 
 Ice::~Ice() 

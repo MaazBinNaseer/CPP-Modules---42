@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:12:09 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/06/22 14:24:40 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:25:08 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Cure::Cure()
     type = "cure"; 
 }
 
-Cure::Cure(const Cure& other)
+Cure::Cure(const Cure& other): AMateria(other)
 {
     std::cout << "[------Copy constructor of the cure is called ----- ]" << std::endl;
     *this = other;
@@ -30,8 +30,9 @@ Cure::Cure(const Cure& other)
 Cure& Cure::operator=(const Cure& other)
 {
     if(this != &other)
-        this->type = "cure";
+        this->type = other.type;
     std::cout << "[------Copy assignment operator of the cure is called ----- ]" << std::endl;
+    return (*this);
 }
 
 
@@ -47,6 +48,7 @@ Cure* Cure::clone() const
 { 
      return new Cure(*this); 
 }
+
 void Cure::use(ICharacter& target)
 {
     std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
