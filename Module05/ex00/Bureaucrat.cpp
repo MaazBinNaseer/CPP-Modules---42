@@ -17,9 +17,24 @@ void Bureaucrate::setGrade(int grade)
 
 int Bureaucrate::incrementGrade(int increment_value)
 {
-
+    if (increment_value < 0)
+    {
+        std::cout << RED << "[Incorrect 1] Increment Value should be in positive values" << RESET << std::endl;
+        return (FAILURE);
+    }
     grade = grade + increment_value;
     return(grade);
+}
+
+int Bureaucrate::decrementGrade(int decrement_value)
+{
+    if (decrement_value < 0)
+    {
+        std::cout << RED << "[Incorrect 2] Decrement Value should be in positive integer values" << RESET << std::endl;
+        return (FAILURE);
+    }
+    grade = grade - decrement_value;
+    return (grade);
 }
 
 int Bureaucrate::getGrade()
@@ -31,7 +46,7 @@ int Bureaucrate::getGrade()
         else if ( grade > 150)
             throw 15;
     }
-    catch(int errorCode)
+    catch (int errorCode)
     {
         if(errorCode == 12)
             std::cout << RED << "Bureaucrat::GradeTooLowException" << RESET << std::endl;
