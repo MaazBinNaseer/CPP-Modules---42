@@ -10,8 +10,10 @@ class Bureaucrate
         std::string const name;
     public:
         Bureaucrate();
+        void setName(std::string const name);
+        int setGrade(int grade);
         void getName(std::string const name);
-        void getGrade(int grade);
+        int getGrade(int grade);
         void incrementGrade(int grade);
         void decrementGrade(int grade);
         ~Bureaucrate();
