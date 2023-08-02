@@ -1,8 +1,8 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrate::Bureaucrate(): name("EHSAN")
+Bureaucrate::Bureaucrate(): name("EHSAN"), grade(10)
 {
-    std::cout << "Constructor [Bureaucrate] has been called" << std::endl ;
+    std::cout << "Default Constructor [Bureaucrate] has been called" << std::endl ;
 }
 
 std::string Bureaucrate::getName()

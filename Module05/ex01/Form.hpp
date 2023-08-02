@@ -2,6 +2,7 @@
 #define FORM_HPP
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class Form
 {
     private:
@@ -11,11 +12,10 @@ class Form
         const int gradeExecute; 
     public:
         Form();
-        Form(std::string name, int grade_sign, int grade_exexute);
-        Form(Form const &object);
         std::string getName() const;
         bool get_Signed()const; 
         void beSigned(Bureaucrate const &obj);
+        ~Form();
 
 };
 
