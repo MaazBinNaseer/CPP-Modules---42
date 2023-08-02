@@ -13,7 +13,7 @@ class Bureaucrate
         std::string setName(std::string const name);
         int setGrade(int grade);
         std::string getName(std::string const name);
-        int getGrade(int grade);
+        int getGrade();
         int incrementGrade(int increment_value);
         int decrementGrade(int decrement_value);
         ~Bureaucrate();

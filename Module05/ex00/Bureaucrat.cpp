@@ -8,21 +8,30 @@ Bureaucrate::Bureaucrate()
 
 int Bureaucrate::setGrade(int grade)
 {
-    if(grade < 1)
+    try
     {
-        std::cout << "[MIMINUM ERROR]: The grade value is less than 1" << std::endl;
-        return (1);
+        if (grade < 1)
+            throw 12;
+        else if ( grade > 150)
+            throw 15;
     }
-    else if(grade > 150)
+    catch(int errorCode)
     {
-        std::cout << "[MAXIMUM ERROR]: The grade value is greater than 150 "  << std::endl;
-        return (1);
+        if(errorCode == 12)
+            std::cout << "[Minimum Error] Less than 1 " << std::endl;
+        else if (errorCode == 14)
+            std::cout << "[Maximum Error] More than 150 " << std::endl;
     }
     this->grade = grade;
 }
 
-int Bureaucrate::getGrade(int grade)
+int Bureaucrate::getGrade()
 {
-    return (this->grade); 
+    return (grade); 
+}
+
+Bureaucrate::~Bureaucrate()
+{
+    std::cout << "Destructor [Bureaucrate] is being called" << std::endl;
 }
 
