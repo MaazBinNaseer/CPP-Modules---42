@@ -5,7 +5,6 @@ Bureaucrate::Bureaucrate()
     std::cout << "Constructor [Bureaucrate] has been called" << std::endl ;
 }
 
-
 int Bureaucrate::setGrade(int grade)
 {
     try
@@ -18,11 +17,13 @@ int Bureaucrate::setGrade(int grade)
     catch(int errorCode)
     {
         if(errorCode == 12)
-            std::cout << "[Minimum Error] Less than 1 " << std::endl;
+            std::cout << RED << "[Minimum Error] Less than 1 " << RESET << std::endl;
         else if (errorCode == 14)
-            std::cout << "[Maximum Error] More than 150 " << std::endl;
+            std::cout << RED << "[Maximum Error] More than 150 " << RESET << std::endl;
     }
     this->grade = grade;
+
+    return (SUCCESS);
 }
 
 int Bureaucrate::getGrade()

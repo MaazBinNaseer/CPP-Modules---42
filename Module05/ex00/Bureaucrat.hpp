@@ -1,8 +1,12 @@
 #ifndef BUREAUCRAT_CPP
 #define BUREAUCRAT_CPP
-
 #include <iostream>
 
+#define SUCCESS 0
+#define FAILURE 1
+
+#define RED "\033[1;31m"
+#define RESET "\033[0m"
 class Bureaucrate
 {
     private:
