@@ -1,11 +1,28 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrate::Bureaucrate()
+Bureaucrate::Bureaucrate(): name("EHSAN")
 {
     std::cout << "Constructor [Bureaucrate] has been called" << std::endl ;
 }
 
-int Bureaucrate::setGrade(int grade)
+std::string Bureaucrate::getName()
+{
+    return (this->name);
+}
+
+void Bureaucrate::setGrade(int grade)
+{
+    this->grade = grade;
+}
+
+int Bureaucrate::incrementGrade(int increment_value)
+{
+
+    grade = grade + increment_value;
+    return(grade);
+}
+
+int Bureaucrate::getGrade()
 {
     try
     {
@@ -17,17 +34,11 @@ int Bureaucrate::setGrade(int grade)
     catch(int errorCode)
     {
         if(errorCode == 12)
-            std::cout << RED << "[Minimum Error] Less than 1 " << RESET << std::endl;
-        else if (errorCode == 14)
-            std::cout << RED << "[Maximum Error] More than 150 " << RESET << std::endl;
+            std::cout << RED << "Bureaucrat::GradeTooLowException" << RESET << std::endl;
+        else if (errorCode == 15)
+            std::cout << RED << "Bureaucrat::GradeTooHighException" << RESET << std::endl;
+        return (FAILURE);
     }
-    this->grade = grade;
-
-    return (SUCCESS);
-}
-
-int Bureaucrate::getGrade()
-{
     return (grade); 
 }
 
