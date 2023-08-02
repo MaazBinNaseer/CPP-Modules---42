@@ -19,7 +19,7 @@ int Bureaucrate::incrementGrade(int increment_value)
 {
     if (increment_value < 0)
     {
-        std::cout << RED << "[Incorrect 1] Increment Value should be in positive values" << RESET << std::endl;
+        std::cout << RED << "[Incorrect 1] Increment Value should be a positive value" << RESET << std::endl;
         return (FAILURE);
     }
     grade = grade + increment_value;
@@ -30,7 +30,7 @@ int Bureaucrate::decrementGrade(int decrement_value)
 {
     if (decrement_value < 0)
     {
-        std::cout << RED << "[Incorrect 2] Decrement Value should be in positive integer values" << RESET << std::endl;
+        std::cout << RED << "[Incorrect 2] Decrement Value should be a positive integer value" << RESET << std::endl;
         return (FAILURE);
     }
     grade = grade - decrement_value;

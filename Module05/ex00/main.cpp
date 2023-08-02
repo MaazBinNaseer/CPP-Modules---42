@@ -21,7 +21,7 @@ int main()
     //* -----------------------------------------------------
     Bureaucrate a2;
     a2.setGrade(40);
-    a2.incrementGrade(10);
+    a2.incrementGrade(-10);
     std::cout << a2.getGrade() << std::endl; 
 
 }
