@@ -1,6 +1,7 @@
 #ifndef BUREAUCRAT_CPP
 #define BUREAUCRAT_CPP
 #include <iostream>
+#include <stdbool.h>
 
 #define SUCCESS 0
 #define FAILURE 1

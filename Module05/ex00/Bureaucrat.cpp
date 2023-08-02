@@ -42,17 +42,17 @@ int Bureaucrate::getGrade()
     try
     {
         if (grade < 1)
-            throw 12;
+            throw GradeLow();
         else if ( grade > 150)
-            throw 15;
+            throw GradeHigh() ;
     }
-    catch (int errorCode)
+    catch (GradeHigh &e)
     {
-        if(errorCode == 12)
-            std::cout << RED << "Bureaucrat::GradeTooLowException" << RESET << std::endl;
-        else if (errorCode == 15)
-            std::cout << RED << "Bureaucrat::GradeTooHighException" << RESET << std::endl;
-        return (FAILURE);
+        std::cout <<  RED << e.what() << RESET << std::endl;
+    }
+    catch (GradeLow &f)
+    {
+        std::cout <<  RED << f.what() << RESET << std::endl;
     }
     return (grade); 
 }
