@@ -23,5 +23,6 @@ int Bureaucrate::setGrade(int grade)
 
 int Bureaucrate::getGrade(int grade)
 {
-    
+    return (this->grade); 
 }
+
