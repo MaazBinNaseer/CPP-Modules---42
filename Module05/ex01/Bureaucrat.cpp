@@ -1,8 +1,8 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrate::Bureaucrate(): name("EHSAN"), grade(10)
+Bureaucrate::Bureaucrate(): name("EHSAN")
 {
-    std::cout << "Default Constructor [Bureaucrate] has been called" << std::endl ;
+    std::cout << "Constructor [Bureaucrate] has been called" << std::endl ;
 }
 
 std::string Bureaucrate::getName()
@@ -19,7 +19,7 @@ int Bureaucrate::incrementGrade(int increment_value)
 {
     if (increment_value < 0)
     {
-        std::cout << RED << "[Incorrect 1] Increment Value should be in positive values" << RESET << std::endl;
+        std::cout << RED << "[Incorrect 1] Increment Value should be a positive value" << RESET << std::endl;
         return (FAILURE);
     }
     grade = grade + increment_value;
@@ -30,7 +30,7 @@ int Bureaucrate::decrementGrade(int decrement_value)
 {
     if (decrement_value < 0)
     {
-        std::cout << RED << "[Incorrect 2] Decrement Value should be in positive integer values" << RESET << std::endl;
+        std::cout << RED << "[Incorrect 2] Decrement Value should be a positive integer value" << RESET << std::endl;
         return (FAILURE);
     }
     grade = grade - decrement_value;
@@ -42,15 +42,15 @@ int Bureaucrate::getGrade()
     try
     {
         if (grade < 1)
-            throw GradeLow();
+            throw Bureaucrate::GradeHigh();
         else if ( grade > 150)
-            throw GradeHigh() ;
+            throw Bureaucrate::GradeLow();
     }
-    catch (GradeHigh &e)
+    catch (Bureaucrate::GradeHigh &e)
     {
         std::cout <<  RED << e.what() << RESET << std::endl;
     }
-    catch (GradeLow &f)
+    catch (Bureaucrate::GradeLow &f)
     {
         std::cout <<  RED << f.what() << RESET << std::endl;
     }
