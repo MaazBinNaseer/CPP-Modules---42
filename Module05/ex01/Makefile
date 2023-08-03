@@ -3,6 +3,7 @@ CC		=	c++
 CFLAGS	=	-std=c++98 -Wall -Wextra -Werror 
 
 SRCS	=	Bureaucrat.cpp \
+			Form.cpp \
 			main.cpp \
 
 GREEN   =   \033[1;32m 

@@ -16,15 +16,15 @@ class Form;
 class Bureaucrat
 {
     private:
-        int _grade;
         std::string const _name;
+        int _grade;
     public:
         Bureaucrat();
         Bureaucrat(const std::string name, int grade);
 
         void setGrade(int grade);
 
-        std::string getName();
+        std::string getName() const;
         int getGrade();
 
         int incrementGrade(int increment_value);
@@ -53,6 +53,6 @@ class Bureaucrat
     };
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
+std::ostream& operator<<(std::ostream& os,  Bureaucrat const &bureaucratREF);
 
 #endif

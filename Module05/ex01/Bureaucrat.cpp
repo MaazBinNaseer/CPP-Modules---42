@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat(): _name("LOL"), _grade(10)
 {
     std::cout << "Default Constructor [Bureaucrat] has been called" << std::endl ;
 }
@@ -10,7 +10,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name), _grade(g
     std::cout << "Constrcutor [Burecucrate(string, grade)] has been called" << std::endl;
 }
 
-std::string Bureaucrat::getName()
+std::string Bureaucrat::getName() const
 {
     return (this->_name);
 }
@@ -73,8 +73,9 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Destructor [Bureaucrat] is being called" << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& os, Bureaucrat &bureaucratREF)
+std::ostream& operator<<(std::ostream& os,  Bureaucrat const &bureaucratREF)
 {
-    os << bureaucratREF.getName() << "bureacucrat grade " << std::endl; 
+    os << bureaucratREF.getName() << " bureacucrat grade " << std::endl; 
+    return (os);
 }
 

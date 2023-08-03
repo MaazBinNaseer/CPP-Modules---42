@@ -13,10 +13,12 @@ class Form
     public:
         Form();
         Form(const std::string name, bool isSigned, const int gradeSign, const int gradeExecute);
+        
         std::string getName() const;
         bool get_Signed()const;
         int get_gradeSign() const;
         int get_gradeExecute() const; 
+        
         void beSigned(Bureaucrat &obj);
         ~Form();
 //* Exception Form Version
