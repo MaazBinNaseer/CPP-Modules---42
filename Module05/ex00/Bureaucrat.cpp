@@ -42,15 +42,15 @@ int Bureaucrate::getGrade()
     try
     {
         if (grade < 1)
-            throw GradeLow();
+            throw Bureaucrate::GradeHigh();
         else if ( grade > 150)
-            throw GradeHigh() ;
+            throw Bureaucrate::GradeLow();
     }
-    catch (GradeHigh &e)
+    catch (Bureaucrate::GradeHigh &e)
     {
         std::cout <<  RED << e.what() << RESET << std::endl;
     }
-    catch (GradeLow &f)
+    catch (Bureaucrate::GradeLow &f)
     {
         std::cout <<  RED << f.what() << RESET << std::endl;
     }
