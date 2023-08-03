@@ -62,10 +62,19 @@ int Bureaucrat::getGrade()
     return (_grade); 
 }
 
-// bool Bureaucrat::signForm(Form &form)
-// {
-//     form.beSigned = true;
-// }
+bool Bureaucrat::signForm(Form &form)
+{
+    try
+    {
+        form.beSigned(*this);
+        std::cout << this->_name << " signed " << form.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << this->_name << " could'nt sign the " << form.getName() << e.what() << std::endl;
+    }
+    
+}
 
 
 Bureaucrat::~Bureaucrat()
