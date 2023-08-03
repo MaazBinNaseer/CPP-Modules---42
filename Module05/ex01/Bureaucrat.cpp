@@ -17,33 +17,6 @@ std::string Bureaucrat::getName() const
 
 void Bureaucrat::setGrade(int grade)
 {
-    this->_grade = grade;
-}
-
-int Bureaucrat::incrementGrade(int increment_value)
-{
-    if (increment_value < 0)
-    {
-        std::cout << RED << "[Incorrect 1] Increment Value should be a positive value" << RESET << std::endl;
-        return (FAILURE);
-    }
-   this->_grade +=  increment_value;
-    return(this->_grade);
-}
-
-int Bureaucrat::decrementGrade(int decrement_value)
-{
-    if (decrement_value < 0)
-    {
-        std::cout << RED << "[Incorrect 2] Decrement Value should be a positive integer value" << RESET << std::endl;
-        return (FAILURE);
-    }
-    this->_grade -= decrement_value;
-    return (this->_grade);
-}
-
-int Bureaucrat::getGrade()
-{
     try
     {
         if (_grade < 1)
@@ -59,10 +32,67 @@ int Bureaucrat::getGrade()
     {
         std::cout <<  RED << f.what() << RESET << std::endl;
     }
+    this->_grade = grade;
+}
+
+int Bureaucrat::incrementGrade(int increment_value)
+{
+    if (increment_value < 0)
+    {
+        std::cout << RED << "[Incorrect 1] Increment Value should be a positive value" << RESET << std::endl;
+        return (FAILURE);
+    }
+    try
+    {
+        if (_grade < 1)
+            throw Bureaucrat::GradeHigh();
+        else if ( _grade > 150)
+            throw Bureaucrat::GradeLow();
+    }
+    catch (Bureaucrat::GradeHigh &e)
+    {
+        std::cout <<  RED << e.what() << RESET << std::endl;
+    }
+    catch (Bureaucrat::GradeLow &f)
+    {
+        std::cout <<  RED << f.what() << RESET << std::endl;
+    }
+   this->_grade +=  increment_value;
+    return(this->_grade);
+}
+
+int Bureaucrat::decrementGrade(int decrement_value)
+{
+    if (decrement_value < 0)
+    {
+        std::cout << RED << "[Incorrect 2] Decrement Value should be a positive integer value" << RESET << std::endl;
+        return (FAILURE);
+    }
+    try
+    {
+        if (_grade < 1)
+            throw Bureaucrat::GradeHigh();
+        else if ( _grade > 150)
+            throw Bureaucrat::GradeLow();
+    }
+    catch (Bureaucrat::GradeHigh &e)
+    {
+        std::cout <<  RED << e.what() << RESET << std::endl;
+    }
+    catch (Bureaucrat::GradeLow &f)
+    {
+        std::cout <<  RED << f.what() << RESET << std::endl;
+    }
+    this->_grade -= decrement_value;
+    return (this->_grade);
+}
+
+int Bureaucrat::getGrade()
+{
     return (_grade); 
 }
 
-bool Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(Form &form)
 {
     try
     {
@@ -73,7 +103,7 @@ bool Bureaucrat::signForm(Form &form)
     {
         std::cerr << this->_name << " could'nt sign the " << form.getName() << e.what() << std::endl;
     }
-    
+
 }
 
 

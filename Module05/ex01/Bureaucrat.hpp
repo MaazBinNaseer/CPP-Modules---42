@@ -29,7 +29,7 @@ class Bureaucrat
 
         int incrementGrade(int increment_value);
         int decrementGrade(int decrement_value);
-        bool signForm(Form &form);
+        void signForm(Form &form);
         
         ~Bureaucrat();
 //* Exceptions
