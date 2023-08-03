@@ -8,7 +8,7 @@ int main()
     //* -----------------------------------------------------
     //* ------------- TRY & CATCH TESTING [SET GRADE] -------
     //* -----------------------------------------------------
-   Bureaucrate a1;  
+   Bureaucrat a1;  
     a1.setGrade(1500);
     std::cout << a1.getGrade() << std::endl; 
     a1.setGrade(-1);

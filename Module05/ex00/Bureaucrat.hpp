@@ -9,19 +9,19 @@
 #define RESET "\033[0m"
 
 
-class Bureaucrate
+class Bureaucrat
 {
     private:
-        int grade;
-        std::string const name;
+        int _grade;
+        std::string const _name;
     public:
-        Bureaucrate();
+        Bureaucrat();
         void setGrade(int grade);
         std::string getName();
         int getGrade();
         int incrementGrade(int increment_value);
         int decrementGrade(int decrement_value);
-        ~Bureaucrate();
+        ~Bureaucrat();
 
 //* Exceptions
     class GradeHigh: public std::exception
@@ -43,5 +43,7 @@ class Bureaucrate
 
     };
 };
+
+std::ostream& operator<<(std::ostream& os,  Bureaucrat& bureaucrat);
 
 #endif

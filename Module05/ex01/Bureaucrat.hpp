@@ -1,29 +1,37 @@
 #ifndef BUREAUCRAT_CPP
 #define BUREAUCRAT_CPP
+
 #include <iostream>
+#include "Form.hpp"
 
 #define SUCCESS 0
 #define FAILURE 1
-
 #define RED "\033[1;31m"
 #define RESET "\033[0m"
 #define GREEN "\033[1;32m"
 
 
-class Bureaucrate
+class Form;
+
+class Bureaucrat
 {
     private:
-        int grade;
-        std::string const name;
+        int _grade;
+        std::string const _name;
     public:
-        Bureaucrate();
+        Bureaucrat();
+        Bureaucrat(const std::string name, int grade);
+
         void setGrade(int grade);
+
         std::string getName();
         int getGrade();
+
         int incrementGrade(int increment_value);
         int decrementGrade(int decrement_value);
-        ~Bureaucrate();
-
+        bool signForm(Form &form);
+        
+        ~Bureaucrat();
 //* Exceptions
     class GradeHigh: public std::exception
     {
@@ -44,5 +52,7 @@ class Bureaucrate
 
     };
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif
