@@ -12,7 +12,7 @@ class Form
         const int _gradeExecute; 
     public:
         Form();
-        Form(const std::string name, bool isSigned, const int gradeSign, const int gradeExecute);
+        Form(const std::string name, const int gradeSign, const int gradeExecute);
         
         std::string getName() const;
         bool get_Signed()const;
