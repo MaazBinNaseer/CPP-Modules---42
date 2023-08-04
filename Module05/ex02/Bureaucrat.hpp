@@ -2,7 +2,7 @@
 #define BUREAUCRAT_CPP
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define SUCCESS 0
 #define FAILURE 1
