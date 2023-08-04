@@ -36,9 +36,9 @@ int main()
     //* -----------------------------------------------------------------------
 
     Bureaucrat bureaucrat_1("Nixon", 6);
-    Bureaucrat bureaucrat_2("Barack Obama", 75);
-    Form form_1("Form_1", 5, 10);
-    Form form_2("Form_2", 8969, 10);
+    Bureaucrat bureaucrat_2("Barack Obama", 4);
+    Form form_1("Form_1", 10, 10);
+    Form form_2("Form_2", 80, 75);
 
     try {
 		bureaucrat_1.signForm(form_1);
@@ -46,15 +46,15 @@ int main()
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-    std::cout << form_2 << std::endl;
 
 
     
     try {
-		bureaucrat_2.signForm(form_1);
+		bureaucrat_2.signForm(form_2);
 	}
 	catch (std::exception &e) {
 		std::cerr << RED << e.what() << std::endl;
 	}
+    std::cout << form_2 << std::endl;
 
 }
