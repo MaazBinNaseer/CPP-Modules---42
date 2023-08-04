@@ -3,7 +3,7 @@
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
-class Form
+class AForm
 {
     private:
         const std::string  _name;
@@ -11,8 +11,8 @@ class Form
         const int _gradeSign;
         const int _gradeExecute; 
     public:
-        Form();
-        Form(const std::string name, const int gradeSign, const int gradeExecute);
+        AForm();
+        AForm(const std::string name, const int gradeSign, const int gradeExecute);
         
         std::string getName() const;
         bool get_Signed()const;
@@ -20,7 +20,7 @@ class Form
         int get_gradeExecute() const; 
         
         void beSigned(Bureaucrat &obj);
-        ~Form();
+        ~AForm();
 //* Exception Form Version
     class GradeHigh: public std::exception
     {

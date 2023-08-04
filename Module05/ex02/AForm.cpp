@@ -1,15 +1,15 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form(): _name("Trump"), _IsSigned(false),  _gradeSign(5), _gradeExecute(10)
+AForm::AForm(): _name("Trump"), _IsSigned(false),  _gradeSign(5), _gradeExecute(10)
 {
-    std::cout << GREEN << "Default Constructor [Form] has been called " << RESET << std::endl;
+    std::cout << GREEN << "Default Constructor [AForm] has been called " << RESET << std::endl;
 }
-Form::Form(const std::string name, const int gradeSign, const int gradeExecute): _name(name),  _gradeSign(gradeSign), _gradeExecute(gradeExecute)
+AForm::AForm(const std::string name, const int gradeSign, const int gradeExecute): _name(name),  _gradeSign(gradeSign), _gradeExecute(gradeExecute)
 {
-    std::cout << GREEN << "Constructor [Form(name, gradeSign, gradeExecute)] has been called" << RESET << std::endl;
+    std::cout << GREEN << "Constructor [AForm(name, gradeSign, gradeExecute)] has been called" << RESET << std::endl;
 }
 
-bool Form::get_Signed() const
+bool AForm::get_Signed() const
 {
     if(_IsSigned == true)
         return (_IsSigned);
@@ -20,24 +20,24 @@ bool Form::get_Signed() const
     return (_IsSigned);
 }
 
-const char* Form::GradeHigh::what() const throw()
+const char* AForm::GradeHigh::what() const throw()
 {
-    return ("\033[31mForm::GradeTooHigh: \033[0m ");
+    return ("\033[31mAForm::GradeTooHigh: \033[0m ");
 }
 
-const char* Form::GradeLow::what() const throw()
+const char* AForm::GradeLow::what() const throw()
 {
-    return "\033[31mForm: GradeTooLow:\033[0m ";
+    return "\033[31mAForm: GradeTooLow:\033[0m ";
 }
 
-void Form::beSigned(Bureaucrat &obj)
+void AForm::beSigned(Bureaucrat &obj)
 {
     if(obj.getGrade() > this->_gradeSign)
-        throw Form::GradeLow();
+        throw AForm::GradeLow();
     else
         this->_IsSigned = true;
 }
-int Form::get_gradeSign()const
+int AForm::get_gradeSign()const
 {
     try
     {
@@ -53,24 +53,24 @@ int Form::get_gradeSign()const
     return (this->_gradeSign);
 }
 
-int Form::get_gradeExecute() const
+int AForm::get_gradeExecute() const
 {
     return (this->_gradeExecute);
 }
 
-std::string Form::getName()const
+std::string AForm::getName()const
 {
     return (this->_name);
 }
 
-Form::~Form()
+AForm::~AForm()
 {
-    std::cout << GREEN << "Destructor [Form] was called " << RESET << std::endl;
+    std::cout << GREEN << "Destructor [AForm] was called " << RESET << std::endl;
 }
 
 
-//* Overloading the << operator to print out all the attributes of the form
-std::ostream& operator<<(std::ostream &os, Form const &formREF)
+//* Overloading the << operator to print out all the attributes of the Aform
+std::ostream& operator<<(std::ostream &os, AForm const &formREF)
 {
     os << "Name of the Form: " << formREF.getName() << std::endl;
     os << "Grade Sign is: " << formREF.get_gradeSign() << std::endl;
