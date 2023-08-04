@@ -32,7 +32,7 @@ const char* Form::GradeLow::what() const throw()
 
 void Form::beSigned(Bureaucrat &obj)
 {
-    if(obj.getGrade() > this->_IsSigned)
+    if(obj.getGrade() > this->_gradeSign)
         throw Form::GradeLow();
     else
         this->_IsSigned = true;
