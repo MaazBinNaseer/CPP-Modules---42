@@ -6,7 +6,7 @@ Form::Form(): _name("Trump"), _IsSigned(false),  _gradeSign(5), _gradeExecute(10
 }
 Form::Form(const std::string name, const int gradeSign, const int gradeExecute): _name(name),  _gradeSign(gradeSign), _gradeExecute(gradeExecute)
 {
-    std::cout << GREEN << "Constructor [Form(name, isSigned, gradeSign, gradeExecute)] has been called" << RESET << std::endl;
+    std::cout << GREEN << "Constructor [Form(name, gradeSign, gradeExecute)] has been called" << RESET << std::endl;
 }
 
 bool Form::get_Signed() const
