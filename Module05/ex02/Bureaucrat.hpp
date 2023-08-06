@@ -30,7 +30,8 @@ class Bureaucrat
         int incrementGrade(int increment_value);
         int decrementGrade(int decrement_value);
         void signForm(AForm &form);
-        
+        void executeForm(AForm const &form);
+
         ~Bureaucrat();
 //* Exceptions
     class GradeHigh: public std::exception

@@ -21,6 +21,7 @@ class AForm
         
         void beSigned(Bureaucrat &obj);
         virtual ~AForm() = 0;
+       virtual void execute(Bureaucrat const & executor);
 //* Exception Form Version
     class GradeHigh: public std::exception
     {

@@ -12,7 +12,7 @@ class PresidentialPardonForm: public AForm
         PresidentialPardonForm(std::string target);
         PresidentialPardonForm &operator=(PresidentialPardonForm const &rhs);
         PresidentialPardonForm(PresidentialPardonForm const &object);
-        std::string get_Target(std::string target);
+        std::string get_Target() const;
         ~PresidentialPardonForm();
 
 
