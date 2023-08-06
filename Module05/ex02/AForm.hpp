@@ -20,7 +20,7 @@ class AForm
         int get_gradeExecute() const; 
         
         void beSigned(Bureaucrat &obj);
-        ~AForm();
+        virtual ~AForm() = 0;
 //* Exception Form Version
     class GradeHigh: public std::exception
     {
@@ -33,6 +33,6 @@ class AForm
             virtual const char* what() const throw();
     };
 };
-std::ostream &operator<<(std::ostream &out, Form const &other);
+std::ostream &operator<<(std::ostream &out, AForm const &other);
 
 #endif

@@ -11,7 +11,7 @@
 #define GREEN "\033[1;32m"
 
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -29,7 +29,7 @@ class Bureaucrat
 
         int incrementGrade(int increment_value);
         int decrementGrade(int decrement_value);
-        void signForm(Form &form);
+        void signForm(AForm &form);
         
         ~Bureaucrat();
 //* Exceptions
