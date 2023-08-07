@@ -87,9 +87,9 @@ int Bureaucrat::decrementGrade(int decrement_value)
     return (this->_grade);
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
-    return (_grade); 
+    return (this->_grade); 
 }
 
 void Bureaucrat::signForm(AForm &form)
