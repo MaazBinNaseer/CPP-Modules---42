@@ -3,23 +3,43 @@
  
 int main()
 {
-    //* ----------------------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [BUREAUCRAT][SET GRADE] -------
-    //* -----------------------------------------------------------------
-    Bureaucrat a1;  
-    a1.setGrade(1500);
-    a1.setGrade(-1);
-    // std::cout << a1.getGrade() << std::endl; 
+    //* -----------------------------------------------------
+    //* ------------- TRY & CATCH TESTING [INSTANTIATE] -------
+    //* -----------------------------------------------------
+    
+    try 
+    {
+         Bureaucrat a1("Julia", 1900);
+    }
+    catch(Bureaucrat::GradeTooHigh &e)
+    {
+        std::cerr << RED << e.what() <<  RESET << std::endl;
+    }
 
-    //* -----------------------------------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [BUREAUCRAT][INCREMENT & DECREMENT] -------
-    //* -----------------------------------------------------------------------------
-    a1.setGrade(15);
-    a1.incrementGrade(14);
-    std::cout << a1.getGrade() << std::endl;
-    a1.setGrade(15);
-    a1.decrementGrade(14);
-    std::cout << a1.getGrade() << std::endl;
+    //* -----------------------------------------------------
+    //* ------------- TRY & CATCH TESTING [(+) and (-)] -------
+    //* -----------------------------------------------------
+    
+    Bureaucrat a2("JOHN", 100);
+    try
+    {
+        a2.incrementGrade(60);
+        a2.getGrade();
+    }
+    catch(Bureaucrat::GradeTooHigh &e)
+    {
+        std::cerr << RED << e.what() <<  RESET << std::endl;
+    }
+    
+    try
+    {
+        a2.decrementGrade(300);
+        a2.getGrade();
+    }
+    catch(Bureaucrat::GradeTooLow& e)
+    {
+        std::cerr << RED << e.what() << RESET << std::endl;
+    }
     std::cout << "--------------------------------------------------------" << std::endl;
 
     //* -------------------------------------------------------------------
@@ -46,9 +66,6 @@ int main()
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-
-
-    
     try {
 		bureaucrat_2.signForm(form_2);
 	}

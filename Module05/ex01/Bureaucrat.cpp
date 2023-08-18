@@ -8,6 +8,10 @@ Bureaucrat::Bureaucrat(): _name("LOL"), _grade(10)
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name), _grade(grade)
 {
     std::cout << "Constrcutor [Burecucrate(string, grade)] has been called" << std::endl;
+    if(grade > 150) 
+        throw GradeTooHigh();
+    else if( grade < 1)
+        throw GradeTooLow();
 }
 
 std::string Bureaucrat::getName() const
@@ -16,22 +20,11 @@ std::string Bureaucrat::getName() const
 }
 
 void Bureaucrat::setGrade(int grade)
-{
-    try
-    {
+{    
         if (_grade < 1)
-            throw Bureaucrat::GradeHigh();
+            throw Bureaucrat::GradeTooHigh();
         else if ( _grade > 150)
-            throw Bureaucrat::GradeLow();
-    }
-    catch (Bureaucrat::GradeHigh &e)
-    {
-        std::cout <<  RED << e.what() << RESET << std::endl;
-    }
-    catch (Bureaucrat::GradeLow &f)
-    {
-        std::cout <<  RED << f.what() << RESET << std::endl;
-    }
+            throw Bureaucrat::GradeTooLow();
     this->_grade = grade;
 }
 
@@ -42,21 +35,10 @@ int Bureaucrat::incrementGrade(int increment_value)
         std::cout << RED << "[Incorrect 1] Increment Value should be a positive value" << RESET << std::endl;
         return (FAILURE);
     }
-    try
-    {
         if (_grade < 1)
-            throw Bureaucrat::GradeHigh();
+            throw Bureaucrat::GradeTooHigh();
         else if ( _grade > 150)
-            throw Bureaucrat::GradeLow();
-    }
-    catch (Bureaucrat::GradeHigh &e)
-    {
-        std::cout <<  RED << e.what() << RESET << std::endl;
-    }
-    catch (Bureaucrat::GradeLow &f)
-    {
-        std::cout <<  RED << f.what() << RESET << std::endl;
-    }
+            throw Bureaucrat::GradeTooLow();
    this->_grade +=  increment_value;
     return(this->_grade);
 }
@@ -68,21 +50,10 @@ int Bureaucrat::decrementGrade(int decrement_value)
         std::cout << RED << "[Incorrect 2] Decrement Value should be a positive integer value" << RESET << std::endl;
         return (FAILURE);
     }
-    try
-    {
         if (_grade < 1)
-            throw Bureaucrat::GradeHigh();
+            throw Bureaucrat::GradeTooHigh();
         else if ( _grade > 150)
-            throw Bureaucrat::GradeLow();
-    }
-    catch (Bureaucrat::GradeHigh &e)
-    {
-        std::cout <<  RED << e.what() << RESET << std::endl;
-    }
-    catch (Bureaucrat::GradeLow &f)
-    {
-        std::cout <<  RED << f.what() << RESET << std::endl;
-    }
+            throw Bureaucrat::GradeTooLow();
     this->_grade -= decrement_value;
     return (this->_grade);
 }
@@ -105,7 +76,15 @@ void Bureaucrat::signForm(Form &form)
     }
 
 }
+const char* Bureaucrat::GradeTooHigh::what() const throw()
+{
+    return (" GradeTooHigh ");
+}
 
+const char* Bureaucrat::GradeTooLow::what() const throw()
+{
+    return (" GradeTooLow ");
+}
 
 Bureaucrat::~Bureaucrat()
 {
