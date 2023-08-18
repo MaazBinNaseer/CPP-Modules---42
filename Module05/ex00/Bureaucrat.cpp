@@ -5,7 +5,17 @@ Bureaucrat::Bureaucrat(): _name("EHSAN")
     std::cout << "Constructor [Bureaucrat] has been called" << std::endl ;
 }
 
-std::string Bureaucrat::getName()
+Bureaucrat::Bureaucrat(std::string const name, int grade): _name(name), _grade(grade)
+{
+    std::cout << "Constructor [Bureaucrat(name, grade)] has been called" << std::endl;
+    if(grade > 150) 
+        throw GradeTooHigh();
+    else if( grade < 1)
+        throw GradeTooLow();
+
+}
+
+std::string  Bureaucrat::getName() const
 {
     return (this->_name);
 }
@@ -39,30 +49,32 @@ int Bureaucrat::decrementGrade(int decrement_value)
 
 int Bureaucrat::getGrade()
 {
-    try
-    {
         if (_grade < 1)
-            throw Bureaucrat::GradeHigh();
+            throw Bureaucrat::GradeTooLow();
         else if (_grade > 150)
-            throw Bureaucrat::GradeLow();
-    }
-    catch (Bureaucrat::GradeHigh &e)
-    {
-        std::cout <<  RED << e.what() << RESET << std::endl;
-    }
-    catch (Bureaucrat::GradeLow &f)
-    {
-        std::cout <<  RED << f.what() << RESET << std::endl;
-    }
+            throw Bureaucrat::GradeTooHigh();
     return (_grade); 
+}
+
+
+const char* Bureaucrat::GradeTooHigh::what() const throw()
+{
+    return (" GradeTooHigh ");
+}
+
+const char* Bureaucrat::GradeTooLow::what() const throw()
+{
+    return ("GradeTooLow");
 }
 
 Bureaucrat::~Bureaucrat()
 {
     std::cout << "Destructor [Bureaucrat] is being called" << std::endl;
 }
-std::ostream& operator<<(std::ostream& os, Bureaucrat &bureaucratREF)
+
+std::ostream& operator<<(std::ostream& os, Bureaucrat const &bureaucratREF)
 {
     os << bureaucratREF.getName() << "bureacucrat grade " << std::endl; 
+    return (os);
 }
 

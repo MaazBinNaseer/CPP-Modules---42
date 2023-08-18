@@ -6,23 +6,42 @@
 int main()
 {
     //* -----------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [SET GRADE] -------
+    //* ------------- TRY & CATCH TESTING [INSTANTIATE] -------
     //* -----------------------------------------------------
-    Bureaucrat a1;  
-    a1.setGrade(1500);
-    std::cout << a1.getGrade() << std::endl;
-    a1.setGrade(-1);
-    std::cout << a1.getGrade() << std::endl;
-    a1.setGrade(25);
-    std::cout << a1.getGrade() << std::endl;
+    
+    try 
+    {
+         Bureaucrat a1("Julia", 1900);
+    }
+    catch(Bureaucrat::GradeTooHigh &e)
+    {
+        std::cerr << RED << e.what() <<  RESET << std::endl;
+    }
 
     //* -----------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [INCREMENT] -------
+    //* ------------- TRY & CATCH TESTING [(+) and (-)] -------
     //* -----------------------------------------------------
-    Bureaucrat a2;
-    a2.setGrade(40);
-    a2.incrementGrade(-10);
-    std::cout << a2.getGrade() << std::endl;
-
+    
+    Bureaucrat a2("JOHN", 100);
+    try
+    {
+        a2.incrementGrade(60);
+        a2.getGrade();
+    }
+    catch(Bureaucrat::GradeTooHigh &e)
+    {
+        std::cerr << RED << e.what() <<  RESET << std::endl;
+    }
+    
+    try
+    {
+        a2.decrementGrade(300);
+        a2.getGrade();
+    }
+    catch(Bureaucrat::GradeTooLow& e)
+    {
+        std::cerr << RED << e.what() << RESET << std::endl;
+    }
+    
 
 }
