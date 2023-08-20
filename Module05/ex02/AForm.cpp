@@ -1,81 +1,79 @@
 #include "AForm.hpp"
 
-AForm::AForm(): _name("Trump"), _IsSigned(false),  _gradeSign(5), _gradeExecute(10)
-{
-    std::cout << GREEN << "Default Constructor [AForm] has been called " << RESET << std::endl;
-}
-AForm::AForm(const std::string name, const int gradeSign, const int gradeExecute): _name(name),  _gradeSign(gradeSign), _gradeExecute(gradeExecute)
-{
-    std::cout << GREEN << "Constructor [AForm(name, gradeSign, gradeExecute)] has been called" << RESET << std::endl;
+AForm::AForm() : 
+    name(""),
+    gradeSigned(0),
+    gradeExecute(0) {};
+
+AForm::AForm(const std::string name,
+            const int gradeSigned, 
+            const int gradeExecute) :
+    name(name),
+    gradeSigned(gradeSigned),
+    gradeExecute(gradeExecute) {
+    if (gradeSigned > 150 || gradeExecute > 150)
+        throw GradeTooLowException();
+    else if (gradeSigned < 1 || gradeExecute < 1)
+        throw GradeTooHighException();
 }
 
-bool AForm::get_Signed() const
-{
-    if(_IsSigned == true)
-        return (_IsSigned);
-    else if (_IsSigned == false)
-        return (_IsSigned);
+AForm::AForm(const AForm &other) : 
+    name(other.getName()),
+    gradeSigned(other.getGradeSigned()), 
+    gradeExecute(other.getGradeExecute()) {
+    *this = other;
+}
+
+AForm &AForm::operator=(const AForm &other) {
+    if (this != &other)
+        isSigned = other.getIsSigned();
+    return *this;
+}
+
+AForm::~AForm() {};
+
+const char *AForm::GradeTooHighException::what(void) const throw() {
+    return "Grade too high!!";
+}
+
+const char *AForm::GradeTooLowException::what(void) const throw() {
+    return "Grade too low!!";
+}
+
+const char *AForm::NotSignedException::what(void) const throw() {
+    return "AForm was not signed!!";
+}
+
+const std::string   AForm::getName(void) const {
+    return name;
+}
+
+bool  AForm::getIsSigned(void) const {
+    return isSigned;
+}
+
+int AForm::getGradeSigned(void) const {
+    return gradeSigned;
+}
+
+int AForm::getGradeExecute(void) const {
+    return gradeExecute;
+}
+
+void    AForm::beSigned(Bureaucrat bureaucrat) {
+    if (bureaucrat.getGrade() > gradeSigned)
+        throw GradeTooLowException();
+    isSigned = true;
+}
+
+std::ostream &operator<<(std::ostream &out, const AForm &form) {
+    out << "Name: " << form.getName() <<  std::endl;
+    out << "GradeSigned: " << form.getGradeSigned() <<  std::endl;
+    out << "GradeExecute: " << form.getGradeExecute() <<  std::endl;
+    out << "Signed? -> "; 
+    if (form.getIsSigned() == true)
+        out << "Yes!" << std::endl;
     else
-        return (_IsSigned);
-    return (_IsSigned);
-}
-
-const char* AForm::GradeHigh::what() const throw()
-{
-    return ("\033[31mAForm::GradeTooHigh: \033[0m ");
-}
-
-const char* AForm::GradeLow::what() const throw()
-{
-    return "\033[31mAForm: GradeTooLow:\033[0m ";
-}
-
-void AForm::beSigned(Bureaucrat &obj)
-{
-    if(obj.getGrade() > this->_gradeSign)
-        throw AForm::GradeLow();
-    else
-        this->_IsSigned = true;
-}
-int AForm::get_gradeSign()const
-{
-    try
-    {
-        if(this->_gradeSign < 1)
-            throw GradeLow();
-        else if (this->_gradeSign > 150)
-            throw GradeHigh(); 
-    }
-    catch(const std::exception& e)
-    {
-        std::cout<< RED << e.what() << std::endl;
-    }
-    return (this->_gradeSign);
-}
-
-int AForm::get_gradeExecute() const
-{
-    return (this->_gradeExecute);
-}
-
-std::string AForm::getName()const
-{
-    return (this->_name);
-}
-
-AForm::~AForm()
-{
-    std::cout << GREEN << "Destructor [AForm] was called " << RESET << std::endl;
-}
-
-
-//* Overloading the << operator to print out all the attributes of the Aform
-std::ostream& operator<<(std::ostream &os, AForm const &formREF)
-{
-    os << "Name of the Form: " << formREF.getName() << std::endl;
-    os << "Grade Sign is: " << formREF.get_gradeSign() << std::endl;
-    os << "Execute Sign is: " << formREF.get_gradeExecute() << std::endl;
-    os << "The form is signed (true or false): " <<formREF.get_Signed() << std::endl;
-    os << "----------------------------------------------- " << std::endl;
-    return (os);
+        out << "No!" << std::endl;
+    return out;
 }

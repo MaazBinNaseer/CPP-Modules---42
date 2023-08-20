@@ -1,60 +1,81 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
- 
-int main()
-{
-    //* ----------------------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [BUREAUCRAT][SET GRADE] -------
-    //* -----------------------------------------------------------------
-    Bureaucrat a1;  
-    a1.setGrade(1500);
-    a1.setGrade(-1);
-    // std::cout << a1.getGrade() << std::endl; 
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-    //* -----------------------------------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [BUREAUCRAT][INCREMENT & DECREMENT] -------
-    //* -----------------------------------------------------------------------------
-    a1.setGrade(15);
-    a1.incrementGrade(14);
-    std::cout << a1.getGrade() << std::endl;
-    a1.setGrade(15);
-    a1.decrementGrade(14);
-    std::cout << a1.getGrade() << std::endl;
-    std::cout << "--------------------------------------------------------" << std::endl;
-
-    //* -------------------------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [FORM][BASIC] ------------------
-    //* -------------------------------------------------------------------
-    // Form a3;
-    // Form a2("Trump Jr.", 10, 5);
-    // Form a4("Fail Biden", 123456, 10);
-    // std::cout << a3 << std::endl;
-    // std::cout << a2 << std::endl;
-
-    //* -----------------------------------------------------------------------
-    //* ------------- TRY & CATCH TESTING [FORM][BUREACURAT] ------------------
-    //* -----------------------------------------------------------------------
-
-    Bureaucrat bureaucrat_1("Nixon", 6);
-    Bureaucrat bureaucrat_2("Barack Obama", 4);
-    Form form_1("Form_1", 10, 10);
-    Form form_2("Form_2", 80, 75);
-
+void    testShrubberyCreation(void) {
     try {
-		bureaucrat_1.signForm(form_1);
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
+        std::cout << "--- Test ShrubberyCreationForm ---" << std::endl;
+        std::cout << std::endl;
+        Bureaucrat b1("b1", 25);
+        Bureaucrat b2("b2", 148);
+        ShrubberyCreationForm shrubbery("shrubbery");
+        shrubbery.beSigned(b1);
+        std::cout << shrubbery << std::endl;
+        b1.signForm(shrubbery);
+        shrubbery.execute(b1);
+        shrubbery.execute(b2);
+        //b2.executeForm(shrubbery);
+        std::cout << std::endl;
+        std::cout << "--- Test ShrubberyCreationForm Finish ---" << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cout << e.what() << std::endl;
+        std::cout << std::endl;
+        std::cout << "--- Test ShrubberyCreationForm Finish ---" << std::endl;
+    }
+}
 
-
-    
+void    testRobotomyRequestForm(void) {
     try {
-		bureaucrat_2.signForm(form_2);
-	}
-	catch (std::exception &e) {
-		std::cerr << RED << e.what() << std::endl;
-	}
-    std::cout << form_2 << std::endl;
+        std::cout << "--- Test RobotomyRequestForm ---" << std::endl;
+        std::cout << std::endl;
+        Bureaucrat b1("b1", 25);
+        Bureaucrat b2("b2", 80);
+        RobotomyRequestForm robotomy("robotomy");
+        robotomy.beSigned(b1);
+        std::cout << robotomy << std::endl;
+        b1.signForm(robotomy);
+        robotomy.execute(b1);
+        robotomy.execute(b2);
+        //b2.executeForm(robotomy);
+        std::cout << std::endl;
+        std::cout << "--- Test RobotomyRequestForm Finish ---" << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cout << e.what() << std::endl;
+        std::cout << std::endl;
+        std::cout << "--- Test RobotomyRequestForm Finish ---" << std::endl;
+    }
+}
 
+void    testPresidentialPardonForm(void) {
+    try {
+        std::cout << "--- Test PresidentialPardonForm ---" << std::endl;
+        std::cout << std::endl;
+        Bureaucrat b1("b1", 1);
+        Bureaucrat b2("b2", 30);
+        PresidentialPardonForm presidential("presidential");
+        presidential.beSigned(b1);
+        std::cout << presidential << std::endl;
+        b1.signForm(presidential);
+        presidential.execute(b1);
+        presidential.execute(b2);
+        //b2.executeForm(presidential);
+        std::cout << std::endl;
+        std::cout << "--- Test PresidentialPardonForm Finish ---" << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cout << e.what() << std::endl;
+        std::cout << std::endl;
+        std::cout << "--- Test PresidentialPardonForm Finish ---" << std::endl;
+    }
+}
+
+int main() {
+    testShrubberyCreation();        std::cout << std::endl;
+    testRobotomyRequestForm();      std::cout << std::endl;
+    testPresidentialPardonForm();   std::cout << std::endl;
+    return (0);
 }
