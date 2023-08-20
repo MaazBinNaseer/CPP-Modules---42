@@ -1,26 +1,29 @@
-#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target) 
-    : AForm(target, 72, 45) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) 
+    : AForm(target, 145, 137) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) 
     : AForm(other) {}
 
-RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other) {
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
     AForm::operator=(other);
     return (*this);
 }
 
-RobotomyRequestForm::~RobotomyRequestForm() {};
+ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
-void    RobotomyRequestForm::execute(Bureaucrat const &executor) const {
+const char *ShrubberyCreationForm::CanNotOpenOutfile::what(void) const throw() {
+    return "Can't open outfile";
+}
+
+void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 	if (this->getIsSigned() == false)
 		throw AForm::NotSignedException();
 	if (executor.getGrade() > this->getGradeExecute())
 		throw AForm::GradeTooLowException();
-    std::srand((unsigned int)time(NULL));
-    if (std::rand() % 2 == 1)
-        std::cout << "Robotomy Success!!" << std::endl;
-    else
-        std::cout << "Robotomy Fail!!" << std::endl;
+	std::ofstream   outfile((this->getName() + "_shrubbery").c_str());
+	if (outfile.fail())
+		throw ShrubberyCreationForm::CanNotOpenOutfile();
+	outfile << TREE;
 }
