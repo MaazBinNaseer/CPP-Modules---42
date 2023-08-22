@@ -17,6 +17,9 @@ ScalarConverter::ScalarConverter()
     std::cout << "Constructor ScalarConverter(string) is called" << std::endl;
 }
 
+//* ---------------------------------------------------
+//* --------------- STRING TO INT --------------------
+//* --------------------------------------------------
 int ScalarConverter::string_ToInt(std::string literal)
 {
     int integer = 0;
@@ -31,7 +34,7 @@ int ScalarConverter::string_ToInt(std::string literal)
             std::cout << "int: impossibile" << std::endl;
             return (0);
         } 
-        else if (integer > (INT_MAX - (literal[i] - '0')) / 10)
+        else if (integer > (INT32_MAX - (literal[i] - '0')) / 10)
         {
             std::cout << "int: INTEGER BUFFER OVERFLOW " << std::endl;
             return (0);
@@ -42,6 +45,9 @@ int ScalarConverter::string_ToInt(std::string literal)
     return (integer);
 }
 
+//* ---------------------------------------------------
+//* --------------- STRING TO DOUBLE -----------------
+//* --------------------------------------------------
 double  ScalarConverter::string_ToDouble(std::string literal)
 {
     //* Lets say we have the number 3.1495
@@ -80,6 +86,9 @@ double  ScalarConverter::string_ToDouble(std::string literal)
     return (result);
 }
 
+//* ---------------------------------------------------
+//* --------------- STRING TO FLOAT ------------------
+//* --------------------------------------------------
 float ScalarConverter::string_ToFloat(std::string literal)
 {
         float result = 0.0f;
@@ -103,11 +112,16 @@ float ScalarConverter::string_ToFloat(std::string literal)
                 }
                  else
                     result = result * 10 + (c - '0');
-            } 
+            }
+            else if((literal.substr(i,3) == "nan") && (i + 2 == literal.size() - 1))
+            {
+                std::cout << "Float: nanf" << std::endl;
+                return(0);
+            }
             else 
             {
                 std::cerr << "Invalid character " << c << std::endl;
-                return 0.0f;   
+                return (0.0f);   
             }
         }
         if (isNegative)

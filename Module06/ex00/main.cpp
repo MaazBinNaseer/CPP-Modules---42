@@ -14,7 +14,7 @@
 
 int main()
 {
-  ScalarConverter::string_ToInt("nanf");
-  ScalarConverter::string_ToDouble("42.0f");
+  ScalarConverter::string_ToInt("42.0f");
+  ScalarConverter::string_ToDouble("0");
   ScalarConverter::string_ToFloat("nan");
 }
