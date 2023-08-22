@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:55:10 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/22 12:22:26 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:44:44 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <limits>
 
 class ScalarConverter
 {
@@ -27,7 +29,7 @@ class ScalarConverter
         static char string_ToChar(std::string literal);
         static float string_ToFloat(std::string literal);
         static double string_ToDouble(std::string literal);
-        void conveter(std::string string); //* Needs to be void to convert it to different variables
+        void Converter(std::string string); //* Needs to be void to convert it to different variables
         ~ScalarConverter();
 };
 
