@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:55:10 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/22 15:44:44 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:51:27 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <iomanip>
 #include <limits>
+#include <sstream>
 
 class ScalarConverter
 {
