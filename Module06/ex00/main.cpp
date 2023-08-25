@@ -14,7 +14,12 @@
 
 int main()
 {
-  ScalarConverter::string_ToInt("42.0f");
-  // ScalarConverter::string_ToDouble("0");
-  // ScalarConverter::string_ToFloat("nan");
+  // ScalarConverter::string_ToInt("42.0f");
+  // ScalarConverter::string_ToDouble("3.73");
+  try {
+        ScalarConverter::string_ToFloat("GG"); 
+    } 
+    catch (const ScalarConverter::Impossible & e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
