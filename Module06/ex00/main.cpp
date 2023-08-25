@@ -17,7 +17,7 @@ int main()
   // ScalarConverter::string_ToInt("42.0f");
   // ScalarConverter::string_ToDouble("3.73");
   try {
-        ScalarConverter::string_ToFloat("GG"); 
+        ScalarConverter::string_ToFloat("42.0f"); 
     } 
     catch (const ScalarConverter::Impossible & e) {
         std::cerr << e.what() << std::endl;

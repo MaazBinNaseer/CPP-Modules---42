@@ -12,6 +12,13 @@
 
 #include "ScalarConverter.hpp"
 
+/*
+--> Difference between isstringstream and stringstream
+--> The difference is that the [stringstream] takes input and output from the 
+--> string whereas, the isstringstream reads only from the string and formats 
+--> it to the user type. 
+*/
+
 ScalarConverter::ScalarConverter()
 {
     std::cout << "Constructor ScalarConverter(string) is called" << std::endl;
@@ -43,9 +50,9 @@ int ScalarConverter::string_ToInt(std::string literal)
 //* ---------------------------------------------------
 //* --------------- STRING TO DOUBLE -----------------
 //* --------------------------------------------------
-double  ScalarConverter::string_ToDouble(std::string literal)
+double  ScalarConverter::string_ToDouble(std::string inputLiteral)
 {
-    std::istringstream convert (literal);
+    std::istringstream convert (inputLiteral);
     double value;   
     convert >> value;
     std::cout << std::fixed << std::setprecision(1) << "The value for the double is: " << value << std::endl;
@@ -58,7 +65,7 @@ double  ScalarConverter::string_ToDouble(std::string literal)
 std::string ScalarConverter::string_nanf(const std::string& literal)
 {
     if(literal == "nan")
-        return("nanf");
+        return("nan");
     else if (literal == "-inf")
         return("-inf");
     else if (literal == "+inf")
@@ -75,9 +82,9 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
     float value = 0.0f;
     
     literal = string_nanf(inputLiteral);
-    if (literal == "nanf" || literal == "-inff" || literal == "+inff") 
+    if (literal == "nan" || literal == "-inf" || literal == "+inf") 
     {
-        std::cout << "float: " << literal << std::endl;
+        std::cout << "float: " << literal << "f" << std::endl;
     } 
     else 
     {
@@ -86,7 +93,7 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
         if (!(convert >> value)) {
             throw ScalarConverter::Impossible();
         }
-        std::cout << "The value for the float literal is: " << value << "f" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << "The value for the float literal is: " << value << "f" << std::endl;
     }
     return value;
 }
