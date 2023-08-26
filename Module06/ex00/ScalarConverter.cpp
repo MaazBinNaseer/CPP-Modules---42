@@ -13,10 +13,12 @@
 #include "ScalarConverter.hpp"
 
 /*
+* ---------------------- STRINGSTREAM ---------------------------------------
 --> Difference between isstringstream and stringstream
 --> The difference is that the [stringstream] takes input and output from the 
 --> string whereas, the isstringstream reads only from the string and formats 
 --> it to the user type. 
+* --------------------------------------------------------------------------
 */
 
 ScalarConverter::ScalarConverter()
@@ -30,33 +32,6 @@ ScalarConverter::ScalarConverter()
 const char *ScalarConverter::Impossible::what(void) const throw()
 {
     return ("impossible");
-}
-
-
-//* ---------------------------------------------------
-//* --------------- STRING TO INT --------------------
-//* --------------------------------------------------
-int ScalarConverter::string_ToInt(std::string literal)
-{
-    std::stringstream convert;
-    convert << literal;
-    int integer;
-    convert >> integer;
-    std::cout << "The value for the integer is: " << integer << std::endl;
-    return (integer);
-
-}
-
-//* ---------------------------------------------------
-//* --------------- STRING TO DOUBLE -----------------
-//* --------------------------------------------------
-double  ScalarConverter::string_ToDouble(std::string inputLiteral)
-{
-    std::istringstream convert (inputLiteral);
-    double value;   
-    convert >> value;
-    std::cout << std::fixed << std::setprecision(1) << "The value for the double is: " << value << std::endl;
-    return (0);
 }
 
 //* ---------------------------------------------------
@@ -74,6 +49,67 @@ std::string ScalarConverter::string_nanf(const std::string& literal)
 }
 
 //* ---------------------------------------------------
+//* --------------- STRING TO CHAR  ------------------
+//* --------------------------------------------------
+char ScalarConverter::string_ToChar(const std::string charLiteral)
+{
+    std::string literal = string_nanf(charLiteral);
+    if (literal == "nan" || literal == "-inf" || literal == "+inf" || literal.size() != 1) 
+    {
+        std::cout << "char: ";
+        throw ScalarConverter::Impossible();
+    }
+    else if(!isprint(literal[0]))
+    {
+        std::cout << "char: Non displayable" << std::endl;
+    }
+    else
+    {
+        std::cout << "char: " << static_cast<char>(literal[0]) << std::endl;
+    }
+    return(static_cast<char>(literal[0]));
+}
+
+
+//* ---------------------------------------------------
+//* --------------- STRING TO INT --------------------
+//* --------------------------------------------------
+int ScalarConverter::string_ToInt(std::string intLiteral)
+{
+    std:: string literal = string_nanf(intLiteral);
+    std::stringstream convert;
+    if (literal == "nan" || literal == "-inf" || literal == "+inf") 
+        throw ScalarConverter::Impossible();
+    convert << intLiteral;
+    int integer;
+    convert >> integer;
+    std::cout << "integer: " << integer << std::endl;
+    return (integer);
+
+}
+
+//* ---------------------------------------------------
+//* --------------- STRING TO DOUBLE -----------------
+//* --------------------------------------------------
+double  ScalarConverter::string_ToDouble(std::string doubleLiteral)
+{
+    std::string literal = string_nanf(doubleLiteral);
+    double value = 0.0;   
+    if (literal == "nan" || literal == "-inf" || literal == "+inf") 
+    {
+        std::cout << "double: " << literal << std::endl;
+    }
+    else 
+    {
+        std::istringstream convert (doubleLiteral);
+        if (!(convert >> value))
+            throw ScalarConverter::Impossible();
+        std::cout << std::fixed << std::setprecision(1) << "double is: " << value << std::endl;
+    }
+    return (value);
+}
+
+//* ---------------------------------------------------
 //* --------------- STRING TO FLOAT ------------------
 //* --------------------------------------------------
 float ScalarConverter::string_ToFloat(std::string inputLiteral)
@@ -88,12 +124,7 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
     } 
     else 
     {
-        std::stringstream convert;
-        convert << literal;
-        if (!(convert >> value)) {
-            throw ScalarConverter::Impossible();
-        }
-        std::cout << std::fixed << std::setprecision(1) << "The value for the float literal is: " << value << "f" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << static_cast<float>(std::atof(literal.c_str())) << "f" <<std::endl;
     }
     return value;
 }
@@ -102,3 +133,12 @@ ScalarConverter::~ScalarConverter()
 {
     std::cout << "Destrutor ScalarConverter is called" << std::endl;
 }
+
+//*Method 1
+        // std::stringstream convert;
+        // convert << literal;
+        // if (!(convert >> value)) {
+        //     throw ScalarConverter::Impossible();
+        // }
+        // std::cout << std::fixed << std::setprecision(1) << "The value for the float literal is: " << value << "f" << std::endl;
+        //* Method 2 

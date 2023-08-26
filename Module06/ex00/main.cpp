@@ -14,10 +14,13 @@
 
 int main()
 {
-  // ScalarConverter::string_ToInt("42.0f");
-  // ScalarConverter::string_ToDouble("3.73");
-  try {
+  try 
+  {
         ScalarConverter::string_ToFloat("42.0f"); 
+        ScalarConverter::string_ToDouble("nan");
+        ScalarConverter::string_ToInt("42.0f");
+        ScalarConverter::string_ToChar("5");
+
     } 
     catch (const ScalarConverter::Impossible & e) {
         std::cerr << e.what() << std::endl;
