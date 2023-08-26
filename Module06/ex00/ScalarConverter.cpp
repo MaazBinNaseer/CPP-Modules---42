@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:55:13 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/24 16:45:06 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/08/26 13:50:38 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,13 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
     {
         std::cout << "float: " << literal << "f" << std::endl;
     } 
+    //* Iterate throught the condition 
+    else if()
+        std::cout << std::fixed << std::setprecision(1) << static_cast<float>(std::atof(literal.c_str())) << "f" <<std::endl;
     else 
     {
-        std::cout << std::fixed << std::setprecision(1) << static_cast<float>(std::atof(literal.c_str())) << "f" <<std::endl;
+        throw ScalarConverter::Impossible();
+        
     }
     return value;
 }

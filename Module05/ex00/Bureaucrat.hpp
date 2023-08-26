@@ -12,11 +12,13 @@
 class Bureaucrat
 {
     private:
-        std::string const _name;
+        std::string _name;
         int _grade;
     public:
         Bureaucrat();
         Bureaucrat(std::string const name, int grade);
+        Bureaucrat(const Bureaucrat& value); //* Copy constructor 
+        Bureaucrat& operator=(const Bureaucrat& obj);
         void setGrade(int grade);
         std::string  getName() const;
         int getGrade();
