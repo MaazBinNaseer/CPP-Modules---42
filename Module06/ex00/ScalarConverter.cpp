@@ -146,6 +146,11 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
     return (value);
 }
 
+//* ---------------------------------------------------
+//* --------------- CONVERTER FUNCTION ---------------
+//* --------------------------------------------------
+//# @brief Converts all the string to the float, double, int, char values
+//# @return Float, double, int, char
 void ScalarConverter::Converter(std::string ConLiteral)
 {
     try 
