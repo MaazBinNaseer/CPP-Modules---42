@@ -16,7 +16,7 @@ int main()
 {
   try 
   {
-        ScalarConverter::string_ToFloat("42.0g"); 
+        ScalarConverter::string_ToFloat(""); 
         ScalarConverter::string_ToDouble("42.0kjk");
         ScalarConverter::string_ToInt("42.0kjk");
         ScalarConverter::string_ToChar("42.0kjk");

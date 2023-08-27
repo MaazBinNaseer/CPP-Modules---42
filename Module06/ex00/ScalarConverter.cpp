@@ -122,7 +122,12 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
     {
         std::cout << "float: " << literal << "f" << std::endl;
     } 
-    //* Iterate throught the condition 
+    /* 
+    *   Iterate throught the condition if 
+    * - It is valid input such as 42.0f 
+    * - Valid float number
+    * - Valid Negative Number
+    */
     else if(isdigit(literal[0]) || (literal[0] == '-' && literal.size() > 1))
         {
             for(size_t i = 0; i < literal.size(); ++i)
@@ -135,7 +140,10 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
             std::cout << std::fixed << std::setprecision(1) << "Float: "<< static_cast<float>(std::atof(literal.c_str())) << "f" <<std::endl;
         }
     else 
-        throw ScalarConverter::Impossible();
+        {
+            std::cout << "Float: " ; 
+            throw ScalarConverter::Impossible();
+        }
     return value;
 }
 
