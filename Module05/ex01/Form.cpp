@@ -21,6 +21,19 @@ Form::Form(const std::string name, const int gradeSign, const int gradeExecute):
     std::cout << GREEN << "Constructor [Form(name, gradeSign, gradeExecute)] has been called" << RESET << std::endl;
 }
 
+Form::Form(const Form& obj)
+{
+    *this = obj;
+}
+
+Form& Form::operator=(const Form& value)
+{
+    if( this != &value)
+        this->_name = value._name;
+    return (*this);
+}
+
+
 bool Form::get_Signed() const
 {
     if(_IsSigned == true)

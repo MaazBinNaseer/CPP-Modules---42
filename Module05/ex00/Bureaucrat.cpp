@@ -12,7 +12,7 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(): _name("EHSAN")
+Bureaucrat::Bureaucrat(): _name("lol")
 {
     std::cout << "Constructor [Bureaucrat] has been called" << std::endl ;
 }

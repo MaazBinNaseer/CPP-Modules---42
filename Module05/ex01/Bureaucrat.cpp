@@ -25,6 +25,22 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name), _grade(g
     else if( grade < 1)
         throw GradeTooLow();
 }
+Bureaucrat::Bureaucrat(const Bureaucrat& value)
+{
+    std::cout << "Copy Constructor [Bureaucrate constructor] is called" << std::endl;
+    *this = value;
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
+{
+    if(this != &obj)
+        {
+            this->_grade = obj._grade;
+            this->_name = obj._name;
+        }
+    std::cout << "Copy Assignment [Bureaucrat] is called" <<std::endl;
+    return (*this);
+}
 
 std::string Bureaucrat::getName() const
 {

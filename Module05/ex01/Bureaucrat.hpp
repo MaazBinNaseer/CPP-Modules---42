@@ -28,12 +28,13 @@ class Form;
 class Bureaucrat
 {
     private:
-        std::string const _name;
+        std::string _name;
         int _grade;
     public:
         Bureaucrat();
         Bureaucrat(const std::string name, int grade);
-
+        Bureaucrat(const Bureaucrat& value);
+        Bureaucrat& operator=(const Bureaucrat& obj);
         void setGrade(int grade);
 
         std::string getName() const;
