@@ -14,13 +14,20 @@
 
 int main()
 {
-  try 
-  { 
+    try 
+    { 
         ScalarConverter value;
-        value.Converter("89.0f");
+        value.Converter("-2147483649");
 
     } 
-    catch (const ScalarConverter::Impossible & e) {
+    catch (const ScalarConverter::Impossible & e) 
+    {
         std::cerr << e.what() << std::endl;
     }
+    catch (const ScalarConverter::Overflow &e)
+    {
+        std:: cerr << "int: " << e.what() << std::endl;
+    }
+
+    return(0);
 }

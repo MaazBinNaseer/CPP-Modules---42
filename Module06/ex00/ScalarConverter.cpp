@@ -34,6 +34,11 @@ const char *ScalarConverter::Impossible::what(void) const throw()
     return ("impossible");
 }
 
+const char *ScalarConverter::Overflow::what(void) const throw()
+{
+    return ("Over/Under the integer limit");
+}
+
 //* ---------------------------------------------------
 //* --------------- NANF FUNCTION ------------------
 //* --------------------------------------------------
@@ -69,17 +74,34 @@ char ScalarConverter::string_ToChar(const std::string charLiteral)
 //* --------------------------------------------------
 int ScalarConverter::string_ToInt(std::string intLiteral)
 {
-    std:: string literal = string_nanf(intLiteral);
+    std::string literal = string_nanf(intLiteral);
     std::stringstream convert;
     if (literal == "nan" || literal == "-inf" || literal == "+inf") 
         throw ScalarConverter::Impossible();
-    convert << intLiteral;
-    int integer;
-    convert >> integer;
-    std::cout << "integer: " << integer << std::endl;
-    return (integer);
 
+    for(size_t i = 0; i < intLiteral.size(); ++i)
+    {
+        if(intLiteral[i] == 'f' || intLiteral[i] == '.' || isdigit(intLiteral[i]))
+            continue;
+        else
+            throw ScalarConverter::Impossible();
+    }
+    convert << intLiteral;
+    long long bigValue;
+    convert >> bigValue;
+    if (convert.fail()) 
+    {
+        if (convert.eof()) 
+            throw ScalarConverter::Overflow();
+        else 
+            throw ScalarConverter::Impossible();
+    }
+    if (bigValue > std::numeric_limits<int>::max() || bigValue < std::numeric_limits<int>::min())
+        throw ScalarConverter::Overflow();
+
+    return static_cast<int>(bigValue);
 }
+
 
 //* ---------------------------------------------------
 //* --------------- STRING TO DOUBLE -----------------
@@ -94,21 +116,25 @@ double  ScalarConverter::string_ToDouble(std::string doubleLiteral)
     }
     else 
     {
-        std::istringstream convert (doubleLiteral);
-        if (!(convert >> value))
-            throw ScalarConverter::Impossible();
         for(size_t i = 0; i < doubleLiteral.size(); ++i)
         {
-            if(doubleLiteral[i] == 'f')
+            if(doubleLiteral[i] == 'f' || doubleLiteral[i] == '.' || isdigit(doubleLiteral[i]))
                 continue;
-             else if(!isdigit(doubleLiteral[i]) && doubleLiteral[i] != 'f')
-                    throw ScalarConverter::Impossible();
+            else
+                throw ScalarConverter::Impossible();
         }
-        // value = static_cast<double>(literal[0]);
+        float floatValue;
+        std::istringstream convert(doubleLiteral);
+        if (!(convert >> floatValue))
+            throw ScalarConverter::Impossible();
+        
+        // Cast from float to double
+        value = static_cast<double>(floatValue);
         std::cout << std::fixed << std::setprecision(1) << "double: " << value << std::endl;
     }
-    return (value);
+    return (value);    
 }
+
 
 //* ---------------------------------------------------
 //* --------------- STRING TO FLOAT ------------------
@@ -167,6 +193,10 @@ void ScalarConverter::Converter(std::string ConLiteral)
         string_ToInt(ConLiteral);
     } 
     catch (const Impossible & e) 
+    {
+        std::cerr << "int: " << e.what() << std::endl;
+    }
+    catch (const Overflow & e) 
     {
         std::cerr << "int: " << e.what() << std::endl;
     }
