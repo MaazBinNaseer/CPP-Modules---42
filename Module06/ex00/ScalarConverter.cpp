@@ -55,18 +55,11 @@ char ScalarConverter::string_ToChar(const std::string charLiteral)
 {
     std::string literal = string_nanf(charLiteral);
     if (literal == "nan" || literal == "-inf" || literal == "+inf" || literal.size() != 1) 
-    {
-        std::cout << "char: ";
         throw ScalarConverter::Impossible();
-    }
     else if(!isprint(literal[0]))
-    {
         std::cout << "char: Non displayable" << std::endl;
-    }
     else
-    {
         std::cout << "char: " << static_cast<char>(literal[0]) << std::endl;
-    }
     return(static_cast<char>(literal[0]));
 }
 
@@ -104,7 +97,15 @@ double  ScalarConverter::string_ToDouble(std::string doubleLiteral)
         std::istringstream convert (doubleLiteral);
         if (!(convert >> value))
             throw ScalarConverter::Impossible();
-        std::cout << std::fixed << std::setprecision(1) << "double is: " << value << std::endl;
+        for(size_t i = 0; i < doubleLiteral.size(); ++i)
+        {
+            if(doubleLiteral[i] == 'f')
+                continue;
+             else if(!isdigit(doubleLiteral[i]) && doubleLiteral[i] != 'f')
+                    throw ScalarConverter::Impossible();
+        }
+        // value = static_cast<double>(literal[0]);
+        std::cout << std::fixed << std::setprecision(1) << "double: " << value << std::endl;
     }
     return (value);
 }
@@ -137,19 +138,57 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
                 if(!isdigit(literal[i]))
                     throw ScalarConverter::Impossible();
             }
-            std::cout << std::fixed << std::setprecision(1) << "Float: "<< static_cast<float>(std::atof(literal.c_str())) << "f" <<std::endl;
+            value = static_cast<float>(std::atof(literal.c_str()));
+            std::cout << std::fixed << std::setprecision(1) << "Float: "<< value << "f" <<std::endl;
         }
     else 
-        {
-            std::cout << "Float: " ; 
             throw ScalarConverter::Impossible();
-        }
-    return value;
+    return (value);
 }
+
+void ScalarConverter::Converter(std::string ConLiteral)
+{
+    try 
+    {
+        string_ToChar(ConLiteral);
+    } 
+    catch (const Impossible & e) 
+    {
+        std::cerr << "char: " << e.what() << std::endl;
+    }
+
+    try 
+    {
+        string_ToInt(ConLiteral);
+    } 
+    catch (const Impossible & e) 
+    {
+        std::cerr << "int: " << e.what() << std::endl;
+    }
+
+    try 
+    {
+        string_ToFloat(ConLiteral);
+    } 
+    catch (const Impossible & e) 
+    {
+        std::cerr << "float: " << e.what() << std::endl;
+    }
+
+    try 
+    {
+        string_ToDouble(ConLiteral);
+    } 
+    catch (const Impossible & e) 
+    {
+        std::cerr << "double: " << e.what() << std::endl;
+    }
+}
+
 
 ScalarConverter::~ScalarConverter()
 {
-    std::cout << "Destrutor ScalarConverter is called" << std::endl;
+    std::cout << "Destructor ScalarConverter is called" << std::endl;
 }
 
 //*Method 1

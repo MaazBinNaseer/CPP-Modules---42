@@ -15,11 +15,9 @@
 int main()
 {
   try 
-  {
-        ScalarConverter::string_ToFloat(""); 
-        ScalarConverter::string_ToDouble("42.0kjk");
-        ScalarConverter::string_ToInt("42.0kjk");
-        ScalarConverter::string_ToChar("42.0kjk");
+  { 
+        ScalarConverter value;
+        value.Converter("89.0f");
 
     } 
     catch (const ScalarConverter::Impossible & e) {

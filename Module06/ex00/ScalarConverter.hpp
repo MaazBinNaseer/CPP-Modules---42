@@ -26,8 +26,8 @@ class ScalarConverter
 {
     private:
         std::string _literal;
-        ScalarConverter();
     public:
+        ScalarConverter();
         ScalarConverter(std::string literal);
         static std::string string_nanf(const std::string& literal);
         static int string_ToInt(std::string literal);
