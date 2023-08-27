@@ -12,22 +12,31 @@
 
 #include "ScalarConverter.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-    try 
-    { 
-        ScalarConverter value;
-        value.Converter("-2147483649");
-
-    } 
-    catch (const ScalarConverter::Impossible & e) 
+    // Check if arguments are provided
+    if (argc < 2 || argc > 2)
     {
-        std::cerr << e.what() << std::endl;
-    }
-    catch (const ScalarConverter::Overflow &e)
-    {
-        std:: cerr << "int: " << e.what() << std::endl;
+        std::cerr << "Usage: " << argv[0] << " <string_to_convert>" << std::endl;
+        return 1;
     }
 
-    return(0);
+    for (int i = 1; i < argc; ++i) // Start from 1 to skip the program name
+    {
+        try 
+        { 
+            ScalarConverter value;
+            value.Converter(argv[i]);
+        } 
+        catch (const ScalarConverter::Impossible & e) 
+        {
+            std::cerr << "For input '" << argv[i] << "': " << e.what() << std::endl;
+        }
+        catch (const ScalarConverter::Overflow & e)
+        {
+            std::cerr << "For input '" << argv[i] << "': " << e.what() << std::endl;
+        }
+    }
+    return (0);
 }
+

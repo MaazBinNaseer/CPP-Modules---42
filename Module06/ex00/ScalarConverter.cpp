@@ -76,12 +76,9 @@ int ScalarConverter::string_ToInt(std::string intLiteral)
 {
     std::string literal = string_nanf(intLiteral);
     std::stringstream convert;
-    if (literal == "nan" || literal == "-inf" || literal == "+inf") 
-        throw ScalarConverter::Impossible();
-
     for(size_t i = 0; i < intLiteral.size(); ++i)
     {
-        if(intLiteral[i] == 'f' || intLiteral[i] == '.' || isdigit(intLiteral[i]))
+        if(intLiteral[i] == 'f' || intLiteral[i] == '.' || isdigit(intLiteral[i]) || intLiteral[i] == '-')
             continue;
         else
             throw ScalarConverter::Impossible();
@@ -98,8 +95,7 @@ int ScalarConverter::string_ToInt(std::string intLiteral)
     }
     if (bigValue > std::numeric_limits<int>::max() || bigValue < std::numeric_limits<int>::min())
         throw ScalarConverter::Overflow();
-
-    return static_cast<int>(bigValue);
+    return (static_cast<int>(bigValue));
 }
 
 
@@ -118,7 +114,7 @@ double  ScalarConverter::string_ToDouble(std::string doubleLiteral)
     {
         for(size_t i = 0; i < doubleLiteral.size(); ++i)
         {
-            if(doubleLiteral[i] == 'f' || doubleLiteral[i] == '.' || isdigit(doubleLiteral[i]))
+            if(doubleLiteral[i] == 'f' || doubleLiteral[i] == '.' || isdigit(doubleLiteral[i]) || doubleLiteral[i] == '-')
                 continue;
             else
                 throw ScalarConverter::Impossible();
@@ -159,7 +155,7 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
         {
             for(size_t i = 0; i < literal.size(); ++i)
             {
-                if(literal[i] == 'f' || literal[i] == '.')
+                if(literal[i] == 'f' || literal[i] == '.' || literal[i] == '-')
                     continue;
                 if(!isdigit(literal[i]))
                     throw ScalarConverter::Impossible();
