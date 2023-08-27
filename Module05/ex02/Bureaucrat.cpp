@@ -13,25 +13,30 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-Bureaucrat::Bureaucrat() : name("") {};
+Bureaucrat::Bureaucrat() : _name("") {};
 
-Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name) {
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
     if (grade > 150)
         throw GradeTooLowException();
     else if (grade < 1)
         throw GradeTooHighException();
-    this->grade = grade;
+    this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) :
-    name(other.getName()) {
+    _name(other.getName()) {
     *this = other;
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
-    if (this != &other)
-        grade = other.getGrade();
-    return *this;
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
+{
+    if(this != &obj)
+        {
+            this->_grade = obj._grade;
+            this->_name = obj._name;
+        }
+    std::cout << "Copy Assignment [Bureaucrat] is called" <<std::endl;
+    return (*this);
 }
 
 Bureaucrat::~Bureaucrat() {};
@@ -45,23 +50,23 @@ const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
 }
 
 const std::string Bureaucrat::getName(void) const {
-    return name;
+    return _name;
 }
 
 int Bureaucrat::getGrade(void) const {
-    return grade;
+    return _grade;
 }
 
 void    Bureaucrat::increment(int amount) {
-    if (grade - amount < 1)
+    if (_grade - amount < 1)
         throw GradeTooHighException();
-    grade -= amount;
+    _grade -= amount;
 }
 
 void    Bureaucrat::decrement(int amount) {
-    if (grade + amount > 150)
+    if (_grade + amount > 150)
         throw GradeTooLowException();
-    grade += amount;
+    _grade += amount;
 }
 
 void    Bureaucrat::signForm(AForm &form) {

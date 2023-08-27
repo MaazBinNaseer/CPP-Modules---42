@@ -74,7 +74,7 @@ void    testPresidentialPardonForm(void) {
         b1.signForm(presidential);
         presidential.execute(b1);
         presidential.execute(b2);
-        //b2.executeForm(presidential);
+        b2.executeForm(presidential);
         std::cout << std::endl;
         std::cout << "--- Test PresidentialPardonForm Finish ---" << std::endl;
     }
