@@ -78,7 +78,9 @@ int ScalarConverter::string_ToInt(std::string intLiteral)
     std::stringstream convert;
     for(size_t i = 0; i < intLiteral.size(); ++i)
     {
-        if(intLiteral[i] == 'f' || intLiteral[i] == '.' || isdigit(intLiteral[i]) || intLiteral[i] == '-')
+         if(i == 0 && intLiteral[i] == '-') 
+            continue;
+        if(intLiteral[i] == 'f' || intLiteral[i] == '.' || isdigit(intLiteral[i]))
             continue;
         else
             throw ScalarConverter::Impossible();
@@ -95,7 +97,9 @@ int ScalarConverter::string_ToInt(std::string intLiteral)
     }
     if (bigValue > std::numeric_limits<int>::max() || bigValue < std::numeric_limits<int>::min())
         throw ScalarConverter::Overflow();
-    return (static_cast<int>(bigValue));
+    bigValue = static_cast<int>(bigValue);
+    std::cout << "int: " << bigValue << std::endl;
+    return (bigValue);
 }
 
 

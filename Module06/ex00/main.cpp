@@ -20,7 +20,6 @@ int main(int argc, char **argv)
         std::cerr << "Usage: " << argv[0] << " <string_to_convert>" << std::endl;
         return 1;
     }
-
     for (int i = 1; i < argc; ++i) // Start from 1 to skip the program name
     {
         try 
