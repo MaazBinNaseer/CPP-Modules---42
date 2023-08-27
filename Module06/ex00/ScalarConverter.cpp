@@ -123,13 +123,19 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
         std::cout << "float: " << literal << "f" << std::endl;
     } 
     //* Iterate throught the condition 
-    else if()
-        std::cout << std::fixed << std::setprecision(1) << static_cast<float>(std::atof(literal.c_str())) << "f" <<std::endl;
+    else if(isdigit(literal[0]) || (literal[0] == '-' && literal.size() > 1))
+        {
+            for(size_t i = 0; i < literal.size(); ++i)
+            {
+                if(literal[i] == 'f' || literal[i] == '.')
+                    continue;
+                if(!isdigit(literal[i]))
+                    throw ScalarConverter::Impossible();
+            }
+            std::cout << std::fixed << std::setprecision(1) << "Float: "<< static_cast<float>(std::atof(literal.c_str())) << "f" <<std::endl;
+        }
     else 
-    {
         throw ScalarConverter::Impossible();
-        
-    }
     return value;
 }
 
@@ -145,4 +151,4 @@ ScalarConverter::~ScalarConverter()
         //     throw ScalarConverter::Impossible();
         // }
         // std::cout << std::fixed << std::setprecision(1) << "The value for the float literal is: " << value << "f" << std::endl;
-        //* Method 2 
+//* Method 2 
