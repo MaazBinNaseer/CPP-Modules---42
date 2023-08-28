@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:55:10 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 13:37:58 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:35:35 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,23 @@ class ScalarConverter
         void Converter(std::string string); //* Needs to be void to convert it to different variables
 
         ~ScalarConverter();
+        
         class Impossible: public std::exception
         {
             public:
                 const char *what() const throw();
         };
         class Overflow: public std::exception
+        {
+            public:
+                const char *what() const throw();
+        };
+        class OutofRange: public std::exception
+        {
+            public:
+                const char *what() const throw();
+        };
+        class NonDisplayable: public std::exception
         {
             public:
                 const char *what() const throw();

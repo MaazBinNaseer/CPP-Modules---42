@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:55:13 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 13:50:38 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:38:30 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ ScalarConverter::ScalarConverter()
     std::cout << "Constructor ScalarConverter(string) is called" << std::endl;
 }
 
-//* ---------------------------------------------------
-//* --------------- CONST THROW ISSUES ---------------
-//* --------------------------------------------------
+/* 
+---------------------------------------------------
+* --------------- CONST THROW FUNC ------------------
+----------------------------------------------------- 
+*/
 const char *ScalarConverter::Impossible::what(void) const throw()
 {
     return ("impossible");
@@ -39,9 +41,19 @@ const char *ScalarConverter::Overflow::what(void) const throw()
     return ("Over/Under the integer limit");
 }
 
-//* ---------------------------------------------------
-//* --------------- NANF FUNCTION ------------------
-//* --------------------------------------------------
+const char *ScalarConverter::OutofRange::what(void) const throw()
+{
+    return ("Out of Range");
+}
+
+const char *ScalarConverter::NonDisplayable::what(void) const throw()
+{
+    return ("Non displayable");
+}
+
+/* ---------------------------------------------------
+* --------------- NANF FUNCTION ------------------
+----------------------------------------------------- */
 std::string ScalarConverter::string_nanf(const std::string& literal)
 {
     if(literal == "nan")
@@ -53,25 +65,32 @@ std::string ScalarConverter::string_nanf(const std::string& literal)
     return (literal);
 }
 
-//* ---------------------------------------------------
-//* --------------- STRING TO CHAR  ------------------
-//* --------------------------------------------------
+/* ---------------------------------------------------
+* --------------- STRING TO CHAR  ------------------
+----------------------------------------------------- */ 
+//* @brief Needs to return ascii character of the string
 char ScalarConverter::string_ToChar(const std::string charLiteral)
 {
-    std::string literal = string_nanf(charLiteral);
-    if (literal == "nan" || literal == "-inf" || literal == "+inf" || literal.size() != 1) 
-        throw ScalarConverter::Impossible();
-    else if(!isprint(literal[0]))
-        std::cout << "char: Non displayable" << std::endl;
-    else
-        std::cout << "char: " << static_cast<char>(literal[0]) << std::endl;
-    return(static_cast<char>(literal[0]));
+    int ascciCharacter = 0;
+    for (size_t i = 0; i < charLiteral.size(); ++i)
+    {
+        //* Need to check whether it is a value 
+        if(!isdigit(charLiteral[i]))
+                throw ScalarConverter::Impossible();
+        ascciCharacter = ascciCharacter * 10 + (charLiteral[i] - '0');
+    }
+    if(ascciCharacter < 0 || ascciCharacter > 127)
+        throw ScalarConverter::OutofRange();
+    else if (ascciCharacter == 0 || ascciCharacter == 127)
+        throw ScalarConverter::NonDisplayable();
+    std::cout << "char: " << static_cast<char>(ascciCharacter) << std::endl;
+    return (static_cast<char>(ascciCharacter));
 }
 
 
-//* ---------------------------------------------------
-//* --------------- STRING TO INT --------------------
-//* --------------------------------------------------
+/* ---------------------------------------------------
+ * --------------- STRING TO INT  ------------------
+----------------------------------------------------- */
 int ScalarConverter::string_ToInt(std::string intLiteral)
 {
     std::string literal = string_nanf(intLiteral);
@@ -103,9 +122,9 @@ int ScalarConverter::string_ToInt(std::string intLiteral)
 }
 
 
-//* ---------------------------------------------------
-//* --------------- STRING TO DOUBLE -----------------
-//* --------------------------------------------------
+/* ---------------------------------------------------
+ * --------------- STRING TO DOUBLE ------------------
+----------------------------------------------------- */
 double  ScalarConverter::string_ToDouble(std::string doubleLiteral)
 {
     std::string literal = string_nanf(doubleLiteral);
@@ -136,9 +155,9 @@ double  ScalarConverter::string_ToDouble(std::string doubleLiteral)
 }
 
 
-//* ---------------------------------------------------
-//* --------------- STRING TO FLOAT ------------------
-//* --------------------------------------------------
+/* ---------------------------------------------------
+ * --------------- STRING TO FLOAT  ------------------
+----------------------------------------------------- */
 float ScalarConverter::string_ToFloat(std::string inputLiteral)
 {
     std::string literal;
@@ -172,13 +191,14 @@ float ScalarConverter::string_ToFloat(std::string inputLiteral)
     return (value);
 }
 
-//* ---------------------------------------------------
-//* --------------- CONVERTER FUNCTION ---------------
-//* --------------------------------------------------
+/* ---------------------------------------------------
+ * --------------- CONVERT EVERYTHING  ------------
+----------------------------------------------------- */
 //# @brief Converts all the string to the float, double, int, char values
 //# @return Float, double, int, char
 void ScalarConverter::Converter(std::string ConLiteral)
 {
+    //* ------ STRING TO CHAR -----------------------
     try 
     {
         string_ToChar(ConLiteral);
@@ -187,7 +207,15 @@ void ScalarConverter::Converter(std::string ConLiteral)
     {
         std::cerr << "char: " << e.what() << std::endl;
     }
-
+    catch (const OutofRange &e)
+    {
+        std::cerr << "char: " << e.what() << std::endl;
+    }
+    catch (const NonDisplayable &e)
+    {
+        std::cerr << "char: " << e.what() << std::endl;
+    }
+    //* ------ STRING TO INT -------------------------
     try 
     {
         string_ToInt(ConLiteral);
@@ -200,7 +228,7 @@ void ScalarConverter::Converter(std::string ConLiteral)
     {
         std::cerr << "int: " << e.what() << std::endl;
     }
-
+    //* ------ STRING TO FLOAT -----------------------
     try 
     {
         string_ToFloat(ConLiteral);
@@ -209,7 +237,7 @@ void ScalarConverter::Converter(std::string ConLiteral)
     {
         std::cerr << "float: " << e.what() << std::endl;
     }
-
+    //* ---------- STRING TO DOUBLE -------------------
     try 
     {
         string_ToDouble(ConLiteral);
