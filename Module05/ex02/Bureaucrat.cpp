@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:54:25 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/02 13:25:24 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:28:21 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void    Bureaucrat::executeForm(AForm const &form) {
         std::cout << this->getName() << " executed " << form.getName() << std::endl;
     }
     catch(const std::exception& e) {
-        std::cout << this->getName() << " couldn’t executed " << form.getName() << " because " << e.what() << std::endl;
+        std::cout << RED << this->getName() << " couldn’t executed " << form.getName() << " because " << e.what() << RESET << std::endl;
     }
 }   
 

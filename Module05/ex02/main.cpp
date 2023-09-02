@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:54:35 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/02 13:32:03 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:40:22 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void    testPresidentialPardonForm(void) {
         std::cout << presidential << std::endl;
         b1.signForm(presidential);
         presidential.execute(b1);
-        presidential.execute(b2);
+        // presidential.execute(b2);
         b2.executeForm(presidential);
+        presidential.execute(b2);
         std::cout << std::endl;
         std::cout << "--- Test PresidentialPardonForm Finish ---" << std::endl;
     }
@@ -86,8 +87,11 @@ void    testPresidentialPardonForm(void) {
 }
 
 int main() {
-    testShrubberyCreation();        std::cout << std::endl;
-    testRobotomyRequestForm();      std::cout << std::endl;
-    testPresidentialPardonForm();   std::cout << std::endl;
+    // testShrubberyCreation();        
+    // std::cout << std::endl;
+    testRobotomyRequestForm();      
+    std::cout << std::endl;
+    // testPresidentialPardonForm();   
+    // std::cout << std::endl;
     return (0);
 }
