@@ -32,7 +32,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 		throw AForm::GradeTooLowException();
     std::srand((unsigned int)time(NULL));
     if (std::rand() % 2 == 1)
-        std::cout << "Robotomy Success!!" << std::endl;
+        std::cout << GREEN << "Robotomy has been Succesfull!!" << RESET << std::endl;
     else
-        std::cout << "Robotomy Fail!!" << std::endl;
+        std::cout << RED << "Robotomy has Failed!!" << RESET << std::endl;
 }

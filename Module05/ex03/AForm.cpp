@@ -14,15 +14,15 @@
 
 AForm::AForm() : 
     name(""),
-    gradeSigned(0),
-    gradeExecute(0) {};
+    _gradeSigned(0),
+    _gradeExecute(0) {};
 
 AForm::AForm(const std::string name,
             const int gradeSigned, 
             const int gradeExecute) :
     name(name),
-    gradeSigned(gradeSigned),
-    gradeExecute(gradeExecute) {
+    _gradeSigned(gradeSigned),
+    _gradeExecute(gradeExecute) {
     if (gradeSigned > 150 || gradeExecute > 150)
         throw GradeTooLowException();
     else if (gradeSigned < 1 || gradeExecute < 1)
@@ -31,14 +31,14 @@ AForm::AForm(const std::string name,
 
 AForm::AForm(const AForm &other) : 
     name(other.getName()),
-    gradeSigned(other.getGradeSigned()), 
-    gradeExecute(other.getGradeExecute()) {
+    _gradeSigned(other.getGradeSigned()), 
+    _gradeExecute(other.getGradeExecute()) {
     *this = other;
 }
 
 AForm &AForm::operator=(const AForm &other) {
     if (this != &other)
-        isSigned = other.getIsSigned();
+        _isSigned = other.getIsSigned();
     return *this;
 }
 
@@ -61,21 +61,21 @@ const std::string   AForm::getName(void) const {
 }
 
 bool  AForm::getIsSigned(void) const {
-    return isSigned;
+    return _isSigned;
 }
 
 int AForm::getGradeSigned(void) const {
-    return gradeSigned;
+    return _gradeSigned;
 }
 
 int AForm::getGradeExecute(void) const {
-    return gradeExecute;
+    return _gradeExecute;
 }
 
 void    AForm::beSigned(Bureaucrat bureaucrat) {
-    if (bureaucrat.getGrade() > gradeSigned)
+    if (bureaucrat.getGrade() > _gradeSigned)
         throw GradeTooLowException();
-    isSigned = true;
+    _isSigned = true;
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &form) {

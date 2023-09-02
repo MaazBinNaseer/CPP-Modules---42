@@ -51,7 +51,7 @@ void    testRobotomyRequestForm(void) {
         b1.signForm(robotomy);
         robotomy.execute(b1);
         robotomy.execute(b2);
-        //b2.executeForm(robotomy);
+        b2.executeForm(robotomy);
         std::cout << std::endl;
         std::cout << "--- Test RobotomyRequestForm Finish ---" << std::endl;
     }

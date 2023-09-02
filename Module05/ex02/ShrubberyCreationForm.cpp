@@ -26,7 +26,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
 const char *ShrubberyCreationForm::CanNotOpenOutfile::what(void) const throw() {
-    return "Can't open outfile";
+    return RED "Can't open outfile" RESET;
 }
 
 void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
