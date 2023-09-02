@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:55:59 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:56:00 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:28:04 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 #include <iostream>
 #include "AForm.hpp"
+
+#define SUCCESS 0
+#define FAILURE 1
+#define RED "\033[1;31m"
+#define RESET "\033[0m"
+#define GREEN "\033[1;32m"
 
 class AForm;
 
@@ -29,6 +35,15 @@ public:
     Bureaucrat &operator=(const Bureaucrat &other);
     ~Bureaucrat();
 
+    const std::string   getName(void) const;
+    int                 getGrade(void) const;
+    void                increment(int amount);
+    void                decrement(int amount);
+
+	void                signForm(AForm &form);
+    void                executeForm(AForm const &form);
+    
+//* Exceptions
     class GradeTooHighException : public std::exception {
     public:
         const char *what(void) const throw();
@@ -38,14 +53,6 @@ public:
     public:
         const char *what(void) const throw();
     };
-
-    const std::string   getName(void) const;
-    int                 getGrade(void) const;
-    void                increment(int amount);
-    void                decrement(int amount);
-
-	void                signForm(AForm &form);
-    void                executeForm(AForm const &form);
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);

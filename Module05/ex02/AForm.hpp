@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:54:19 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:54:20 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:12:53 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ public:
     AForm &operator=(const AForm &other);
     virtual ~AForm();
 
+
+    const std::string   getName(void) const;
+    bool                getIsSigned(void) const;
+    int                 getGradeSigned(void) const;
+    int                 getGradeExecute(void) const;
+
+    void                beSigned(Bureaucrat bureaucrat);
+    void                signForm(Bureaucrat bureaucrat);
+    virtual void        execute(Bureaucrat const &executor) const = 0;
+
+    //* Exceptions
     class GradeTooHighException : public std::exception {
     public:
         const char *what(void) const throw();
@@ -46,15 +57,6 @@ public:
     public:
         const char *what(void) const throw();
     };
-
-    const std::string   getName(void) const;
-    bool                getIsSigned(void) const;
-    int                 getGradeSigned(void) const;
-    int                 getGradeExecute(void) const;
-
-    void                beSigned(Bureaucrat bureaucrat);
-    void                signForm(Bureaucrat bureaucrat);
-    virtual void        execute(Bureaucrat const &executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &out, const AForm &Form);

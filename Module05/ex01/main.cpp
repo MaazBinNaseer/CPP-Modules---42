@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:54:09 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:54:10 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:21:44 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
     {
          Bureaucrat a1("Julia", 1900);
     }
-    catch(Bureaucrat::GradeTooHigh &e)
+    catch(Bureaucrat::GradeTooHighException &e)
     {
         std::cerr << RED << e.what() <<  RESET << std::endl;
     }
@@ -38,7 +38,7 @@ int main()
         a2.incrementGrade(60);
         a2.getGrade();
     }
-    catch(Bureaucrat::GradeTooHigh &e)
+    catch(Bureaucrat::GradeTooHighException &e)
     {
         std::cerr << RED << e.what() <<  RESET << std::endl;
     }
@@ -48,7 +48,7 @@ int main()
         a2.decrementGrade(300);
         a2.getGrade();
     }
-    catch(Bureaucrat::GradeTooLow& e)
+    catch(Bureaucrat::GradeTooLowException &e)
     {
         std::cerr << RED << e.what() << RESET << std::endl;
     }
@@ -84,6 +84,7 @@ int main()
 	catch (std::exception &e) {
 		std::cerr << RED << e.what() << std::endl;
 	}
+    std::cout << form_1 << std::endl;
     std::cout << form_2 << std::endl;
 
 }

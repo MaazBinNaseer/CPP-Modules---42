@@ -13,7 +13,7 @@ int main()
     {
          Bureaucrat a1("Julia", 1900);
     }
-    catch(Bureaucrat::GradeTooHigh &e)
+    catch(Bureaucrat::GradeTooHighException &e)
     {
         std::cerr << RED << e.what() <<  RESET << std::endl;
     }
@@ -28,20 +28,20 @@ int main()
         a2.incrementGrade(60);
         a2.getGrade();
     }
-    catch(Bureaucrat::GradeTooHigh &e)
+    catch(Bureaucrat::GradeTooHighException &e)
     {
         std::cerr << RED << e.what() <<  RESET << std::endl;
     }
     
     try
     {
-        a2.decrementGrade(300);
+        a2.decrementGrade(50);
         a2.getGrade();
     }
-    catch(Bureaucrat::GradeTooLow& e)
+    catch(Bureaucrat::GradeTooLowException &e)
     {
         std::cerr << RED << e.what() << RESET << std::endl;
     }
-    
+    std::cout << a2 << std::endl;
 
 }

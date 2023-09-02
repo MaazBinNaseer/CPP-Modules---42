@@ -18,18 +18,18 @@ class Form
         
         std::string getName() const;
         bool get_Signed()const;
-        int get_gradeSign() const;
+        int getGradeSign() const;
         int get_gradeExecute() const; 
         
         void beSigned(Bureaucrat &obj);
         ~Form();
 //* Exception Form Version
-    class GradeHigh: public std::exception
+    class GradeHighException: public std::exception
     {
         public:
             virtual const char* what() const throw();    
     };
-    class GradeLow: public std::exception
+    class GradeLowException: public std::exception
     {
         public:
             virtual const char* what() const throw();

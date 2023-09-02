@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:53:54 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:53:55 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:13:05 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define RED "\033[1;31m"
 #define RESET "\033[0m"
 #define GREEN "\033[1;32m"
-
+#define YELW "\033[1;33m" 
 
 class Form;
 
@@ -38,7 +38,7 @@ class Bureaucrat
         void setGrade(int grade);
 
         std::string getName() const;
-        int getGrade();
+        int getGrade() const;
 
         int incrementGrade(int increment_value);
         int decrementGrade(int decrement_value);
@@ -46,12 +46,12 @@ class Bureaucrat
         
         ~Bureaucrat();
 //* Exceptions
-class GradeTooHigh: public std::exception
+class GradeTooHighException: public std::exception
     {
         public:
             virtual const char* what() const throw();
     };
-class GradeTooLow: public std::exception
+class GradeTooLowException: public std::exception
     {
         public:
             virtual const char* what() const throw();

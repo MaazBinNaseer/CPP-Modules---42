@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:53:39 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:53:40 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:18:25 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ Bureaucrat::Bureaucrat(std::string const name, int grade): _name(name), _grade(g
 {
     std::cout << "Constructor [Bureaucrat(name, grade)] has been called" << std::endl;
     if(grade > 150) 
-        throw GradeTooHigh();
+        throw GradeTooHighException();
     else if( grade < 1)
-        throw GradeTooLow();
+        throw GradeTooLowException();
 
 }
 
@@ -76,24 +76,24 @@ int Bureaucrat::decrementGrade(int decrement_value)
     return (this->_grade);
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
         if (_grade < 1)
-            throw Bureaucrat::GradeTooLow();
+            throw Bureaucrat::GradeTooLowException();
         else if (_grade > 150)
-            throw Bureaucrat::GradeTooHigh();
+            throw Bureaucrat::GradeTooHighException();
     return (_grade); 
 }
 
 
-const char* Bureaucrat::GradeTooHigh::what() const throw()
+const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return (" GradeTooHigh ");
+    return (" BureaucratException:: GradeTooHigh ");
 }
 
-const char* Bureaucrat::GradeTooLow::what() const throw()
+const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("GradeTooLow");
+    return ("BureaucratException:: GradeTooLow");
 }
 
 Bureaucrat::~Bureaucrat()
@@ -103,7 +103,9 @@ Bureaucrat::~Bureaucrat()
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat const &bureaucratREF)
 {
-    os << bureaucratREF.getName() << "bureacucrat grade " << std::endl; 
+    std::cout << YELW ;
+    os << bureaucratREF.getName() << " bureacucrat Name | " <<  bureaucratREF.getGrade() << " bureaucrate Grade" << std::endl; 
+    std::cout << RESET;
     return (os);
 }
 

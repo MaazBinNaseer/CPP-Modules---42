@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:54:39 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:54:40 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:50:38 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ PresidentialPardonForm::~PresidentialPardonForm() {};
 
 void    PresidentialPardonForm::execute(Bureaucrat const &executor) const {
 	if (this->getIsSigned() == false)
-		throw AForm::NotSignedException();
+            throw AForm::NotSignedException();
 	if (executor.getGrade() > this->getGradeExecute())
 		throw AForm::GradeTooLowException();
-    std::cout << this->getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+    std::cout << this->getName() << RED <<  " has been pardoned by Zaphod Beeblebrox." << RESET << std::endl;
 }

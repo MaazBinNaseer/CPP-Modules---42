@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:54:25 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:54:26 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:25:24 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 Bureaucrat::Bureaucrat() : _name("") {};
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
+    std::cout << "Bureaucrate(string_name, grade) is called" <<std::endl;
     if (grade > 150)
         throw GradeTooLowException();
     else if (grade < 1)
@@ -42,31 +43,49 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
 Bureaucrat::~Bureaucrat() {};
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw() {
-    return "Grade too high!!";
+    return ("BureaucratException:: Grade Too High!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
-    return "Grade too low!!";
+    return ("BureaucratException:: Grade Too Low!");
 }
 
 const std::string Bureaucrat::getName(void) const {
-    return _name;
+    return (_name);
 }
 
 int Bureaucrat::getGrade(void) const {
-    return _grade;
+    return (_grade);
 }
 
-void    Bureaucrat::increment(int amount) {
-    if (_grade - amount < 1)
-        throw GradeTooHighException();
-    _grade -= amount;
+int Bureaucrat::incrementGrade(int increment_value)
+{
+    if (increment_value < 0)
+    {
+        std::cout << RED << "[Incorrect 1] Increment Value should be a positive value" << RESET << std::endl;
+        return (FAILURE);
+    }
+        if (_grade < 1)
+            throw Bureaucrat::GradeTooHighException();
+        else if ( _grade > 150)
+            throw Bureaucrat::GradeTooLowException();
+   this->_grade +=  increment_value;
+    return(this->_grade);
 }
 
-void    Bureaucrat::decrement(int amount) {
-    if (_grade + amount > 150)
-        throw GradeTooLowException();
-    _grade += amount;
+int Bureaucrat::decrementGrade(int decrement_value)
+{
+    if (decrement_value < 0)
+    {
+        std::cout << RED << "[Incorrect 2] Decrement Value should be a positive integer value" << RESET << std::endl;
+        return (FAILURE);
+    }
+        if (_grade < 1)
+            throw Bureaucrat::GradeTooHighException();
+        else if ( _grade > 150)
+            throw Bureaucrat::GradeTooLowException();
+    this->_grade -= decrement_value;
+    return (this->_grade);
 }
 
 void    Bureaucrat::signForm(AForm &form) {
@@ -90,7 +109,11 @@ void    Bureaucrat::executeForm(AForm const &form) {
     }
 }   
 
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat) {
-    out << "Name: " << bureaucrat.getName() << ", Grade: " << bureaucrat.getGrade();
-    return out;
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucratREF) {
+    
+    std::cout << YELW ;
+    os << bureaucratREF.getName() << " bureacucrat Name | " <<  bureaucratREF.getGrade() << " bureaucrate Grade" << std::endl; 
+    std::cout << RESET;
+    
+    return (os);
 }

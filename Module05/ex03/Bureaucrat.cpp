@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:55:47 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:55:48 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:31:07 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,34 @@ int Bureaucrat::getGrade(void) const {
     return grade;
 }
 
-void    Bureaucrat::increment(int amount) {
-    if (grade - amount < 1)
-        throw GradeTooHighException();
-    grade -= amount;
+int Bureaucrat::incrementGrade(int increment_value)
+{
+    if (increment_value < 0)
+    {
+        std::cout << RED << "[Incorrect 1] Increment Value should be a positive value" << RESET << std::endl;
+        return (FAILURE);
+    }
+        if (_grade < 1)
+            throw Bureaucrat::GradeTooHigh();
+        else if ( _grade > 150)
+            throw Bureaucrat::GradeTooLow();
+   this->_grade +=  increment_value;
+    return(this->_grade);
 }
 
-void    Bureaucrat::decrement(int amount) {
-    if (grade + amount > 150)
-        throw GradeTooLowException();
-    grade += amount;
+int Bureaucrat::decrementGrade(int decrement_value)
+{
+    if (decrement_value < 0)
+    {
+        std::cout << RED << "[Incorrect 2] Decrement Value should be a positive integer value" << RESET << std::endl;
+        return (FAILURE);
+    }
+        if (_grade < 1)
+            throw Bureaucrat::GradeTooHigh();
+        else if ( _grade > 150)
+            throw Bureaucrat::GradeTooLow();
+    this->_grade -= decrement_value;
+    return (this->_grade);
 }
 
 void    Bureaucrat::signForm(AForm &form) {

@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:53:31 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:53:32 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:11:37 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void    AForm::beSigned(Bureaucrat bureaucrat) {
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &form) {
-    out << "Name: " << form.getName() <<  std::endl;
-    out << "GradeSigned: " << form.getGradeSigned() <<  std::endl;
+    out << YELW << "Name: " << form.getName() << RESET << std::endl;
+    out << YELW << "GradeSigned: " << form.getGradeSigned() <<  std::endl;
     out << "GradeExecute: " << form.getGradeExecute() <<  std::endl;
     out << "Signed? -> "; 
     if (form.getIsSigned() == true)

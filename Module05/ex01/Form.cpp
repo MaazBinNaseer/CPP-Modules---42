@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:53:58 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:53:59 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:16:20 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ bool Form::get_Signed() const
     return (_IsSigned);
 }
 
-const char* Form::GradeHigh::what() const throw()
+const char* Form::GradeHighException::what() const throw()
 {
     return ("\033[31mForm::GradeTooHigh: \033[0m ");
 }
 
-const char* Form::GradeLow::what() const throw()
+const char* Form::GradeLowException::what() const throw()
 {
     return "\033[31mForm: GradeTooLow:\033[0m ";
 }
@@ -58,18 +58,18 @@ const char* Form::GradeLow::what() const throw()
 void Form::beSigned(Bureaucrat &obj)
 {
     if(obj.getGrade() > this->_gradeSign)
-        throw Form::GradeLow();
+        throw Form::GradeLowException();
     else
         this->_IsSigned = true;
 }
-int Form::get_gradeSign()const
+int Form::getGradeSign()const
 {
     try
     {
         if(this->_gradeSign < 1)
-            throw GradeLow();
+            throw GradeLowException();
         else if (this->_gradeSign > 150)
-            throw GradeHigh(); 
+            throw GradeHighException(); 
     }
     catch(const std::exception& e)
     {
@@ -97,10 +97,10 @@ Form::~Form()
 //* Overloading the << operator to print out all the attributes of the form
 std::ostream& operator<<(std::ostream &os, Form const &formREF)
 {
-    os << "Name of the Form: " << formREF.getName() << std::endl;
-    os << "Grade Sign is: " << formREF.get_gradeSign() << std::endl;
-    os << "Execute Sign is: " << formREF.get_gradeExecute() << std::endl;
-    os << "The form is signed (true or false): " <<formREF.get_Signed() << std::endl;
+    os <<  YELW << "Name of the Form: " << formREF.getName() << RESET << std::endl;
+    os << YELW << "Grade Sign is: " << formREF.getGradeSign() << RESET << std::endl;
+    os << YELW << "Execute Sign is: " << formREF.get_gradeExecute() << RESET << std::endl;
+    os <<  YELW << "The form is signed (true or false): " << formREF.get_Signed() <<  RESET << std::endl;
     os << "----------------------------------------------- " << std::endl;
     return (os);
 }
