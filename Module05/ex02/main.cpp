@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:54:35 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:54:36 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:32:03 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void    testPresidentialPardonForm(void) {
         std::cout << std::endl;
         Bureaucrat b1("b1", 1);
         Bureaucrat b2("b2", 30);
-        PresidentialPardonForm presidential("presidential");
+        PresidentialPardonForm presidential("Mark Zuckerburg");
         presidential.beSigned(b1);
         std::cout << presidential << std::endl;
         b1.signForm(presidential);
