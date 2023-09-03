@@ -14,7 +14,8 @@
 # define ARRAY_HPP
 
 #include <iostream>
-
+#include <cstdlib>
+#define MAX_VAL 3
 template <typename T>
 class Array
 {
@@ -22,18 +23,63 @@ class Array
         unsigned int _size;
         T *_array;
     public:
-        Array();
-        Array(unsigned int n); //* Needs to be filled with default n elements array
-        Array(const Array& value);
-        Array& operator=(const Array& value);
-        unsigned int size() const;   
-        ~Array();
+        Array<T>():_size(0)
+        {
+            _array = new T[_size];
+        }
+        Array<T>(unsigned int no): _size(no)
+        {
+            _array = new T[_size];
+        }
+        Array<T>(const Array<T> &value):_size(value.size())
+        {
+            _array = new T[_size];
+            for(std::size_t i = 0; i < _size; i++)
+            {
+                _array[i] = value._array[i];
+            }
+        }
+        Array<T> &operator=(const Array<T> &value)
+        {
+            if (this != value)
+            {
+                if(_array != NULL)
+                    delete [] _array;
+                _size = value._size;
+                _array = new T[_size];
+                for(unsigned int i = 1; i < _size; i++)
+                    _array[i] = value._array[i];
+            }
+            return (*this);
+        }
+        T &operator[](std::size_t i) 
+        {
+            if (_array == NULL ||  i >= _size)
+                throw OutofBounds();
+            return (_array[i]);
+	    }
+        T const &operator[](std::size_t i) const 
+        {
+            if (_array == NULL || i >= _size)
+                throw OutofBounds();
+            return (_array[i]);
+        }
+        unsigned int size() const
+        {
+            return (_size);
+        }   
+        ~Array<T>() 
+        {
+            if(_array != NULL)
+                delete[] _array;
+        }
     class OutofBounds: public std::exception
     {
         public:
-            const char *what(void) throw();
+            const char *what(void) throw()
+            {
+                return ("Out of bounds");
+            }
     };
 };
-
-#include "Array.tpp"
 #endif
