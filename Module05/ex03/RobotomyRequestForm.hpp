@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 15:57:32 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:57:33 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/08/26 15:54:53 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/08/26 15:54:54 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
     RobotomyRequestForm(const RobotomyRequestForm &other);
     RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
     ~RobotomyRequestForm();
-    
+
     void    execute(Bureaucrat const &executor) const;
 };
 

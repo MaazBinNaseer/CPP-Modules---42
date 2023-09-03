@@ -5,51 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 15:55:47 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/31 19:31:07 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/08/26 15:54:25 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/09/02 14:28:21 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-Bureaucrat::Bureaucrat() : name("") {};
+Bureaucrat::Bureaucrat() : _name("") {};
 
-Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name) {
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
+    std::cout << "Bureaucrate(string_name, grade) is called" <<std::endl;
     if (grade > 150)
         throw GradeTooLowException();
     else if (grade < 1)
         throw GradeTooHighException();
-    this->grade = grade;
+    this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) :
-    name(other.getName()) {
+    _name(other.getName()) {
     *this = other;
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
-    if (this != &other)
-        grade = other.getGrade();
-    return *this;
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
+{
+    if(this != &obj)
+        {
+            this->_grade = obj._grade;
+            this->_name = obj._name;
+        }
+    std::cout << "Copy Assignment [Bureaucrat] is called" <<std::endl;
+    return (*this);
 }
 
 Bureaucrat::~Bureaucrat() {};
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw() {
-    return "Grade too high!!";
+    return ("BureaucratException:: Grade Too High!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
-    return "Grade too low!!";
+    return ("BureaucratException:: Grade Too Low!");
 }
 
 const std::string Bureaucrat::getName(void) const {
-    return name;
+    return (_name);
 }
 
 int Bureaucrat::getGrade(void) const {
-    return grade;
+    return (_grade);
 }
 
 int Bureaucrat::incrementGrade(int increment_value)
@@ -60,9 +66,9 @@ int Bureaucrat::incrementGrade(int increment_value)
         return (FAILURE);
     }
         if (_grade < 1)
-            throw Bureaucrat::GradeTooHigh();
+            throw Bureaucrat::GradeTooHighException();
         else if ( _grade > 150)
-            throw Bureaucrat::GradeTooLow();
+            throw Bureaucrat::GradeTooLowException();
    this->_grade +=  increment_value;
     return(this->_grade);
 }
@@ -75,9 +81,9 @@ int Bureaucrat::decrementGrade(int decrement_value)
         return (FAILURE);
     }
         if (_grade < 1)
-            throw Bureaucrat::GradeTooHigh();
+            throw Bureaucrat::GradeTooHighException();
         else if ( _grade > 150)
-            throw Bureaucrat::GradeTooLow();
+            throw Bureaucrat::GradeTooLowException();
     this->_grade -= decrement_value;
     return (this->_grade);
 }
@@ -99,11 +105,15 @@ void    Bureaucrat::executeForm(AForm const &form) {
         std::cout << this->getName() << " executed " << form.getName() << std::endl;
     }
     catch(const std::exception& e) {
-        std::cout << this->getName() << " couldn’t executed " << form.getName() << " because " << e.what() << std::endl;
+        std::cout << RED << this->getName() << " couldn’t executed " << form.getName() << " because " << e.what() << RESET << std::endl;
     }
 }   
 
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat) {
-    out << "Name: " << bureaucrat.getName() << ", Grade: " << bureaucrat.getGrade();
-    return out;
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucratREF) {
+    
+    std::cout << YELW ;
+    os << bureaucratREF.getName() << " bureacucrat Name | " <<  bureaucratREF.getGrade() << " bureaucrate Grade" << std::endl; 
+    std::cout << RESET;
+    
+    return (os);
 }

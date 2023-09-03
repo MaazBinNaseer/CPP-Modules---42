@@ -20,7 +20,7 @@ Intern::Intern() {};
 Intern::~Intern() {};
 
 const char *Intern::UnknownFormException::what(void) const throw() {
-    return "Unknown Form!!";
+    return  RED "Unknown Form!!" RESET;
 }
 
 AForm    *Intern::makeForm(const std::string &name, const std::string &target) {

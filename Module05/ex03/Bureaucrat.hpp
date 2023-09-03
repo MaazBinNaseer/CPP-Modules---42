@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 15:55:59 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/01 15:28:04 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/08/26 15:54:28 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/09/02 13:22:51 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@
 #define RED "\033[1;31m"
 #define RESET "\033[0m"
 #define GREEN "\033[1;32m"
+#define YELW "\033[1;33m" 
+
 
 class AForm;
 
 class Bureaucrat {
 private:
-    const std::string   name;
-    int                 grade;
+    std::string         _name;
+    int                 _grade;
     Bureaucrat();
 public:
     Bureaucrat(const std::string name, int grade);
@@ -37,8 +39,8 @@ public:
 
     const std::string   getName(void) const;
     int                 getGrade(void) const;
-    void                increment(int amount);
-    void                decrement(int amount);
+    int                incrementGrade(int amount);
+    int                decrementGrade(int amount);
 
 	void                signForm(AForm &form);
     void                executeForm(AForm const &form);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 15:57:25 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:57:26 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/08/26 15:54:48 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/08/26 15:54:49 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 		throw AForm::GradeTooLowException();
     std::srand((unsigned int)time(NULL));
     if (std::rand() % 2 == 1)
-        std::cout << "Robotomy Success!!" << std::endl;
+        std::cout << GREEN << "Robotomy has been Succesfull!!" << RESET << std::endl;
     else
-        std::cout << "Robotomy Fail!!" << std::endl;
+        std::cout << RED << "Robotomy has Failed!!" << RESET << std::endl;
 }

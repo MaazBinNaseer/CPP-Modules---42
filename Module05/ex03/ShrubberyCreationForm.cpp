@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 15:57:36 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 15:57:37 by mbin-nas         ###   ########.fr       */
+/*   Created: 2023/08/26 15:54:58 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/08/26 15:54:59 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
 const char *ShrubberyCreationForm::CanNotOpenOutfile::what(void) const throw() {
-    return "Can't open outfile";
+    return RED "Can't open outfile" RESET;
 }
 
 void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
