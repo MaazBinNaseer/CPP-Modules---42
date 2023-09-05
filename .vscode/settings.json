@@ -71,6 +71,7 @@
         "random": "cpp",
         "numbers": "cpp",
         "fstream": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "filesystem": "cpp"
     }
 }
