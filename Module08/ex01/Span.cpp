@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:58:09 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/05 22:04:53 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:09:47 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 Span::Span(): _N(4294967295) {};
 
 Span::Span(unsigned int const N): _N(N)
-{
-    //    _array.resize(N);
-}
+{}
 
 
 void Span::addNumber(int number)
