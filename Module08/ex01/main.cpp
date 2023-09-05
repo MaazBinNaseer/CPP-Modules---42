@@ -6,7 +6,22 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:58:06 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/05 19:58:07 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:01:03 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Span.hpp"
+
+
+
+
+int main()
+{
+    Span n1 = Span(2);
+    n1.addNumber(10);
+    n1.addNumber(15);
+    
+    n1.printArray();    
+    
+    return (0);
+}
