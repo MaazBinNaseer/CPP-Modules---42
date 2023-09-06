@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:58:09 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/06 14:51:35 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:13:09 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,15 @@ int Span::longestSpan()
 {
     
     std::sort(_array.begin(), _array.end());
-    int longest = _array[_array.size() - 1] - _array[0]; // Initialize longest to the difference between the first and last elements
-
+    int longest = _array[_array.size() - 1] - _array[0];
     for (size_t i = 0; i < _array.size(); i++) {
         for (size_t j = i + 1; j < _array.size(); j++) {
-            int span = _array[j] - _array[i]; // Calculate the difference between elements
+            int span = _array[j] - _array[i]; 
             if (span > longest) {
-                longest = span; // Update longest if a longer span is found
+                longest = span; 
             }
         }
     }
-
     return (longest);
 }
 
