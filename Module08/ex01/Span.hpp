@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:59:08 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/06 13:48:50 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:38:38 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <iostream>
 #include <vector>
 #include <exception>
+#include <algorithm>
+#include <iterator>
 
 class Span
 {
@@ -32,8 +34,9 @@ class Span
         void    addNumber(int number); //* can I make this into vector container and then fill it
         void    numberAdd(unsigned int begin, unsigned int end, unsigned int noTimes);
         void    printArray() const;
-      
-      
+        int     shortestSpan();
+        int     longestSpan();
+       
         ~Span();
 
 class SizeError:public std::exception
