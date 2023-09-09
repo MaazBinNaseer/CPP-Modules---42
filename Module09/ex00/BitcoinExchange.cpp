@@ -11,8 +11,6 @@ TODO 4. Validity of the dates to see.
 
 !CONSTRAINTS 
 *Your program must respect these rules:
-* The program name is btc.
-* Your program must take a file as argument.
 * Each line in this file must use the following format: "date | value".
 * A valid date will always be in the following format: Year-Month-Day.
 * A valid value must be either a float or a positive integer between 0 and 1000.
@@ -39,12 +37,32 @@ std::string BitcoinExchange::getFilename(char* filename)
     this->_filename = name;
     return(this->_filename);
 }
-
-std::string BitcoinExchange::readDataFile(std::string const filename)
+/*
+* @brief Reads the CSV file and stores it to the map vector [data]
+* @returns Map Vector Data
+*/ 
+std::map<std::string, float> BitcoinExchange::readDataFile(std::string const filename)
 {
-    
+    std::ifstream file(filename.c_str());
+    if(file.fail())
+        throw FileIssues("Cannot read the file");
+    //* Now need to store all of the original data in the map container 
+    std::map<std::string, float> data;
+    std::string line;
+    while(std::getline(file, line))
+    {
+        std::stringstream ff(line);
+        std::string key;
+        float value;
+        if(std::getline(ff, key, ',') && ff >> value)
+            data[key] = value;
+    }
+    return (data);
 }
-
+/*
+* @brief Reads the filename of the argument
+* @returns the data from input txt gets stored in the data 
+*/
 std::string BitcoinExchange::parseFilename(std::string const filename)
 {
     if (filename.length() < 4)
@@ -61,6 +79,14 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     while(std::getline(ifs, line))
         oss << line << '\n';  // Append each line followed by a newline
     return (oss.str()); 
+}
+
+/*
+* @brief Checks whether the data has data | value from the input file
+*/
+bool BitcoinExchange::isValidDataPair(std::string const data)
+{
+    
 }
 
 // std::string BitcoinExchange::dataChecks(std::string const filename)

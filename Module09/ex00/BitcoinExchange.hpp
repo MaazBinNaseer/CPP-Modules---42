@@ -6,6 +6,8 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <map>
+#include <iterator>
 
 class BitcoinExchange
 {
@@ -17,10 +19,13 @@ class BitcoinExchange
         BitcoinExchange(std::string filename); // * Do i need this ? 
         BitcoinExchange(const BitcoinExchange &obj);
         BitcoinExchange& operator=(const BitcoinExchange &obj_values);
+
         std::string getFilename(char *filename);
-        std::string readDataFile(std::string const filename);
+        std::map<std::string, float> readDataFile(std::string const filename);
         std::string parseFilename(std::string const filename);
         std::string dataChecks(std::string const filename);
+        bool isValidDataPair(std::string const string);
+
         ~BitcoinExchange();
 
 
