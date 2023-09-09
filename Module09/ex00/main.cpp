@@ -13,7 +13,7 @@ int main(int argc, char ** argv)
     try
     {
         std::string name = read.getFilename(argv[1]);
-        std::string data = read.readFilename(name);
+        std::string data = read.parseFilename(name);
         std::cout << data << std::endl;
     }
     catch(BitcoinExchange::FileIssues &e)

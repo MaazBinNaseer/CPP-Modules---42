@@ -2,6 +2,8 @@
 
 
 /* -------- BASIC --------------------
+TODO  Main : This program must use a database in csv format which will represent bitcoin price over time. This database is provided with this subject.
+TODO Main2: The program will take as input a second database, storing the different prices/dates to evaluate.
 TODO 1. Need to read the input.txt file
 TODO 2. Validty of the input.txt file itself such as the incorrect file name etc.  
 TODO 3. Need to see the date with the pipe value "2011-01-03 | 3" therefore it split the dates right before the pipe and after the pipe 
@@ -38,7 +40,12 @@ std::string BitcoinExchange::getFilename(char* filename)
     return(this->_filename);
 }
 
-std::string BitcoinExchange::readFilename(std::string const filename)
+std::string BitcoinExchange::readDataFile(std::string const filename)
+{
+    
+}
+
+std::string BitcoinExchange::parseFilename(std::string const filename)
 {
     if (filename.length() < 4)
         throw FileIssues("Filename is less than 4 characters");

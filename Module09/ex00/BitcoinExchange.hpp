@@ -18,7 +18,8 @@ class BitcoinExchange
         BitcoinExchange(const BitcoinExchange &obj);
         BitcoinExchange& operator=(const BitcoinExchange &obj_values);
         std::string getFilename(char *filename);
-        std::string readFilename(std::string const filename);
+        std::string readDataFile(std::string const filename);
+        std::string parseFilename(std::string const filename);
         std::string dataChecks(std::string const filename);
         ~BitcoinExchange();
 
