@@ -76,7 +76,7 @@ class Array
     class OutofBounds: public std::exception
     {
         public:
-            const char *what(void) throw()
+           const char *what(void) throw()
             {
                 return ("Out of bounds");
             }

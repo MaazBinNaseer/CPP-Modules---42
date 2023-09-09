@@ -3,19 +3,20 @@
 int	main(void)
 {
     Array<int>	numbers(MAX_VAL);
-    int*		mirror = new int[MAX_VAL];
+    int*		copy = new int[MAX_VAL];
 
     srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++) {
+    for (int i = 0; i < MAX_VAL; i++) 
+    {
         const int	value = rand();
         numbers[i] = value;
-        mirror[i] = value;
+        copy[i] = value;
     }
     for (int i = 0; i < MAX_VAL; i++)
 	std::cout << "Original Numbers " << numbers[i] << std::endl;
 	std::cout << "----------------------------------" << std::endl;
     for (int i = 0; i < MAX_VAL; i++)
-	std::cout << "Mirrored Numbers " << mirror[i] << std::endl;
+	std::cout << "Mirrored Numbers " << copy[i] << std::endl;
 	std::cout << "----------------------------------" << std::endl;
 
     {
@@ -27,7 +28,6 @@ int	main(void)
     	for (int i = 0; i < MAX_VAL; i++)
 			std::cout << test[i] << std::endl;
 		std::cout << "----------------------------------" << std::endl;
-
     	for (int i = 0; i < MAX_VAL; i++)
 			tmp[i] = i + 10;
     	for (int i = 0; i < MAX_VAL; i++)
@@ -36,11 +36,12 @@ int	main(void)
 			std::cout << test[i] << std::endl;
 		std::cout << "----------------------------------" << std::endl;
     }
-
-    try {
+    try 
+    {
 		std::cout << numbers[-2] << std::endl;
     }
-    catch(const std::exception& e) {
+    catch(const std::exception &e) 
+    {
         std::cout << e.what() << std::endl;;
     }
 	std::cout << "----------------------------------" << std::endl;
@@ -60,8 +61,7 @@ int	main(void)
 	std::cout << "----------------------------------" << std::endl;
 
     const Array<int>	test(MAX_VAL);
-	std::cout << test[0] << std::endl;
 
-    delete [] mirror;
-    return 0;
+    delete [] copy;
+    return (0);
 }
