@@ -15,7 +15,9 @@ int main(int argc, char ** argv)
         std::map<std::string, float> data2 = read.readDataFile("data.csv");
         std::string name = read.getFilename(argv[1]);
         std::string data = read.parseFilename(name);
-        std::cout << data << std::endl;
+        read.isValidDate(name);
+        read.isValidDataPair(name);
+        // std::cout << data << std::endl;
     }
     catch(BitcoinExchange::FileIssues &e)
     {

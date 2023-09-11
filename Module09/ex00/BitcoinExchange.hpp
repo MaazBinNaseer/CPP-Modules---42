@@ -4,10 +4,13 @@
 #include <iostream>
 #include <exception>
 #include <string>
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <map>
 #include <iterator>
+#include <algorithm>
+
 
 class BitcoinExchange
 {
@@ -24,8 +27,8 @@ class BitcoinExchange
         std::map<std::string, float> readDataFile(std::string const filename);
         std::string parseFilename(std::string const filename);
         std::string dataChecks(std::string const filename);
-        bool isValidDataPair(std::string const string);
-
+        bool isValidDataPair(std::string const filename);
+        bool isValidDate(std::string const filename);
         ~BitcoinExchange();
 
 
