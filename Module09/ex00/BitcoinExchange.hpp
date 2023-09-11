@@ -1,5 +1,5 @@
-#ifndef BITCOINEXHCHANGE_HPP
-#define BITCOINGEXCHANGE_HPP
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
 #include <iostream>
 #include <exception>
@@ -29,6 +29,8 @@ class BitcoinExchange
         std::string dataChecks(std::string const filename);
         bool isValidDataPair(std::string const filename);
         bool isValidDate(std::string const filename);
+        float isValidValue(std::string const filename);
+        
         ~BitcoinExchange();
 
 

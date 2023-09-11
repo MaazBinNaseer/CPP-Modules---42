@@ -126,8 +126,34 @@ bool BitcoinExchange::isValidDate(std::string const filename)
         else if (dayInt > 29 && monthInt >= 03 && yearInt >= 2022)
             std::cout << "Error: No such data could be found => " << dayInt << "/" << monthInt << "/" << yearInt << std::endl;
     }
-
+    ifs.close();
     return (true);
+}
+
+/*
+TODO Need to handle the spaces if there are any spaces after the "|" 
+*/
+float BitcoinExchange::isValidValue(std::string const filename)
+{
+    std::ifstream ifs(filename.c_str());
+    std::string line;
+    std::string value;
+    float valuefl;
+    while(std::getline(ifs, line))
+    {
+        std::size_t pos = line.find('|');
+        value = line.substr(pos + 1);
+        valuefl = atof(value.c_str());
+        if(valuefl < 0)
+        {
+            std::cout << "Error: not a positive number " << value << std::endl;
+        }
+        if(value.size() > 4 || valuefl > 1000)
+        {
+            std::cout << "Error: too large number " << value <<std::endl;
+        }
+    }
+    return (valuefl);
 }
 
 bool BitcoinExchange::isValidDataPair(std::string const filename)
@@ -141,7 +167,7 @@ bool BitcoinExchange::isValidDataPair(std::string const filename)
             std::cout << "Error bad input => " << line << std::endl;
             return (false);
         }
-        if(std::count(line.begin(), line.end(), '|') != 1 || std::count(line.begin(), line.end(), '-') != 2)
+        if(std::count(line.begin(), line.end(), '|') != 1 || std::count(line.begin(), line.end(), '-') != 2 || std::count(line.begin(), line.end(), '.') != 2)
         {
             std::cout << "Error pipes/hyphen issue => " << line << std::endl;
             return (false);
@@ -156,6 +182,7 @@ bool BitcoinExchange::isValidDataPair(std::string const filename)
             }
         } 
     }
+    ifs.close();
     return (true);
 }
 
