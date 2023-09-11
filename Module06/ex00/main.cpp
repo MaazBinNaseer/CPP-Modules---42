@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:05:02 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/26 13:42:28 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:16:35 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int main(int argc, char **argv)
     {
         try 
         { 
-            ScalarConverter value;
-            value.Converter(argv[i]);
+            ScalarConverter::Converter(argv[1]);
         } 
         catch (const ScalarConverter::Impossible & e) 
         {

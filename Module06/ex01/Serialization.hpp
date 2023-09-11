@@ -2,6 +2,7 @@
 #define SERIALIZATION_HPP
 
 #include <iostream>
+#include <stdint.h>
 
 struct Data
 {

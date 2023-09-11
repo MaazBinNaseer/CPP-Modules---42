@@ -1,5 +1,16 @@
-#include "Call.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Call.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 20:10:43 by mbin-nas          #+#    #+#             */
+/*   Updated: 2023/09/11 20:12:19 by mbin-nas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "Call.hpp"
 
 void identify(Base *p)
 {
@@ -31,7 +42,7 @@ void identify(Base& p)
         (void)aRef;
         std::cout << "This is class A reference pointed" << std::endl;
     }
-    catch (std::bad_cast & e) {}
+    catch (std::exception & e) {}
 
     try 
     {
@@ -39,7 +50,7 @@ void identify(Base& p)
         (void)bRef;
         std::cout << "This is class B reference pointed" << std::endl;
     }
-  catch (std::bad_cast & e) {}
+  catch (std::exception & e) {}
 
     try 
     {
@@ -47,7 +58,7 @@ void identify(Base& p)
         (void)cRef;
         std::cout << "This is class C reference pointed" << std::endl;
     }
-    catch (std::bad_cast & e) {}
+    catch (std::exception & e) {}
 }
 
 Base::~Base()

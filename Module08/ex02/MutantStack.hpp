@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:04:18 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/06 19:29:51 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:35:37 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,5 @@ class MutantStack : public std::stack<T>
             return (this->c.end());
         }
 };
-
-
-
-        // typedef typename std::stack<T>::container_type::iterator iterator;
 
 #endif

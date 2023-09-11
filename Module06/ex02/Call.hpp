@@ -10,6 +10,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <exception>
 
 Base *generate(void);
 void identify(Base *p);

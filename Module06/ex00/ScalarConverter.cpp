@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:55:13 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/28 12:38:30 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:27:42 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@
 ScalarConverter::ScalarConverter()
 {
     std::cout << "Constructor ScalarConverter(string) is called" << std::endl;
+}
+
+ScalarConverter::ScalarConverter(ScalarConverter const &object)
+{
+	*this = object;
+}
+
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const &rhs)
+{
+	if (this != &rhs)
+	{}
+	return (*this);
 }
 
 /* 

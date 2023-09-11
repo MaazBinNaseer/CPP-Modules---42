@@ -153,6 +153,7 @@ float BitcoinExchange::isValidValue(std::string const filename)
             std::cout << "Error: too large number " << value <<std::endl;
         }
     }
+    ifs.close();
     return (valuefl);
 }
 
@@ -167,7 +168,7 @@ bool BitcoinExchange::isValidDataPair(std::string const filename)
             std::cout << "Error bad input => " << line << std::endl;
             return (false);
         }
-        if(std::count(line.begin(), line.end(), '|') != 1 || std::count(line.begin(), line.end(), '-') != 2 || std::count(line.begin(), line.end(), '.') != 2)
+        if(std::count(line.begin(), line.end(), '|') != 1 || std::count(line.begin(), line.end(), '-') != 2)
         {
             std::cout << "Error pipes/hyphen issue => " << line << std::endl;
             return (false);

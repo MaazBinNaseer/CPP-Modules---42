@@ -8,4 +8,6 @@ int main()
         identify(*obj);
         delete obj;
     }
+
+    
 }

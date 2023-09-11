@@ -15,8 +15,8 @@ int main(int argc, char ** argv)
         std::map<std::string, float> data2 = read.readDataFile("data.csv");
         std::string name = read.getFilename(argv[1]);
         std::string data = read.parseFilename(name);
-        // read.isValidDataPair(name);
-        // read.isValidDate(name);
+        read.isValidDataPair(name);
+        read.isValidDate(name);
         read.isValidValue(name);
         // std::cout << data << std::endl;
     }

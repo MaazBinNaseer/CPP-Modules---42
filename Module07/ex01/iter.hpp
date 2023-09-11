@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:21:01 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/29 13:43:57 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:35:50 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void iter(T *array, size_t length, Func function)
         function(array[i]);
     }
 }
+
 #endif
