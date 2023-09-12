@@ -104,11 +104,11 @@ bool BitcoinExchange::isValidDate(std::string const filename)
         int monthInt = atoi(month.c_str());
         std::string day = line.substr(pos2 + 1, pos  - pos2 -  1); 
         int dayInt = atoi(day.c_str());
-        std::cout << day << std::endl;  
+        // std::cout << day << std::endl;  
 
         for(std::string::iterator it = year.begin(); it < year.end(); ++it)
         {
-            if(!isdigit(*it))
+            if(!isdigit(*it) || (year.size() != 4))
                 std::cout << "Error: Invalid Year format =>" << year << std::endl;
         }
         for(std::string::iterator it = month.begin(); it < month.end(); ++it)
@@ -145,13 +145,12 @@ float BitcoinExchange::isValidValue(std::string const filename)
         value = line.substr(pos + 1);
         valuefl = atof(value.c_str());
         if(valuefl < 0)
-        {
             std::cout << "Error: not a positive number " << value << std::endl;
-        }
+        if(std::count(value.begin(), value.end(), '.') > 1)
+            std::cout << "Error: More than two dots " << value << std::endl;
         if(value.size() > 4 || valuefl > 1000)
-        {
-            std::cout << "Error: too large number " << value <<std::endl;
-        }
+            std::cout << "Error: too large number/Invalid Input " << value <<std::endl;
+        std::cout << valuefl << " " << std::endl;
     }
     ifs.close();
     return (valuefl);
@@ -164,23 +163,14 @@ bool BitcoinExchange::isValidDataPair(std::string const filename)
     while(std::getline(ifs, line))
     {
         if(line.find('|') == std::string::npos) 
-        {
             std::cout << "Error bad input => " << line << std::endl;
-            return (false);
-        }
         if(std::count(line.begin(), line.end(), '|') != 1 || std::count(line.begin(), line.end(), '-') != 2)
-        {
             std::cout << "Error pipes/hyphen issue => " << line << std::endl;
-            return (false);
-        }
         for(std::size_t i = 0;  i < line.size(); ++i)
         {
             char c = line[i];
             if(!std::isdigit(c) && c != '-' && c != '|' && !std::isspace(c) && c != '.')
-            {
                  std::cout << "Error Character issue  => " << line << std::endl;
-                return (false);
-            }
         } 
     }
     ifs.close();
