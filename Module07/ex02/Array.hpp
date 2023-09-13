@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:34:04 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/08/29 20:40:41 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:07:01 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#define MAX_VAL 3
 template <typename T>
 class Array
 {
@@ -41,7 +40,7 @@ class Array
         }
         Array<T> &operator=(const Array<T> &value)
         {
-            if (this != value)
+            if (this != &value)
             {
                 if(_array != NULL)
                     delete [] _array;
@@ -55,13 +54,13 @@ class Array
         T &operator[](std::size_t i) 
         {
             if (_array == NULL ||  i >= _size)
-                throw OutofBounds();
+                throw std::runtime_error("Out of Bounds");
             return (_array[i]);
 	    }
         T const &operator[](std::size_t i) const 
         {
             if (_array == NULL || i >= _size)
-                throw OutofBounds();
+                throw std::runtime_error("Out of Bounds");
             return (_array[i]);
         }
         unsigned int size() const
@@ -73,13 +72,5 @@ class Array
             if(_array != NULL)
                 delete[] _array;
         }
-    class OutofBounds: public std::exception
-    {
-        public:
-           const char *what(void) throw()
-            {
-                return ("Out of bounds");
-            }
-    };
 };
 #endif

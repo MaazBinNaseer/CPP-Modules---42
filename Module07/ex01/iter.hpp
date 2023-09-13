@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:21:01 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/07 14:35:50 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:18:55 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void printElement(const T &element) {
     std::cout << element << " ";
 }
 
-template <typename T, typename Func>
-void iter(T *array, size_t length, Func function)
+template <typename T>
+void iter(T *array, size_t length, void (*f) (T const &function))
 {
     for(size_t i= 0; i < length; i++)
     {
-        function(array[i]);
+        f(array[i]);
     }
 }
 
