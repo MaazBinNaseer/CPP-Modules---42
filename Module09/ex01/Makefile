@@ -3,7 +3,7 @@ CC		=	c++
 CFLAGS	=	-std=c++98 -Wall -Wextra -Werror 
 
 SRCS	=	main.cpp \
-			BitcoinExchange.cpp \
+			RPN.cpp \
 
 GREEN   =   \033[1;32m 
 RESET   =   \033[0m 
