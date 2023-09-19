@@ -2,28 +2,33 @@
 #define PMERGE_HPP
 
 #include <iostream>
-#include <deque>
+#include <set>
+#include <iterator>
 #include <vector>
 #include <exception>
+#include <sstream>
+#include <cstdlib>
+#include <algorithm>
 
-void printDeque(std::deque<int> &container);
+
 void printVector(std::vector<int> &container);
-
 
 class Pmerge
 {
     private:
         std::vector<int> _vint;
-        std::deque<int>  _dint;
+        std::set<int>  _dint;
     public:
         Pmerge();
         Pmerge(const Pmerge &obj);
         Pmerge& operator=(const Pmerge& obj);
         
-        void parseArguments(std::string line);
+        int parseArguments(std::string line);
         void getDeque();
-        void getVector();   
-
+        void getVector();
+        // bool CheckForDuplicates(std::string line);
+        void fillVector(int value);  
+        void sortVector(int value);
         ~Pmerge();      
 
 };

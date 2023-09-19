@@ -18,7 +18,7 @@ std::string RPN::parseArguments(char *args)
             return (output);
         }
         else
-            throw::std::runtime_error("Error: Incorrect opreations/digits");
+            throw std::runtime_error("Error: Incorrect opreations/digits");
     }
     return (NULL);
 }
