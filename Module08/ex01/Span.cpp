@@ -56,7 +56,7 @@ void Span::printArray() const
 void Span::addNumber(int number)
 {
     this->_numberAdd = number;
-    if(this->_array.size() > this->_N)
+    if(this->_array.size() >= this->_N)
         throw SizeError();
     _array.push_back(_numberAdd);
 }
@@ -77,6 +77,11 @@ void Span::numberAdd(unsigned int begin, unsigned int end, unsigned int NoOfTime
 
 int Span::shortestSpan()
 {
+    if(_array.size() <= 1)
+    {
+        std::cout << "Shortest Span: No array size or 1 element" << std::endl;
+        return (0);
+    }
     std::sort(_array.begin(), _array.end());
     int shortest = _array[1] - _array[0];
     for (size_t i = 1; i < _array.size() - 1; i++) 
@@ -90,7 +95,11 @@ int Span::shortestSpan()
 
 int Span::longestSpan()
 {
-    
+    if(_array.size() <= 1)
+    {
+        std::cout << "Longest Span: No array size or 1 element" << std::endl;
+        return (0);
+    }
     std::sort(_array.begin(), _array.end());
     int longest = _array[_array.size() - 1] - _array[0];
     for (size_t i = 0; i < _array.size(); i++) {

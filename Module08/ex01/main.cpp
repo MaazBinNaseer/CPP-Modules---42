@@ -23,6 +23,7 @@ int main()
         n1.addNumber(9);
         n1.addNumber(11);
 
+    std::cout << n1.shortestSpan() << " " <<  n1.longestSpan() << std::endl;
         // n1.numberAdd(5, 10, 1);
     }
     catch(Span::SizeError &e)
@@ -30,7 +31,6 @@ int main()
       std::cout << e.what() << std::endl;   
     }
     
-    std::cout << n1.shortestSpan() << " " <<  n1.longestSpan() << std::endl;
     // n1.printArray();    
     
     return (0);
