@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:58:06 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/06 14:52:08 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/19 12:16:23 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
         n1.addNumber(9);
         n1.addNumber(11);
 
-        // n1.numberAdd(5, 10, 2);
+        // n1.numberAdd(5, 10, 1);
     }
     catch(Span::SizeError &e)
     {

@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:04:18 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/07 14:35:37 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/19 12:08:14 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ class MutantStack : public std::stack<T>
     public:
         MutantStack(): std::stack<T>()
         {}
-        MutantStack(const MutantStack &object): std::stack<T>(object) {}
+        
+        MutantStack(const MutantStack &object) 
+        {
+            *this = object;
+        }
+        
         MutantStack& operator=(const MutantStack& object)
         {
             if (this != &object) {
@@ -33,7 +38,6 @@ class MutantStack : public std::stack<T>
         return (*this);
         }
         
-        ~MutantStack() {}
 
         typedef typename std::stack<T>::container_type::iterator iterator;
         iterator begin() 
@@ -45,6 +49,19 @@ class MutantStack : public std::stack<T>
         {
             return (this->c.end());
         }
+        
+        typedef typename std::stack<T>::container_type::const_iterator c_iterator;
+        c_iterator begin() const
+        {
+           return (this->c.begin());
+        }
+        
+        c_iterator end() const
+        {
+            return (this->c.end());
+        }
+        
+        ~MutantStack() {}
 };
 
 #endif

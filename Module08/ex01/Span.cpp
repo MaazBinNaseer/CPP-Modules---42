@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:58:09 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/06 18:13:09 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/19 12:00:04 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@ Span::Span(): _N() {};
 
 Span::Span(unsigned int const N): _N(N)
 {}
+
+
+Span::Span(const Span &value)
+{
+    *this = value;
+}
+
+Span& Span::operator=(const Span &obj)
+{
+    if(this != &obj)
+    {
+        this->_N = obj._N;
+        this->_array = obj._array;
+    }
+    return (*this);
+}
 
 /* ------------------------------------------------------
 * ---------------- EXCEPTIONS ---------------------------
