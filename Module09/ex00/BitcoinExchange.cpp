@@ -82,6 +82,10 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     return (oss.str()); 
 }
 
+bool checkFordDates(std::string line)
+{
+
+}
 
 
 BitcoinExchange::~BitcoinExchange() {};
