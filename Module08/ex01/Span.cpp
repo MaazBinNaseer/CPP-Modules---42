@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:58:09 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/20 12:02:45 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:37:36 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 Span::Span(): _N() {};
 
 Span::Span(unsigned int const N): _N(N)
-{}
+{
+    // if(this->_N < 0)
+    // {
+    //     std::cout << "Array size cannot be in negatives" << std::endl;
+    //     return ;
+    // }
+}
 
 
 Span::Span(const Span &value)
@@ -56,11 +62,6 @@ void Span::printArray() const
 void Span::addNumber(int number)
 {
     this->_numberAdd = number;
-    if(this->_numberAdd < 0)
-    {
-        std::cout << "Array size cannot be in negatives" << std::endl;
-        return ;
-    }
     if(this->_array.size() >= this->_N)
         throw SizeError();
     _array.push_back(_numberAdd);
@@ -97,6 +98,7 @@ int Span::shortestSpan()
     }
     return (shortest);
 }
+
 
 int Span::longestSpan()
 {

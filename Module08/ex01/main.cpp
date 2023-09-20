@@ -6,7 +6,7 @@
 /*   By: mbin-nas <mbin-nas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:58:06 by mbin-nas          #+#    #+#             */
-/*   Updated: 2023/09/19 12:16:23 by mbin-nas         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:41:18 by mbin-nas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int main()
 {
-    Span n1 = Span(5);
+    Span n1 = Span(1);
     try 
     {
         n1.addNumber(6);
         n1.addNumber(3);
-        n1.addNumber(17);
-        n1.addNumber(9);
-        n1.addNumber(11);
-
+        // n1.addNumber(17);
+        // n1.addNumber(9);
+        // n1.addNumber(11);
+    
     std::cout << n1.shortestSpan() << " " <<  n1.longestSpan() << std::endl;
         // n1.numberAdd(5, 10, 1);
     }

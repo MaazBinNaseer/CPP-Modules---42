@@ -3,15 +3,17 @@
 int main(int argc, char **argv)
 {
     Pmerge values;
+
     (void)argc;
-    int i = 0; 
+    int i = 0, y = 0; 
     while(argv[++i] != NULL)
     {
-        int y = values.parseArguments(argv[i]);
+        y = values.parseArguments(argv[i]);
         values.fillVector(y);
     }
     std::cout << "-- Vector Stack (start) ---" << std::endl;
     values.getVector();
+    values.sortVector();
     std::cout << "-- Vector Stack (End) ---" << std::endl;
 
 }

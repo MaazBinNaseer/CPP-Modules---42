@@ -51,12 +51,14 @@ void Pmerge::fillVector(int value)
     this->_vint.push_back(value);
 }
 
-
-
-// void Pmerge::sortVector(int values)
-// {
-
-// }
-
-
 Pmerge::~Pmerge() {}
+
+//* Merge insert sort alogrithim to be used over here 
+void Pmerge::sortVector()
+{
+
+    int mid = _vint.size() / 2; 
+    
+
+}
+

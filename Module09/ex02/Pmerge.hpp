@@ -28,8 +28,8 @@ class Pmerge
         void getVector();
         // bool CheckForDuplicates(std::string line);
         void fillVector(int value);
-        void CheckForDuplicates(int value);  
-        void sortVector(int value);
+        // void CheckForDuplicates(int value);  
+        void sortVector();
         ~Pmerge();      
 
 };
