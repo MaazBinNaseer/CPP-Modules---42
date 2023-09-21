@@ -55,6 +55,11 @@ void Pmerge::fillVector(int value)
     this->_vint.push_back(value);
 }
 
+void Pmerge::printVectorSize()
+{
+    std::cout << this->_vint.size(); 
+}
+
 //* Merge insert sort alogrithim to be used over here 
 void Pmerge::mergeVector(int left, int middle, int right)
 {
@@ -145,6 +150,11 @@ void Pmerge::getDeque()
 void Pmerge::fillDeque(int values)
 {
     this->_dint.push_back(values);
+}
+
+void Pmerge::printDequeSize()
+{
+    std::cout << this->_dint.size(); 
 }
 
 void Pmerge::mergeDeque(int left, int middle, int right)

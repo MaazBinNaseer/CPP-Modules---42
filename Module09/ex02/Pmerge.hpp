@@ -9,7 +9,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <algorithm>
-#include <chrono>
+#include <time.h>
 #include <iomanip>
 
 
@@ -32,6 +32,7 @@ class Pmerge
         
         //* Vectors Sort Methods
         void getVector();
+        void printVectorSize();
         void fillVector(int value);
         void mergeVector(int left, int middle, int right);
         void insertionSortVector(int left, int right);
@@ -40,6 +41,7 @@ class Pmerge
 
         //* Deque Sort Methods
         void getDeque();
+        void printDequeSize();
         void fillDeque(int values);
         void mergeDeque(int left, int middle, int right);
         void insertionSortDeque(int left, int right);

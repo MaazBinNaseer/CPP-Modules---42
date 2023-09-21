@@ -12,24 +12,46 @@ int main(int argc, char **argv)
         values.fillDeque(y);
         values.fillVector(y);
     }
-    std::cout << "-- Vector Stack (start) ---" << std::endl;
+
+    /* --------------------------------------------------
+    * -------------------- INDVID. TIME ----------------
+    -----------------------------------------------------*/
+    // std::cout << "-- Vector Stack (start) ---" << std::endl;
+    // clock_t start, finish;
+    // std::cout << "Before: "; values.getVector();
+    // start = clock();
+    // values.sortVector();
+    // finish = clock();
+    // double vector_time = ((double)(finish - start)) / 1000000 ;
+    // std::cout << "Duration: " << std::fixed << vector_time << std::endl; 
+    // std::cout << "After: "; values.getVector();
+    // std::cout << "-- Vector Stack (End) ---" << std::endl;
+    // std::cout << "-- Deque Stack (start) ---" << std::endl;
+    // std::cout << "Before: "; values.getDeque();
+    // start = clock();
+    // values.sortDeque();
+    // finish = clock();
+    // double deq_time = ((double)(finish - start)) / 1000000;
+    // std::cout << "Duration: " << std::fixed << deq_time << std::endl; 
+    // std::cout << "After: "; values.getDeque();
+    // std::cout << "-- Deque Stack (End) ---" << std::endl;
+
+
+    /* ------------------------------------------------------------
+    * -------------------- AS PER SUBJECT (TEMPLATE)----------------
+    ---------------------------------------------------------------*/
     std::cout << "Before: "; values.getVector();
-    std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+    clock_t start, finish;
+    start = clock();
     values.sortVector();
-    std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double> >(end - start);
-    std::cout << "After: "; values.getVector();
-    std::cout << "Duration it took: " << std::fixed << std::setprecision(6) << duration.count() << " seconds\n";
-    std::cout << "-- Vector Stack (End) ---" << std::endl;
-    
-    std::cout << "-------------------------------------------------------------------------" << std::endl;
-    std::cout << "-- Deque Stack (start) ---" << std::endl;
-    std::cout << "Before: "; values.getDeque();
-     std::chrono::high_resolution_clock::time_point start_1 = std::chrono::high_resolution_clock::now();
+    finish = clock();
+    double vec_time = ((double)(finish - start)) / 1000000;
+    std::cout << "After : "; values.getVector();
+    std::cout << "Time to process a range of "; values.printVectorSize(); std::cout << " elements with std::vector --> " << std::fixed << vec_time << std::endl;
+    start = clock();
     values.sortDeque();
-     std::chrono::high_resolution_clock::time_point end_1 = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration_1 = std::chrono::duration_cast<std::chrono::duration<double> >(end_1 - start_1);
-    std::cout << "After: "; values.getDeque();
-    std::cout << "Duration it took: " << std::fixed << std::setprecision(6) << duration_1.count() << " seconds\n";
-    std::cout << "-- Deque Stack (End) ---" << std::endl;
+    finish = clock();
+    double deq_time = ((double)(finish - start)) / 1000000;
+    std::cout << "Time to process a range of "; values.printDequeSize(); std::cout << " elements with std::deq --> " << std::fixed << deq_time << std::endl;
+
 }
