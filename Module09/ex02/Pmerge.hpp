@@ -2,7 +2,7 @@
 #define PMERGE_HPP
 
 #include <iostream>
-#include <set>
+#include <deque>
 #include <iterator>
 #include <vector>
 #include <exception>
@@ -12,24 +12,38 @@
 
 
 void printVector(std::vector<int> &container);
+void printDeque(std::deque<int> &container);
 
 class Pmerge
 {
     private:
         std::vector<int> _vint;
-        std::set<int>  _dint;
+        std::deque<int>  _dint;
+        static const int insertion_thershold = 5;
+
     public:
         Pmerge();
         Pmerge(const Pmerge &obj);
         Pmerge& operator=(const Pmerge& obj);
         
         int parseArguments(std::string line);
-        void getDeque();
+        
+        //* Vectors Sort Methods
         void getVector();
-        // bool CheckForDuplicates(std::string line);
         void fillVector(int value);
-        // void CheckForDuplicates(int value);  
+        void mergeVector(int left, int middle, int right);
+        void insertionSortVector(int left, int right);
+        void mergeAndInsertVector(int left, int right);
         void sortVector();
+
+        //* Deque Sort Methods
+        void getDeque();
+        void fillDeque(int values);
+        void mergeDeque(int left, int middle, int right);
+        void insertionSortDeque(int left, int right);
+        void mergeAndInsertDeque(int left, int right);
+        void sortDeque();
+
         ~Pmerge();      
 
 };

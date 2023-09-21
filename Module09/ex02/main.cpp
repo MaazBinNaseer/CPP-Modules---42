@@ -9,11 +9,17 @@ int main(int argc, char **argv)
     while(argv[++i] != NULL)
     {
         y = values.parseArguments(argv[i]);
+        values.fillDeque(y);
         values.fillVector(y);
     }
     std::cout << "-- Vector Stack (start) ---" << std::endl;
-    values.getVector();
+    std::cout << "Before: "; values.getVector();
     values.sortVector();
+    std::cout << "After: "; values.getVector();
     std::cout << "-- Vector Stack (End) ---" << std::endl;
-
+    std::cout << "-- Deque Stack (start) ---" << std::endl;
+    std::cout << "Before: "; values.getDeque();
+    values.sortDeque();
+    std::cout << "After: "; values.getDeque();
+    std::cout << "-- Deque Stack (End) ---" << std::endl;
 }
