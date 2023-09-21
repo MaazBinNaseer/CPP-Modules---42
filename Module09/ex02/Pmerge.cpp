@@ -124,10 +124,7 @@ void Pmerge::mergeAndInsertVector(int left, int right)
 
 void Pmerge::sortVector()
 {
-    
     this->mergeAndInsertVector(0, this->_vint.size() - 1);
-   
-
 }
 
 /* ---------------------------------------------------------
