@@ -7,8 +7,6 @@ Pmerge::Pmerge(const Pmerge& value) {*this = value;}
 Pmerge& Pmerge::operator=(const Pmerge &value) {if(this != &value) {} return (*this);}
 
 
-
-
 int Pmerge::parseArguments(std::string line)
 {
     int x = line.length();
@@ -121,7 +119,10 @@ void Pmerge::mergeAndInsertVector(int left, int right)
 
 void Pmerge::sortVector()
 {
+    
     this->mergeAndInsertVector(0, this->_vint.size() - 1);
+   
+
 }
 
 /* ---------------------------------------------------------
