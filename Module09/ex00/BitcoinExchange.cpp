@@ -60,6 +60,50 @@ std::map<std::string, float> BitcoinExchange::readDataFile(std::string const fil
     file.close();
     return (data);
 }
+
+void BitcoinExchange::checkforValues(std::string line)
+{
+    line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+    char *endptr;
+    long number = strtol(line.c_str(), &endptr, 10);
+    if (number > INT_MAX)
+        std::cout << "Error : Value number too large ==>" << number <<  std::endl;
+    else if(number < 0)
+        std::cout << "Error : not a positive number ==> " << number << std::endl;
+    else if(std::count(line.begin(), line.end(), '.') > 1)
+        std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
+    // else if (std::count(line.begin(), line.end(), 32) > 1) //! Need to check this condition properly with a space
+    //     std::cout << "Error : Cannot use space ==> " << number << std::endl; 
+
+}
+
+void BitcoinExchange::checkforDates(std::string line)
+{
+    std::string year, month, day;
+    
+}
+
+void BitcoinExchange::checkforPair(std::string line)
+{
+    std::stringstream stream(line);
+    std::string dates, value; 
+    if(std::count(line.begin(), line.end(), '|') > 1 || std::count(line.begin(), line.end(), '|') == 0)
+    {
+        std::cout << "Error: bad input ==> " << line << std::endl;
+    }
+    else
+    {
+        getline(stream, dates, '|');
+        this->checkforDates(dates);
+        // std::cout << "dates: " << dates << std::endl;
+        getline(stream, value);
+        this->checkforValues(value);
+        std::cout << " values" << value <<  std::endl;
+    }
+
+}
+
+
 /*
 * @brief Reads the filename of the argument
 * @returns the data from input txt gets stored in the data 
@@ -77,14 +121,15 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     std::cout << "Data from reading the file" << std::endl;
     std::ostringstream oss;
     std::string line;
+    //* I can check here though about the parsing of the lines
     while(std::getline(ifs, line))
-        oss << line << '\n';  // Append each line followed by a newline
+    {
+
+        this->checkforPair(line);
+        oss << line << '\n'; // Append each line followed by a newline
+        // std::cout << line<< std::endl;
+    }  
     return (oss.str()); 
-}
-
-bool checkFordDates(std::string line)
-{
-
 }
 
 

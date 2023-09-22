@@ -6,6 +6,7 @@
 #include <string>
 #include <cstdlib>
 #include <fstream>
+#include <limits.h>
 #include <sstream>
 #include <map>
 #include <iterator>
@@ -26,11 +27,9 @@ class BitcoinExchange
         std::string getFilename(char *filename);
         std::map<std::string, float> readDataFile(std::string const filename);
         std::string parseFilename(std::string const filename);
-        std::string dataChecks(std::string const filename);
-        bool isValidDataPair(std::string const filename);
-        bool isValidDate(std::string const filename);
-        float isValidValue(std::string const filename);
-        
+        void checkforPair(std::string line);
+        void checkforDates(std::string line);
+        void checkforValues(std::string line);
         ~BitcoinExchange();
 
 
