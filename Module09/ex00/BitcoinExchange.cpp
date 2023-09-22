@@ -79,8 +79,18 @@ void BitcoinExchange::checkforValues(std::string line)
 
 void BitcoinExchange::checkforDates(std::string line)
 {
+    std::stringstream stream(line);
     std::string year, month, day;
-    
+    getline(stream, year, '-');
+    // std::cout << "Year: " << year ;
+    getline(stream, month, '-');
+    // std::cout <<  " Month: " << month;
+    getline(stream, day);
+    // std::cout << " Day: " << day << std::endl;
+    if(year.size() > 4 || year.size() < 4 || month.size() > 2 || month.size() < 2 || day.size() > 3 || day.size() < 2)
+        std::cout << "Error: Year-Month-Day size ==> " << year << "-"<< month << "-"<< day << std::endl;
+    day.erase(std::remove(day.begin(), day.end(), ' '), day.end());
+    std::cout << "date size " << day.size() << std::endl; 
 }
 
 void BitcoinExchange::checkforPair(std::string line)
@@ -98,7 +108,7 @@ void BitcoinExchange::checkforPair(std::string line)
         // std::cout << "dates: " << dates << std::endl;
         getline(stream, value);
         this->checkforValues(value);
-        std::cout << " values" << value <<  std::endl;
+        // std::cout << " values" << value <<  std::endl;
     }
 
 }
