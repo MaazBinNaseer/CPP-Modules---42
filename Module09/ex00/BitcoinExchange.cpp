@@ -28,6 +28,7 @@ std::map<std::string, float> BitcoinExchange::readDataFile(std::string const fil
     std::ifstream file(filename.c_str());
     if(file.fail())
         throw FileIssues("Cannot read the file");
+   
     //* Now need to store all of the original data in the map container 
     std::map<std::string, float> data;
     std::string line;
@@ -46,17 +47,27 @@ std::map<std::string, float> BitcoinExchange::readDataFile(std::string const fil
 void BitcoinExchange::checkforValues(std::string line)
 {
     line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+    
     char *endptr;
     long number = strtol(line.c_str(), &endptr, 10);
+    
+    //* Invalid character check
+    for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
+    {
+        if (!std::isdigit(*it) && *it != '.')
+        {
+            std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl; // Exit the function early as the value is invalid
+        }
+    }
+    //* Check for number int max, negatives and periods.
     if (number > INT_MAX)
         std::cout << "Error : Value number too large ==> " << number <<  std::endl;
     else if(number < 0)
         std::cout << "Error : not a positive number ==> " << number << std::endl;
     else if(std::count(line.begin(), line.end(), '.') > 1)
         std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
-    // else if (std::count(line.begin(), line.end(), 32) > 1) //! Need to check this condition properly with a space
-    //     std::cout << "Error : Cannot use space ==> " << number << std::endl; 
 
+    std::cout << "Value function -> value = " << line << std::endl;
 }
 
 bool BitcoinExchange::checkforLeapYear(int &year)
@@ -142,13 +153,15 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     std::ifstream ifs(filename.c_str());
     if(!ifs)
         throw FileIssues("File does not exsist");
+
     std::cout << "Data from reading the file" << std::endl;
     std::ostringstream oss;
     std::string line;
+
     //* I can check here though about the parsing of the lines
+    std::getline(ifs, line);
     while(std::getline(ifs, line))
     {
-
         this->checkforPair(line);
         oss << line << '\n'; // Append each line followed by a newline
         // std::cout << line<< std::endl;
