@@ -1,23 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-
-/* -------- BASIC --------------------
-TODO  Main : This program must use a database in csv format which will represent bitcoin price over time. This database is provided with this subject.
-TODO Main2: The program will take as input a second database, storing the different prices/dates to evaluate.
-TODO 1. Need to read the input.txt file
-TODO 2. Validty of the input.txt file itself such as the incorrect file name etc.  
-TODO 3. Need to see the date with the pipe value "2011-01-03 | 3" therefore it split the dates right before the pipe and after the pipe 
-TODO 4. Validity of the dates to see. 
-
-!CONSTRAINTS 
-*Your program must respect these rules:
-* Each line in this file must use the following format: "date | value".
-* A valid date will always be in the following format: Year-Month-Day.
-* A valid value must be either a float or a positive integer between 0 and 1000.
-
-*Your program should display on the standard output the result of the value multiplied by the exchange rate according to the date indicated in your database. 
-*/
-
 BitcoinExchange::BitcoinExchange() {};
 
 BitcoinExchange::BitcoinExchange(std::string  const filename): _filename(filename) {};
@@ -67,7 +49,7 @@ void BitcoinExchange::checkforValues(std::string line)
     char *endptr;
     long number = strtol(line.c_str(), &endptr, 10);
     if (number > INT_MAX)
-        std::cout << "Error : Value number too large ==>" << number <<  std::endl;
+        std::cout << "Error : Value number too large ==> " << number <<  std::endl;
     else if(number < 0)
         std::cout << "Error : not a positive number ==> " << number << std::endl;
     else if(std::count(line.begin(), line.end(), '.') > 1)
@@ -77,26 +59,48 @@ void BitcoinExchange::checkforValues(std::string line)
 
 }
 
+bool BitcoinExchange::checkforLeapYear(int &year)
+{
+    if((year % 4) != 0)
+        return (false);
+    return (true);
+}
+
 void BitcoinExchange::checkforDates(std::string line)
 {
     std::stringstream stream(line);
     std::string year, month, day;
+
     getline(stream, year, '-');
-    // std::cout << "Year: " << year ;
     getline(stream, month, '-');
-    // std::cout <<  " Month: " << month;
     getline(stream, day);
-    std::cout << " Day: " << day << std::endl;
+
     int i_year = atoi(year.c_str());
     int i_month = atoi(month.c_str());
     int i_day = atoi(day.c_str());
 
-    if(i_year < 2009 || i_year > 2022)
-        std::cout << "Error: Incorrect year ==> " << i_year << std::endl;
-    else if (i_month < 1 || i_month > 12)
-        std::cout << "Error: Incorrect month ==> " << i_month << std::endl;
-    else if (i_day < 1 || i_day > 31)
-        std::cout << "Error: Incorrect day ==> " << i_day << std::endl;
+    if(this->checkforLeapYear(i_year) == true)
+    {
+        if(i_year < 2009 || i_year > 2022 || year.size() > 4)
+            std::cout << "Error: Incorrect year ==> " << i_year << std::endl;
+        else if (i_month < 1 || i_month > 12 || month.size() > 2)
+            std::cout << "Error: Incorrect month ==> " << i_month << std::endl;
+        else if (i_day < 1 || i_day > 31 || day.size() > 3)
+            std::cout << "Error: Incorrect day ==> " << i_day << std::endl; 
+        else if( i_month == 2 && i_day > 29)
+            std::cout << "Error: Leap Year is 29 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; 
+    }
+    else
+    {
+        if(i_year < 2009 || i_year > 2022 || year.size() > 4)
+            std::cout << "Error: Incorrect year ==> " << i_year << std::endl;
+        else if (i_month < 1 || i_month > 12 || month.size() > 2)
+            std::cout << "Error: Incorrect month ==> " << i_month << std::endl;
+        else if (i_day < 1 || i_day > 31 || day.size() > 3)
+            std::cout << "Error: Incorrect day ==> " << i_day << std::endl;
+        else if(i_month == 2 && i_day > 28)
+            std::cout << "Error: Not a leap year which is 28 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; 
+    }
 
     // std::cout << "Year X: " << i_year;
     // std::cout << " Month Y: " << i_month;
@@ -123,7 +127,6 @@ void BitcoinExchange::checkforPair(std::string line)
     }
 
 }
-
 
 /*
 * @brief Reads the filename of the argument

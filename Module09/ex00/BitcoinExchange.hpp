@@ -29,6 +29,8 @@ class BitcoinExchange
         std::string parseFilename(std::string const filename);
         void checkforPair(std::string line);
         void checkforDates(std::string line);
+        bool ValidDay(std::string &line);
+        bool checkforLeapYear(int &year);
         void checkforValues(std::string line);
         ~BitcoinExchange();
 
