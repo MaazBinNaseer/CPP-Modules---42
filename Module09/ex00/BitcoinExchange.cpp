@@ -86,11 +86,22 @@ void BitcoinExchange::checkforDates(std::string line)
     getline(stream, month, '-');
     // std::cout <<  " Month: " << month;
     getline(stream, day);
-    // std::cout << " Day: " << day << std::endl;
-    if(year.size() > 4 || year.size() < 4 || month.size() > 2 || month.size() < 2 || day.size() > 3 || day.size() < 2)
-        std::cout << "Error: Year-Month-Day size ==> " << year << "-"<< month << "-"<< day << std::endl;
-    day.erase(std::remove(day.begin(), day.end(), ' '), day.end());
-    std::cout << "date size " << day.size() << std::endl; 
+    std::cout << " Day: " << day << std::endl;
+    int i_year = atoi(year.c_str());
+    int i_month = atoi(month.c_str());
+    int i_day = atoi(day.c_str());
+
+    if(i_year < 2009 || i_year > 2022)
+        std::cout << "Error: Incorrect year ==> " << i_year << std::endl;
+    else if (i_month < 1 || i_month > 12)
+        std::cout << "Error: Incorrect month ==> " << i_month << std::endl;
+    else if (i_day < 1 || i_day > 31)
+        std::cout << "Error: Incorrect day ==> " << i_day << std::endl;
+
+    // std::cout << "Year X: " << i_year;
+    // std::cout << " Month Y: " << i_month;
+    // std::cout << " Day Z: " << i_day << std::endl;
+
 }
 
 void BitcoinExchange::checkforPair(std::string line)
