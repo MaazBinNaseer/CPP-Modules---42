@@ -11,12 +11,14 @@
 #include <map>
 #include <iterator>
 #include <algorithm>
+#include <iomanip>
 
 
 class BitcoinExchange
 {
     private:
         std::string _filename;
+        std::map<std::string, float> _values;
 
     public:
         BitcoinExchange();
@@ -25,13 +27,17 @@ class BitcoinExchange
         BitcoinExchange& operator=(const BitcoinExchange &obj_values);
 
         std::string getFilename(char *filename);
-        std::map<std::string, float> readDataFile(std::string const filename);
+        void readDataFile();
         std::string parseFilename(std::string const filename);
         void checkforPair(std::string line);
         void checkforDates(std::string line);
         bool ValidDay(std::string &line);
         bool checkforLeapYear(int &year);
         void checkforValues(std::string line);
+        std::string LowerBound(std::string &date);
+        void  calculateValue(std::string &line);
+        void  printAll() const; //* Debugger Print 
+
         ~BitcoinExchange();
 
 

@@ -23,25 +23,26 @@ std::string BitcoinExchange::getFilename(char* filename)
 * @brief Reads the CSV file and stores it to the map vector [data]
 * @returns Map Vector Data
 */ 
-std::map<std::string, float> BitcoinExchange::readDataFile(std::string const filename)
+void  BitcoinExchange::readDataFile()
 {
-    std::ifstream file(filename.c_str());
+    std::ifstream file("data.csv");
     if(file.fail())
         throw FileIssues("Cannot read the file");
    
     //* Now need to store all of the original data in the map container 
-    std::map<std::string, float> data;
     std::string line;
-    while(std::getline(file, line))
+    getline(file, line);
+    while(getline(file,line))
     {
+        getline(file,line);
         std::stringstream ff(line);
-        std::string key;
-        float value;
-        if(std::getline(ff, key, ',') && ff >> value)
-            data[key] = value;
+        std::string key, date;
+
+        getline(ff, date, ',');
+        getline(ff, key);
+        this->_values[date] = atof(key.c_str());
     }
     file.close();
-    return (data);
 }
 
 void BitcoinExchange::checkforValues(std::string line)
@@ -67,7 +68,7 @@ void BitcoinExchange::checkforValues(std::string line)
     else if(std::count(line.begin(), line.end(), '.') > 1)
         std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
 
-    std::cout << "Value function -> value = " << line << std::endl;
+    // std::cout << "Value function -> value = " << line << std::endl;
 }
 
 bool BitcoinExchange::checkforLeapYear(int &year)
@@ -139,6 +140,45 @@ void BitcoinExchange::checkforPair(std::string line)
 
 }
 
+std::string BitcoinExchange::LowerBound(std::string &date)
+{
+    std::stringstream stream(date);
+    std::string year, month, day, new_date;
+    
+    getline(stream, year, '-');
+    getline(stream, month, '-');
+    getline(stream, day);
+
+    int i_day = atoi(day.c_str());
+    int i_month = atoi(month.c_str());
+    int i_year = atoi(year.c_str());
+
+    if(i_day > 1)
+        i_day--;
+    else if(i_month > 1)
+    {
+        i_day = 31;
+        i_month--;
+    }
+    else if(i_year > 2008)
+    {
+        i_day = 31;
+        i_month = 12;
+        i_year--;
+    }
+    std::stringstream copy_str;
+    copy_str  << i_year << '-' << std::setw(2) << std::setfill('0') << i_month << '-' << std::setw(2) << std::setfill('0') << i_day;
+    new_date = copy_str.str();
+    return (new_date);
+}
+
+// void BitcoinExchange::printAll() const
+// {
+//     for(std::map<std::string, float>::const_iterator it = _values.begin(); it != _values.end(); ++it) {
+//         std::cout << "Date: " << it->first << " Value: " << it->second << std::endl;
+//     }
+// }
+
 /*
 * @brief Reads the filename of the argument
 * @returns the data from input txt gets stored in the data 
@@ -154,7 +194,6 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     if(!ifs)
         throw FileIssues("File does not exsist");
 
-    std::cout << "Data from reading the file" << std::endl;
     std::ostringstream oss;
     std::string line;
 

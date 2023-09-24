@@ -12,7 +12,8 @@ int main(int argc, char ** argv)
     BitcoinExchange read;
     try
     {
-        std::map<std::string, float> data2 = read.readDataFile("data.csv");
+        read.readDataFile();
+        read.printAll();
         std::string name = read.getFilename(argv[1]);
         std::string data = read.parseFilename(name);
     }
