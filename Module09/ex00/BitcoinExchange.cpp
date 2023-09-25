@@ -23,7 +23,7 @@ std::string BitcoinExchange::getFilename(char* filename)
 * @brief Reads the CSV file and stores it to the map vector [data]
 * @returns Map Vector Data
 */ 
-void  BitcoinExchange::readDataFile()
+void BitcoinExchange::readDataFile()
 {
     std::ifstream file("data.csv");
     if(file.fail())
@@ -32,17 +32,19 @@ void  BitcoinExchange::readDataFile()
     //* Now need to store all of the original data in the map container 
     std::string line;
     getline(file, line);
+    std::string key, date;
     while(getline(file,line))
     {
         getline(file,line);
         std::stringstream ff(line);
-        std::string key, date;
 
         getline(ff, date, ',');
         getline(ff, key);
         this->_values[date] = atof(key.c_str());
+        // std::cout << this->_values[key] << std::endl;
     }
     file.close();
+    // return (key);
 }
 
 void BitcoinExchange::checkforValues(std::string line)
@@ -56,9 +58,7 @@ void BitcoinExchange::checkforValues(std::string line)
     for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
     {
         if (!std::isdigit(*it) && *it != '.')
-        {
-            std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl; // Exit the function early as the value is invalid
-        }
+            std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
     }
     //* Check for number int max, negatives and periods.
     if (number > INT_MAX)
@@ -132,6 +132,7 @@ void BitcoinExchange::checkforPair(std::string line)
     {
         getline(stream, dates, '|');
         this->checkforDates(dates);
+        this->LowerBound(dates);
         // std::cout << "dates: " << dates << std::endl;
         getline(stream, value);
         this->checkforValues(value);
@@ -172,13 +173,6 @@ std::string BitcoinExchange::LowerBound(std::string &date)
     return (new_date);
 }
 
-// void BitcoinExchange::printAll() const
-// {
-//     for(std::map<std::string, float>::const_iterator it = _values.begin(); it != _values.end(); ++it) {
-//         std::cout << "Date: " << it->first << " Value: " << it->second << std::endl;
-//     }
-// }
-
 /*
 * @brief Reads the filename of the argument
 * @returns the data from input txt gets stored in the data 
@@ -209,4 +203,19 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
 }
 
 
+void BitcoinExchange::calculateValue(std::string &data)
+{
+
+}
+
+
 BitcoinExchange::~BitcoinExchange() {};
+
+
+//* ------------------------- DEBUG PRINT FOR MAP CONTAINER ---------------------------------
+void BitcoinExchange::printAll() const
+{
+    for(std::map<std::string, float>::const_iterator it = _values.begin(); it != _values.end(); ++it) {
+        std::cout << "Date: " << it->first << " Value: " << it->second << std::endl;
+    }
+}

@@ -29,13 +29,14 @@ class BitcoinExchange
         std::string getFilename(char *filename);
         void readDataFile();
         std::string parseFilename(std::string const filename);
+        // void BitcoinExchange::calculateValue(const std::string &date, float multiplier);
         void checkforPair(std::string line);
         void checkforDates(std::string line);
         bool ValidDay(std::string &line);
         bool checkforLeapYear(int &year);
         void checkforValues(std::string line);
         std::string LowerBound(std::string &date);
-        void  calculateValue(std::string &line);
+        void  calculateValue(std::string &rate);
         void  printAll() const; //* Debugger Print 
 
         ~BitcoinExchange();

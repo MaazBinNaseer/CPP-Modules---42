@@ -13,9 +13,10 @@ int main(int argc, char ** argv)
     try
     {
         read.readDataFile();
-        read.printAll();
         std::string name = read.getFilename(argv[1]);
         std::string data = read.parseFilename(name);
+        // read.printAll();
+        read.calculateValue(data);
     }
     catch(BitcoinExchange::FileIssues &e)
     {
