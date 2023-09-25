@@ -41,7 +41,7 @@ void BitcoinExchange::readDataFile()
         getline(ff, date, ',');
         getline(ff, key);
         this->_values[date] = atof(key.c_str());
-        // std::cout << this->_values[key] << std::endl;
+        // std::cout << this->_values[date] << std::endl;
     }
     file.close();
     // return (key);
@@ -205,7 +205,23 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
 
 void BitcoinExchange::calculateValue(std::string &data)
 {
-
+    std::stringstream ff(data);
+    std::string line;
+    while(getline(ff, line, '\n'))
+    {
+        std::stringstream lol(line);
+        std::string date, pipe, value;
+        getline(lol, date, ' ');
+        getline(lol, pipe, ' ');
+        getline(lol, value);
+        // std::cout << date << std::endl;
+        // std::cout << this->_values[date] << std::endl;
+        if(this->_values.find(date) != this->_values.end())
+        {
+            std::cout << this->_values[date] * atoi(value.c_str()) << '\n';
+        } 
+        
+    }
 }
 
 

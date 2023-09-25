@@ -15,6 +15,7 @@ int main(int argc, char ** argv)
         read.readDataFile();
         std::string name = read.getFilename(argv[1]);
         std::string data = read.parseFilename(name);
+        // std::cout << data << std::endl;
         // read.printAll();
         read.calculateValue(data);
     }
