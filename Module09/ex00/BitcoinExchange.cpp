@@ -128,7 +128,6 @@ bool BitcoinExchange::checkforPair(std::string line)
     getline(stream, dates, ' ');
     getline(stream, pipe, ' ');
     getline(stream, value);
-    // std::cout << "value: " << value.empty() << std::endl;
     if(std::count(line.begin(), line.end(), '|') > 1 || std::count(line.begin(), line.end(), '|') == 0)
     {
         std::cout << "Error: bad input ==> " << line << std::endl;
@@ -140,13 +139,6 @@ bool BitcoinExchange::checkforPair(std::string line)
         return (false);
     }
     return (true);
-    // else
-    // {
-    //     getline(stream, dates, '|');
-    //     this->checkforDates(dates);
-    //     getline(stream, value);
-    //     this->checkforValues(value);
-    // }
 }
 
 std::string BitcoinExchange::LowerBound(std::string &date)
@@ -202,10 +194,7 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     //* I can check here though about the parsing of the lines
     std::getline(ifs, line);
     while(std::getline(ifs, line))
-    {
-        // this->checkforPair(line);
         oss << line << '\n';
-    }  
     return (oss.str()); 
 }
 
@@ -221,19 +210,25 @@ void BitcoinExchange::calculateValue(std::string &data)
         getline(lol, date, ' ');
         getline(lol, pipe, ' ');
         getline(lol, value);
+        
+        //* If the date is found in the container 
         if(this->_values.find(date) != this->_values.end())
         {
             if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
                 std::cout << date << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
         }
+        //* if the date is not found in the container
         else
         {
-            while(this->_values.find(date) == this->_values.end())
-            {
-                date = this->LowerBound(date);
-            }
             if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
-                std::cout << date  << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
+           {
+                while(this->_values.find(date) == this->_values.end() && this->checkforDates(date))
+                {
+                    date = this->LowerBound(date);
+                }
+                if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
+                    std::cout << date  << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
+            }
         }
     }
 }
