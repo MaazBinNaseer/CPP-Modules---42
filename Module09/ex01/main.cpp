@@ -23,7 +23,8 @@ int main(int argc, char **argv)
             {
                 std::string line = start.parseArguments(argv[1]);
                 start.fillStack(line);
-                std::cout << "Int" << " " ;printContainer(start.getStackInt());
+                start.printResult();
+                // std::cout << "Int" << " " ;printContainer(start.getStackInt());
             }
             catch(const std::exception& e)
             {

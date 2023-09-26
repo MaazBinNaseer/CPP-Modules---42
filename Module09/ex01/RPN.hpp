@@ -25,6 +25,7 @@ class RPN
         void caluclateStack();
         int convertString(std::string line);
         void fillStack(std::string line);
+        void printResult();
 
         ~RPN();
 
