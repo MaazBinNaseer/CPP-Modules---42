@@ -19,17 +19,13 @@ std::string BitcoinExchange::getFilename(char* filename)
     this->_filename = name;
     return(this->_filename);
 }
-/*
-* @brief Reads the CSV file and stores it to the map vector [data]
-* @returns Map Vector Data
-*/ 
+
 void BitcoinExchange::readDataFile()
 {
     std::ifstream file("data.csv");
     if(file.fail())
         throw FileIssues("Cannot read the file");
    
-    //* Now need to store all of the original data in the map container 
     std::string line;
     getline(file, line);
     std::string key, date;
@@ -46,17 +42,13 @@ void BitcoinExchange::readDataFile()
 bool BitcoinExchange::checkforValues(std::string line)
 {
     line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
-    
     char *endptr;
     long number = strtol(line.c_str(), &endptr, 10);
-    
-    //* Invalid character check
     for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
     {
         if (!std::isdigit(*it) && *it != '.'  && *it != '-')
             {std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl; return (false);}
     }
-    //* Check for number int max, negatives and periods.
     if (number > 1000)
        { 
         std::cout << "Error : Value number too large ==> " << number <<  std::endl;
@@ -72,7 +64,6 @@ bool BitcoinExchange::checkforValues(std::string line)
             std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
             return (false);
         }
-
         return (true);
 }
 
@@ -87,15 +78,12 @@ bool BitcoinExchange::checkforDates(std::string line)
 {
     std::stringstream stream(line);
     std::string year, month, day;
-
     getline(stream, year, '-');
     getline(stream, month, '-');
     getline(stream, day);
-
     int i_year = atoi(year.c_str());
     int i_month = atoi(month.c_str());
     int i_day = atoi(day.c_str());
-
     if(this->checkforLeapYear(i_year) == true)
     {
         if(i_year < 2009 || i_year > 2022 || year.size() > 4)
@@ -145,15 +133,12 @@ std::string BitcoinExchange::LowerBound(std::string &date)
 {
     std::stringstream stream(date);
     std::string year, month, day, new_date;
-    
     getline(stream, year, '-');
     getline(stream, month, '-');
     getline(stream, day);
-
     int i_day = atoi(day.c_str());
     int i_month = atoi(month.c_str());
     int i_year = atoi(year.c_str());
-
     if(i_day > 1)
         i_day--;
     else if(i_month > 1)
@@ -173,10 +158,6 @@ std::string BitcoinExchange::LowerBound(std::string &date)
     return (new_date);
 }
 
-/*
-* @brief Reads the filename of the argument
-* @returns the data from input txt gets stored in the data 
-*/
 std::string BitcoinExchange::parseFilename(std::string const filename)
 {
     if (filename.length() < 4)
@@ -187,17 +168,13 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     std::ifstream ifs(filename.c_str());
     if(!ifs)
         throw FileIssues("File does not exsist");
-
     std::ostringstream oss;
     std::string line;
-
-    //* I can check here though about the parsing of the lines
     std::getline(ifs, line);
     while(std::getline(ifs, line))
         oss << line << '\n';
     return (oss.str()); 
 }
-
 
 void BitcoinExchange::calculateValue(std::string &data)
 {
@@ -210,23 +187,22 @@ void BitcoinExchange::calculateValue(std::string &data)
         getline(lol, date, ' ');
         getline(lol, pipe, ' ');
         getline(lol, value);
-        
-        //* If the date is found in the container 
         if(this->_values.find(date) != this->_values.end())
         {
             if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
                 std::cout << date << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
         }
-        //* if the date is not found in the container
         else
         {
             if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
            {
-                while(this->_values.find(date) == this->_values.end() && this->checkforDates(date))
+                bool flag = this->checkforDates(date);    
+                while(this->_values.find(date) == this->_values.end() && flag)
                 {
+                    flag = this->checkforDates(date);
                     date = this->LowerBound(date);
                 }
-                if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
+                if(this->checkforValues(value) && flag && this->checkforPair(line))
                     std::cout << date  << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
             }
         }
