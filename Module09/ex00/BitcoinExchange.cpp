@@ -43,7 +43,7 @@ void BitcoinExchange::readDataFile()
     file.close();
 }
 
-void BitcoinExchange::checkforValues(std::string line)
+bool BitcoinExchange::checkforValues(std::string line)
 {
     line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
     
@@ -51,18 +51,29 @@ void BitcoinExchange::checkforValues(std::string line)
     long number = strtol(line.c_str(), &endptr, 10);
     
     //* Invalid character check
-    // for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
-    // {
-    //     if (!std::isdigit(*it) && *it != '.')
-    //         std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
-    // }
+    for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
+    {
+        if (!std::isdigit(*it) && *it != '.'  && *it != '-')
+            {std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl; return (false);}
+    }
     //* Check for number int max, negatives and periods.
-    if (number > INT_MAX)
+    if (number > 1000)
+       { 
         std::cout << "Error : Value number too large ==> " << number <<  std::endl;
+        return (false);
+       }
     else if(number < 0)
+       { 
         std::cout << "Error : not a positive number ==> " << number << std::endl;
+        return (false);
+       }
     else if(std::count(line.begin(), line.end(), '.') > 1)
-        std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
+        {
+            std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
+            return (false);
+        }
+
+        return (true);
 }
 
 bool BitcoinExchange::checkforLeapYear(int &year)
@@ -72,7 +83,7 @@ bool BitcoinExchange::checkforLeapYear(int &year)
     return (true);
 }
 
-void BitcoinExchange::checkforDates(std::string line)
+bool BitcoinExchange::checkforDates(std::string line)
 {
     std::stringstream stream(line);
     std::string year, month, day;
@@ -88,35 +99,47 @@ void BitcoinExchange::checkforDates(std::string line)
     if(this->checkforLeapYear(i_year) == true)
     {
         if(i_year < 2009 || i_year > 2022 || year.size() > 4)
-            std::cout << "Error: Incorrect year ==> " << i_year << std::endl;
+            {std::cout << "Error: Incorrect year ==> " << i_year << std::endl; return (false);}
         else if (i_month < 1 || i_month > 12 || month.size() > 2)
-            std::cout << "Error: Incorrect month ==> " << i_month << std::endl;
+            {std::cout << "Error: Incorrect month ==> " << i_month << std::endl; return (false);}
         else if (i_day < 1 || i_day > 31 || day.size() > 3)
-            std::cout << "Error: Incorrect day ==> " << i_day << std::endl; 
+            {std::cout << "Error: Incorrect day ==> " << i_day << std::endl; return(false);} 
         else if( i_month == 2 && i_day > 29)
-            std::cout << "Error: Leap Year is 29 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; 
+            {std::cout << "Error: Leap Year is 29 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; return (false);}
     }
     else
     {
         if(i_year < 2009 || i_year > 2022 || year.size() > 4)
-            std::cout << "Error: Incorrect year ==> " << i_year << std::endl;
+            {std::cout << "Error: Incorrect year ==> " << i_year << std::endl; return (false);}
         else if (i_month < 1 || i_month > 12 || month.size() > 2)
-            std::cout << "Error: Incorrect month ==> " << i_month << std::endl;
+            {std::cout << "Error: Incorrect month ==> " << i_month << std::endl; return (false);}
         else if (i_day < 1 || i_day > 31 || day.size() > 3)
-            std::cout << "Error: Incorrect day ==> " << i_day << std::endl;
+            {std::cout << "Error: Incorrect day ==> " << i_day << std::endl; return(false);} 
         else if(i_month == 2 && i_day > 28)
-            std::cout << "Error: Not a leap year which is 28 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; 
+            {std::cout << "Error: Not a leap year which is 28 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; return (false);}
     }
+    return (true);
 }
 
-void BitcoinExchange::checkforPair(std::string line)
+bool BitcoinExchange::checkforPair(std::string line)
 {
     std::stringstream stream(line);
-    std::string dates, value; 
+    std::string dates, value, pipe;
+    getline(stream, dates, ' ');
+    getline(stream, pipe, ' ');
+    getline(stream, value);
+    // std::cout << "value: " << value.empty() << std::endl;
     if(std::count(line.begin(), line.end(), '|') > 1 || std::count(line.begin(), line.end(), '|') == 0)
     {
         std::cout << "Error: bad input ==> " << line << std::endl;
+        return (false);
     }
+    else if(value.empty())
+    {
+        std::cout << "Error: Empty Value ==> " << line << std::endl;
+        return (false);
+    }
+    return (true);
     // else
     // {
     //     getline(stream, dates, '|');
@@ -180,7 +203,7 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     std::getline(ifs, line);
     while(std::getline(ifs, line))
     {
-        this->checkforPair(line);
+        // this->checkforPair(line);
         oss << line << '\n';
     }  
     return (oss.str()); 
@@ -200,17 +223,17 @@ void BitcoinExchange::calculateValue(std::string &data)
         getline(lol, value);
         if(this->_values.find(date) != this->_values.end())
         {
-            this->checkforValues(value);
-            std::cout << date << " " << this->_values[date] * atof(value.c_str()) << '\n';
+            if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
+                std::cout << date << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
         }
         else
         {
             while(this->_values.find(date) == this->_values.end())
             {
                 date = this->LowerBound(date);
-                this->checkforValues(value);
             }
-            std::cout << date  << " " << this->_values[date] * atof(value.c_str()) << '\n';
+            if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
+                std::cout << date  << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
         }
     }
 }
