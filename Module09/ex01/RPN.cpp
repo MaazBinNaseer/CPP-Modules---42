@@ -48,6 +48,8 @@ void RPN::caluclateStack()
         this->rpn_int_container.push(digit_1 * digit_2);
     else if (operation == '/' && digit_2 != 0)
         this->rpn_int_container.push(digit_1 / digit_2);
+    else if (operation == '/' && digit_2 == 0)
+        {std::cout << "Division by 0, Mathematical Error -__-\n" ;}
     else if (operation == '+')
         this->rpn_int_container.push(digit_1 + digit_2);
     else if (operation == '-')
@@ -59,26 +61,41 @@ void RPN::caluclateStack()
 void RPN::fillStack(std::string line)
 {
     int line_size = line.size();
-    int number; 
+    int number;
 
     for (int i = 0; i < line_size; i++)
     {
-        if(line[i] != ' ')
+        if (line[i] != ' ')
         {
-            if(isdigit(line[i]) != 0)
+            if ((isdigit(line[i]) != 0 || (line[i] == '-' && (i == 0 || line[i - 1] == ' '))))
             {
                 int start = i;
-                while(i < line_size && isdigit(line[i]))
+                while (i < line_size && (isdigit(line[i]) || (i == start && line[i] == '-')))
                     i++;
                 number = atoi(line.substr(start, i - start).c_str());
-                this->rpn_int_container.push(number);
+                if (number >= -9 && number <= 9)
+                {
+                    this->rpn_int_container.push(number);
+                }
+                else
+                {
+                    std::cout << "Error: Number out of range (-9 to 9): " << number << std::endl;
+                    return ;
+                    // Handle the error as needed
+                }
             }
             else
                 this->rpn_char_container.push(line[i]);
-            if(this->rpn_int_container.size() >= 2 && this->rpn_char_container.size() == 1)
+
+            if (this->rpn_int_container.size() >= 2 && this->rpn_char_container.size() == 1)
                 this->caluclateStack();
         }
     }
 }
+
+
+
+
+
 
 RPN::~RPN() {}
