@@ -35,16 +35,12 @@ void BitcoinExchange::readDataFile()
     std::string key, date;
     while(getline(file,line))
     {
-        getline(file,line);
         std::stringstream ff(line);
-
         getline(ff, date, ',');
         getline(ff, key);
         this->_values[date] = atof(key.c_str());
-        // std::cout << this->_values[date] << std::endl;
     }
     file.close();
-    // return (key);
 }
 
 void BitcoinExchange::checkforValues(std::string line)
@@ -55,11 +51,11 @@ void BitcoinExchange::checkforValues(std::string line)
     long number = strtol(line.c_str(), &endptr, 10);
     
     //* Invalid character check
-    for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
-    {
-        if (!std::isdigit(*it) && *it != '.')
-            std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
-    }
+    // for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
+    // {
+    //     if (!std::isdigit(*it) && *it != '.')
+    //         std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
+    // }
     //* Check for number int max, negatives and periods.
     if (number > INT_MAX)
         std::cout << "Error : Value number too large ==> " << number <<  std::endl;
@@ -67,8 +63,6 @@ void BitcoinExchange::checkforValues(std::string line)
         std::cout << "Error : not a positive number ==> " << number << std::endl;
     else if(std::count(line.begin(), line.end(), '.') > 1)
         std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
-
-    // std::cout << "Value function -> value = " << line << std::endl;
 }
 
 bool BitcoinExchange::checkforLeapYear(int &year)
@@ -113,11 +107,6 @@ void BitcoinExchange::checkforDates(std::string line)
         else if(i_month == 2 && i_day > 28)
             std::cout << "Error: Not a leap year which is 28 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; 
     }
-
-    // std::cout << "Year X: " << i_year;
-    // std::cout << " Month Y: " << i_month;
-    // std::cout << " Day Z: " << i_day << std::endl;
-
 }
 
 void BitcoinExchange::checkforPair(std::string line)
@@ -128,17 +117,13 @@ void BitcoinExchange::checkforPair(std::string line)
     {
         std::cout << "Error: bad input ==> " << line << std::endl;
     }
-    else
-    {
-        getline(stream, dates, '|');
-        this->checkforDates(dates);
-        this->LowerBound(dates);
-        // std::cout << "dates: " << dates << std::endl;
-        getline(stream, value);
-        this->checkforValues(value);
-        // std::cout << " values" << value <<  std::endl;
-    }
-
+    // else
+    // {
+    //     getline(stream, dates, '|');
+    //     this->checkforDates(dates);
+    //     getline(stream, value);
+    //     this->checkforValues(value);
+    // }
 }
 
 std::string BitcoinExchange::LowerBound(std::string &date)
@@ -196,8 +181,7 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     while(std::getline(ifs, line))
     {
         this->checkforPair(line);
-        oss << line << '\n'; // Append each line followed by a newline
-        // std::cout << line<< std::endl;
+        oss << line << '\n';
     }  
     return (oss.str()); 
 }
@@ -214,19 +198,23 @@ void BitcoinExchange::calculateValue(std::string &data)
         getline(lol, date, ' ');
         getline(lol, pipe, ' ');
         getline(lol, value);
-        // std::cout << date << std::endl;
-        // std::cout << this->_values[date] << std::endl;
         if(this->_values.find(date) != this->_values.end())
         {
-            std::cout << this->_values[date] * atoi(value.c_str()) << '\n';
-        } 
-        
+            this->checkforValues(value);
+            std::cout << date << " " << this->_values[date] * atof(value.c_str()) << '\n';
+        }
+        else
+        {
+            while(this->_values.find(date) == this->_values.end())
+            {
+                date = this->LowerBound(date);
+                this->checkforValues(value);
+            }
+            std::cout << date  << " " << this->_values[date] * atof(value.c_str()) << '\n';
+        }
     }
 }
-
-
 BitcoinExchange::~BitcoinExchange() {};
-
 
 //* ------------------------- DEBUG PRINT FOR MAP CONTAINER ---------------------------------
 void BitcoinExchange::printAll() const
