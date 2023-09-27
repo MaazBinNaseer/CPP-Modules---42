@@ -41,30 +41,51 @@ void BitcoinExchange::readDataFile()
 
 bool BitcoinExchange::checkforValues(std::string line)
 {
-    line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
-    char *endptr;
-    long number = strtol(line.c_str(), &endptr, 10);
-    for (std::string::const_iterator it = line.begin(); it != line.end(); ++it)
+    std::stringstream stream(line);
+    std::string value;
+    int valueCount = 0;  // Count of values
+    
+    while (getline(stream, value, ' '))
     {
-        if (!std::isdigit(*it) && *it != '.'  && *it != '-')
-            {std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl; return (false);}
-    }
-    if (number > 1000)
-       { 
-        std::cout << "Error : Value number too large ==> " << number <<  std::endl;
-        return (false);
-       }
-    else if(number < 0)
-       { 
-        std::cout << "Error : not a positive number ==> " << number << std::endl;
-        return (false);
-       }
-    else if(std::count(line.begin(), line.end(), '.') > 1)
+        // Remove leading and trailing spaces from each value
+        value.erase(value.find_last_not_of(" \t") + 1);
+        value.erase(0, value.find_first_not_of(" \t"));
+
+        // Check if the value contains only a single period ('.')
+        if (value == ".")
         {
-            std::cout << "Error : Incorrect decimal number ==> " << number <<std::endl;
-            return (false);
+            std::cout << "Error: Cannot have only a '.' in the value" << std::endl;
+            return false;
         }
-        return (true);
+        char *endptr;
+        long number = strtol(value.c_str(), &endptr, 10);
+        for (std::string::iterator it = value.begin(); it != value.end(); ++it)
+        {
+            if (!std::isdigit(*it) && *it != '.' && *it != '-' && *it != ' ')
+            {
+                std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
+                return false;
+            }
+        }
+        if (number > 1000)
+        { 
+            std::cout << "Error : Value number too large ==> " << number <<  std::endl;
+            return false;
+        }
+        else if (number < 0)
+        { 
+            std::cout << "Error : not a positive number ==> " << number << std::endl;
+            return false;
+        }
+        valueCount++;
+        if (valueCount > 1)
+        {
+            std::cout << "Error: More than one value found in the input" << std::endl;
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool BitcoinExchange::checkforLeapYear(int &year)
@@ -164,7 +185,7 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
         throw FileIssues("Filename is less than 4 characters");
     std::string checkFileName = filename.substr(filename.length() - 4, 4);
     if(checkFileName != ".txt")
-        throw FileIssues("Filename does not cointain .txt");
+        throw FileIssues("Filename does not cointain .txt/");
     std::ifstream ifs(filename.c_str());
     if(!ifs)
         throw FileIssues("File does not exsist");
