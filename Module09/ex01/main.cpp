@@ -16,7 +16,6 @@ int main(int argc, char **argv)
 {
     RPN start;
     (void)argc;
-
     if(argc == 2)
         {
             try

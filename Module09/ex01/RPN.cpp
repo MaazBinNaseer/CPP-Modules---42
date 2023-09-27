@@ -111,8 +111,4 @@ void RPN::printResult()
     }
 }
 
-
-
-
-
 RPN::~RPN() {}
