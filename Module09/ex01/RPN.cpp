@@ -90,6 +90,18 @@ void RPN::fillStack(std::string line)
         if (this->rpn_int_container.size() >= 2 && this->rpn_char_container.size() == 1)
             this->caluclateStack();
     }
+    
+    // Check if there's an operator left but not enough operands
+    if (!this->rpn_char_container.empty() && this->rpn_int_container.size() < 2)
+    {
+        throw std::runtime_error("Error: Not enough operands for the operators provided.");
+    }
+    
+    // Check if there are too many numbers left
+    if (this->rpn_int_container.size() > 1 && this->rpn_char_container.empty())
+    {
+        throw std::runtime_error("Error: Too many numbers provided without sufficient operations.");
+    }
 }
 
 void RPN::printResult()
