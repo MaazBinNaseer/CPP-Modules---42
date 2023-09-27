@@ -23,12 +23,12 @@ std::string RPN::parseArguments(char *args)
     return (NULL);
 }
 
-std::stack<char> RPN::getStackChar()
+std::stack<char, std::list<char> > RPN::getStackChar()
 {
     return (this->rpn_char_container);
 }
 
-std::stack<int> RPN::getStackInt()
+std::stack<int, std::list<int> > RPN::getStackInt()
 {
     return (this->rpn_int_container);
 }
