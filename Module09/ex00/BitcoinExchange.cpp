@@ -192,6 +192,12 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     std::ostringstream oss;
     std::string line;
     std::getline(ifs, line);
+    if(line.compare("data | value") != 0)
+        {
+            std::cout << "Invalid formate [data | value] at the header required" << std::endl;
+            ifs.close();
+            exit(1);
+        }
     while(std::getline(ifs, line))
         oss << line << '\n';
     return (oss.str()); 
