@@ -1,5 +1,5 @@
 NAME	=	Pmerge
-CC		=	c++
+CXX		=	c++
 CXXFLAGS =	-std=c++98 -Wall -Wextra -Werror 
 
 SRCS	=	Pmerge.cpp \
@@ -11,7 +11,7 @@ RESET   =   \033[0m
 all		:	$(NAME)
 
 $(NAME)	:	$(SRCS)
-				$(CC) $(CXXFLAGS) $(SRCS) -o $(NAME)
+				$(CXX) $(CXXFLAGS) $(SRCS) -o $(NAME)
 				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
 
 clean	:

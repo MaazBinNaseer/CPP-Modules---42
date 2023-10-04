@@ -184,8 +184,8 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     if (filename.length() < 4)
         throw FileIssues("Filename is less than 4 characters");
     std::string checkFileName = filename.substr(filename.length() - 4, 4);
-    if(checkFileName != ".txt")
-        throw FileIssues("Filename does not cointain .txt/");
+    if(checkFileName != ".txt" || checkFileName != ".csv")
+        throw FileIssues("Filename does not cointain .txt/.csv");
     std::ifstream ifs(filename.c_str());
     if(!ifs)
         throw FileIssues("File does not exsist");
