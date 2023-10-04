@@ -95,37 +95,72 @@ bool BitcoinExchange::checkforLeapYear(int &year)
     return (true);
 }
 
+bool BitcoinExchange::validDateFormat(std::string year,std::string month, std::string date)
+{
+    for (std::string::iterator it = year.begin(); it != year.end(); ++it)
+    {
+        if (!std::isdigit(*it) && *it != '.' && *it != '-' && *it != ' ')
+        {
+            std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
+            return (false);
+        }
+    }
+    for (std::string::iterator it = month.begin(); it != month.end(); ++it)
+    {
+        if (!std::isdigit(*it) && *it != '.' && *it != '-' && *it != ' ')
+        {
+            std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
+            return (false);
+        }
+    }
+    for (std::string::iterator it = date.begin(); it != date.end(); ++it)
+    {
+        if (!std::isdigit(*it) && *it != '.' && *it != '-' && *it != ' ')
+        {
+            std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
+            return (false);
+        }
+    }
+    return (true);
+}
+
 bool BitcoinExchange::checkforDates(std::string line)
 {
     std::stringstream stream(line);
     std::string year, month, day;
+    
     getline(stream, year, '-');
     getline(stream, month, '-');
     getline(stream, day);
-    int i_year = atoi(year.c_str());
-    int i_month = atoi(month.c_str());
-    int i_day = atoi(day.c_str());
-    if(this->checkforLeapYear(i_year) == true)
-    {
-        if(i_year < 2009 || i_year > 2022 || year.size() > 4)
-            {std::cout << "Error: Incorrect year ==> " << i_year << std::endl; return (false);}
-        else if (i_month < 1 || i_month > 12 || month.size() > 2)
-            {std::cout << "Error: Incorrect month ==> " << i_month << std::endl; return (false);}
-        else if (i_day < 1 || i_day > 31 || day.size() > 3)
-            {std::cout << "Error: Incorrect day ==> " << i_day << std::endl; return(false);} 
-        else if( i_month == 2 && i_day > 29)
-            {std::cout << "Error: Leap Year is 29 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; return (false);}
-    }
-    else
-    {
-        if(i_year < 2009 || i_year > 2022 || year.size() > 4)
-            {std::cout << "Error: Incorrect year ==> " << i_year << std::endl; return (false);}
-        else if (i_month < 1 || i_month > 12 || month.size() > 2)
-            {std::cout << "Error: Incorrect month ==> " << i_month << std::endl; return (false);}
-        else if (i_day < 1 || i_day > 31 || day.size() > 3)
-            {std::cout << "Error: Incorrect day ==> " << i_day << std::endl; return(false);} 
-        else if(i_month == 2 && i_day > 28)
-            {std::cout << "Error: Not a leap year which is 28 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; return (false);}
+    
+    bool ValidDateFormat = validDateFormat(year, month, day);
+    if(ValidDateFormat != false)
+    {    
+        int i_year = atoi(year.c_str());
+        int i_month = atoi(month.c_str());
+        int i_day = atoi(day.c_str());
+        if(this->checkforLeapYear(i_year) == true)
+        {
+            if(i_year < 2009 || i_year > 2022 || year.size() > 4)
+                {std::cout << "Error: Incorrect year ==> " << i_year << std::endl; return (false);}
+            else if (i_month < 1 || i_month > 12 || month.size() > 2)
+                {std::cout << "Error: Incorrect month ==> " << i_month << std::endl; return (false);}
+            else if (i_day < 1 || i_day > 31 || day.size() > 3)
+                {std::cout << "Error: Incorrect day ==> " << i_day << std::endl; return(false);} 
+            else if( i_month == 2 && i_day > 29)
+                {std::cout << "Error: Leap Year is 29 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; return (false);}
+        }
+        else
+        {
+            if(i_year < 2009 || i_year > 2022 || year.size() > 4)
+                {std::cout << "Error: Incorrect year ==> " << i_year << std::endl; return (false);}
+            else if (i_month < 1 || i_month > 12 || month.size() > 2)
+                {std::cout << "Error: Incorrect month ==> " << i_month << std::endl; return (false);}
+            else if (i_day < 1 || i_day > 31 || day.size() > 3)
+                {std::cout << "Error: Incorrect day ==> " << i_day << std::endl; return(false);} 
+            else if(i_month == 2 && i_day > 28)
+                {std::cout << "Error: Not a leap year which is 28 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; return (false);}
+        }    
     }
     return (true);
 }
@@ -184,7 +219,7 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     if (filename.length() < 4)
         throw FileIssues("Filename is less than 4 characters");
     std::string checkFileName = filename.substr(filename.length() - 4, 4);
-    if(checkFileName != ".txt" || checkFileName != ".csv")
+    if(checkFileName != ".txt" && checkFileName != ".csv")
         throw FileIssues("Filename does not cointain .txt/.csv");
     std::ifstream ifs(filename.c_str());
     if(!ifs)
@@ -192,10 +227,10 @@ std::string BitcoinExchange::parseFilename(std::string const filename)
     std::ostringstream oss;
     std::string line;
     std::getline(ifs, line);
-    if(line.compare("data | value") != 0)
+    if(line.compare("date | value") != 0)
         {
             ifs.close();
-            throw FileIssues("Header not found [data | value]");
+            throw FileIssues("Header not found [date | value]");
         }
     while(std::getline(ifs, line))
         oss << line << '\n';

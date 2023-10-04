@@ -32,6 +32,7 @@ class BitcoinExchange
         // void BitcoinExchange::calculateValue(const std::string &date, float multiplier);
         bool checkforPair(std::string line);
         bool checkforDates(std::string line);
+       bool validDateFormat(std::string year, std::string month, std::string date);
         bool ValidDay(std::string &line);
         bool checkforLeapYear(int &year);
         bool checkforValues(std::string line);
