@@ -99,7 +99,7 @@ bool BitcoinExchange::validDateFormat(std::string year,std::string month, std::s
 {
     for (std::string::iterator it = year.begin(); it != year.end(); ++it)
     {
-        if (!std::isdigit(*it) && *it != '.' && *it != '-' && *it != ' ')
+        if (!std::isdigit(*it))
         {
             std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
             return (false);
@@ -107,7 +107,7 @@ bool BitcoinExchange::validDateFormat(std::string year,std::string month, std::s
     }
     for (std::string::iterator it = month.begin(); it != month.end(); ++it)
     {
-        if (!std::isdigit(*it) && *it != '.' && *it != '-' && *it != ' ')
+        if (!std::isdigit(*it))
         {
             std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
             return (false);
@@ -115,7 +115,7 @@ bool BitcoinExchange::validDateFormat(std::string year,std::string month, std::s
     }
     for (std::string::iterator it = date.begin(); it != date.end(); ++it)
     {
-        if (!std::isdigit(*it) && *it != '.' && *it != '-' && *it != ' ')
+        if (!std::isdigit(*it))
         {
             std::cout << "Error: Invalid character '" << *it << "' found in value." << std::endl;
             return (false);
@@ -162,7 +162,7 @@ bool BitcoinExchange::checkforDates(std::string line)
                 {std::cout << "Error: Not a leap year which is 28 days in Feburary ==> " << i_year << "-" << i_month << "-" << i_day << std::endl; return (false);}
         }    
     }
-    return (true);
+    return (ValidDateFormat);
 }
 
 bool BitcoinExchange::checkforPair(std::string line)
