@@ -1,5 +1,5 @@
 NAME	=	RPN
-CC		=	c++
+CXX		=	c++
 CFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
 SRCS	=	main.cpp \
@@ -11,7 +11,7 @@ RESET   =   \033[0m
 all		:	$(NAME)
 
 $(NAME)	:	$(SRCS)
-				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+				$(CXX) $(CFLAGS) $(SRCS) -o $(NAME)
 				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
 
 clean	:
