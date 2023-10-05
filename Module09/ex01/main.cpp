@@ -15,11 +15,12 @@ void printContainer(std::stack<T> container)
 int main(int argc, char **argv)
 {
     RPN start;
-    (void)argc;
-    if(argc == 2)
+
+    if(argc == 2 && argv[1][0])
         {
             try
             {
+    
                 std::string line = start.parseArguments(argv[1]);
                 start.fillStack(line);
                 start.printResult();

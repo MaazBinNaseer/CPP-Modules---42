@@ -3,7 +3,6 @@
 
 RPN::RPN() {}
 RPN::RPN(const RPN& obj) { *this = obj;}
-RPN & RPN::operator=(const RPN &obj){if(this != &obj){} return (*this);}
 
 std::string RPN::parseArguments(char *args)
 {
@@ -21,6 +20,16 @@ std::string RPN::parseArguments(char *args)
             throw std::runtime_error("Error: Incorrect opreations/digits");
     }
     return (NULL);
+}
+
+RPN &RPN::operator=(const RPN &rhs)
+{
+    if (this != &rhs)
+    {
+		this->rpn_char_container = rhs.rpn_char_container;
+        this->rpn_int_container = rhs.rpn_int_container;
+    }
+    return (*this);
 }
 
 std::stack<char, std::list<char> > RPN::getStackChar()
@@ -62,9 +71,13 @@ void RPN::caluclateStack()
 void RPN::fillStack(std::string line)
 {
     std::istringstream iss(line);
+    if(line.empty())
+    {
+        std::cout << "Error: No input in the string" << std::endl;
+        return ;
+    }
     std::string token;
     int number;
-
     while (getline(iss, token, ' '))
     {
         if (token.empty())

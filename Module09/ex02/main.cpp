@@ -3,16 +3,21 @@
 int main(int argc, char **argv)
 {
     Pmerge values;
-
-    (void)argc;
-    int i = 0, y = 0; 
-    while(argv[++i] != NULL)
+    int i = 0, y = 0;
+    if(argc > 1)
     {
-        y = values.parseArguments(argv[i]);
-        values.fillDeque(y);
-        values.fillVector(y);
+       while(argv[++i] != NULL)
+         {
+            y = values.parseArguments(argv[i]);
+            values.fillDeque(y);
+            values.fillVector(y);
+        }
     }
-
+    else
+    {
+        std::cout << "Incorrect parsing" << std::endl;
+        return (1);
+    }
     /* --------------------------------------------------
     * -------------------- INDVID. TIME ----------------
     -----------------------------------------------------*/

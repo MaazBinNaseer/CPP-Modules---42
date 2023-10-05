@@ -1,6 +1,6 @@
 NAME	=	btc
 CXX		=	c++
-CFLAGS	=	-std=c++98 -Wall -Wextra -Werror
+CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
 SRCS	=	main.cpp \
 			BitcoinExchange.cpp \
@@ -11,7 +11,7 @@ RESET   =   \033[0m
 all		:	$(NAME)
 
 $(NAME)	:	$(SRCS)
-				$(CXX) $(CFLAGS) $(SRCS) -o $(NAME)
+				$(CXX) $(CXXFLAGS) $(SRCS) -o $(NAME)
 				@echo "$(GREEN)\033[1mCompilation complete$(RESET)"
 
 clean	:

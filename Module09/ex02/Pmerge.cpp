@@ -6,7 +6,6 @@ Pmerge::Pmerge(const Pmerge& value) {*this = value;}
 
 Pmerge& Pmerge::operator=(const Pmerge &value) {if(this != &value) {} return (*this);}
 
-
 int Pmerge::parseArguments(std::string line)
 {
     int x = line.length();

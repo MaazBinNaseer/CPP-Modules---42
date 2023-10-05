@@ -9,6 +9,18 @@ const char* BitcoinExchange::FileIssues:: what(void) const throw()
     return (errorMessage.c_str());
 }
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &object)
+{
+    *this = object;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
+{
+    if (this != &rhs)
+    {}
+    return (*this);
+}
+
 BitcoinExchange::FileIssues::~FileIssues() throw() {};
 
 BitcoinExchange::FileIssues::FileIssues(std::string error) : errorMessage(error) {};
