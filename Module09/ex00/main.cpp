@@ -17,6 +17,8 @@ int main(int argc, char ** argv)
         // std::cout << data << std::endl;
         // read.printAll();
         read.calculateValue(data);
+
+        // read.printAll();
     }
     catch(BitcoinExchange::FileIssues &e)
     {
