@@ -47,7 +47,7 @@ void BitcoinExchange::readDataFile()
         getline(ff, date, ',');
         getline(ff, key);
         this->_values[date] = atof(key.c_str());
-        std
+
     }
     file.close();
 }
@@ -267,8 +267,7 @@ void BitcoinExchange::calculateValue(std::string &data)
         {
             if(this->checkforValues(value) && this->checkforDates(date) && this->checkforPair(line))
                 {
-                    std::cout << this->_values[date] << std::endl;
-                    std::cout << date << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
+                    std::cout << date << " ==> "<<std::fixed <<std::setprecision(2) << this->_values[date] * atof(value.c_str()) << '\n';
                 }
         }
         else
@@ -284,7 +283,7 @@ void BitcoinExchange::calculateValue(std::string &data)
                 if(this->checkforValues(value) && flag && this->checkforPair(line))
                    {
                         std::cout << atof(value.c_str()) << std::endl;
-                     std::cout << date  << " ==> " << this->_values[date] * atof(value.c_str()) << '\n';
+                     std::cout << date  << " ==> " << std::fixed << std::setprecision(2) << this->_values[date] * atof(value.c_str()) << '\n';
                    }
             }
         }
