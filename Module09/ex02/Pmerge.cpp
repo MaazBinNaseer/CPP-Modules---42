@@ -30,6 +30,8 @@ int Pmerge::parseArguments(std::string line)
         std::cout << "Conversion error. Invalid characters found after the number: " << endptr << std::endl;
         exit (-1);
     }
+    if(value > INT_MAX || value < INT_MIN)
+        throw std::runtime_error("Overload Error");
     return (static_cast<int>(value));
 }
 

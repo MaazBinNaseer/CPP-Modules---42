@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <time.h>
 #include <iomanip>
+#include <limits.h>
 
 
 void printVector(std::vector<int> &container);

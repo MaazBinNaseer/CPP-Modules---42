@@ -85,12 +85,11 @@ void RPN::fillStack(std::string line)
 
         // Check if the token is a number or a negative number
         if ((token[0] == '-' && token.size() > 1 && token[1] >= '0' && token[1] <= '9') || (token[0] >= '0' && token[0] <= '9'))
-        {
+        {        
             number = atoi(token.c_str());
             if(number > 9 || number < -9)
             {
-                std::cout << "Error: Number Range from [-9 to 9] for RPN operation => " << number <<std::endl;
-                return ;
+                throw std::runtime_error("Error: Invalid number between -9 to 9.");
             }
             this->rpn_int_container.push(number);
         }
